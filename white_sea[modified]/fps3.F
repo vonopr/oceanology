@@ -367,45 +367,7 @@ c      xx(i,j,k)=xx(i,j,k) - (wt1*qt(i,j)/ql)*dt
       return
       end
 
-      subroutine bstr(u,v,thx,thy,hu,hv,im,jm,km,ctah)
 
-******  bottom stresses calculation
-******   from bottom Ekmann layer
-******    thx= (0.5*ql*f)**1/2 /H*(u-v)
-******    thy= (0.5*ql*f)**1/2 /H*(u+v)
-******    where qw,qe -  pressure fluxes on west-east boundary v-mesh
-******          qn,qs -  pressure fluxes on nord-south boundary u-mesh
-******
-******
-        include 'par.inc'
-        include 'com.inc'
-
-
-      real u(im,jm,km),v(im,jm,km),thx(im,jm),thy(im,jm)
- 
-
-
-      ep1=(ql/4/omega/acs(6))**0.5*ctah
-c      ep=(ql*omega*acs(6))**0.5*ctah
-
-      do 1 j=1,js
-      do 1 i=1,iss
-      thy(i,j)=0.
-      ep=(ql*omega*acs(j))**0.5*ctah
-      if(kv(i,j).gt.1)thy(i,j)
-     #  =ep*zintw(v,i,j,1,ks,im,jm,kv,zw)/zw(kv(i,j))
-   
-  1   continue
-      do 3 i=1,is
-      do 3 j=1,jss
-      thx(i,j)=0.
-      ep=(ql*omega*acs(j))**0.5*ctah
-      if(ku(i,j).gt.1)thx(i,j)
-     #  =ep*zintw(u,i,j,1,ks,im,jm,ku,zw)/zw(ku(i,j))
-
-  3   continue
-      return
-      end
 c-------------------------------------------------
       subroutine taflux(a,ta,qt,qwa,im,jm,k,wu)
         include 'par.inc'
