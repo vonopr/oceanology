@@ -17,11 +17,11 @@
 
         if(it(i,j-1).eq.2)as=v(i,j,k)*(sn(j-1)+sn(j))/2.
        dy1=dy
-	   if(kv(i,j+1).lt.k)then
-    	an=0.
+           if(kv(i,j+1).lt.k)then
+            an=0.
         dy1=1.5*dy
-	      end if
-	    if(kv(i,j-1).lt.k) then
+              end if
+            if(kv(i,j-1).lt.k) then
         as=0.
         dy1=1.5*dy
           end if
@@ -74,16 +74,16 @@ c********  step 2
       ue=u(i+1,j,k)
       vn=v(i,j+1,k)
 
-	 if(ku(i,j).lt.k)up=0.
-	  if(ku(i+1,j).lt.k)ue=0.
-	   if(kv(i,j).lt.k)vp=0.
-	    if(kv(i,j+1).lt.k)vn=0.
+         if(ku(i,j).lt.k)up=0.
+          if(ku(i+1,j).lt.k)ue=0.
+           if(kv(i,j).lt.k)vp=0.
+            if(kv(i,j+1).lt.k)vn=0.
 
 
               arad=1./rad /((sn(j)+sn(j+1))/2.)  
 
 
-			 
+                         
 ********* step1  X
 !                                    |
 !!!!!!!!!!!!!!!!!!!!!!!!!   semisum  V  central point  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -91,7 +91,7 @@ c********  step 2
          goto 2   ! 
 
        ii=1  ! sum/2
-c	 ii=0  ! central point
+c         ii=0  ! central point
 
               aw=(a(i-ii,j,k)+a(i,j,k))/2.*up
               ae=(a(i+ii,j,k)+a(i,j,k))/2.*ue
@@ -113,12 +113,12 @@ ccc      goto 1
 
        aa=1.
        if(up.lt.0)aa=-1.
-	 if(kp(i-1,j).lt.k)a(i-1,j,k)=a(i,j,k)
+         if(kp(i-1,j).lt.k)a(i-1,j,k)=a(i,j,k)
               aw=(a(i-1,j,k)*(1+aa)+a(i,j,k)*(1-aa))/2.*up
 
        aa=1.
        if(ue.lt.0)aa=-1.
-	 if(kp(i+1,j).lt.k)a(i+1,j,k)=a(i,j,k)
+         if(kp(i+1,j).lt.k)a(i+1,j,k)=a(i,j,k)
               ae=(a(i+1,j,k)*(1-aa)+a(i,j,k)*(1+aa))/2.*ue
 
             
@@ -144,7 +144,7 @@ ccc      goto 1
        goto 3   ! 
 
        jj=1  ! sum/2
-c	 jj=0  ! central point
+c         jj=0  ! central point
 
             as=(a(i,j-jj,k)+a(i,j,k))/2.*vp*sn(j)
             an=(a(i,j+jj,k)+a(i,j,k))/2.*vn*sn(j+1)
@@ -194,7 +194,7 @@ ccc       goto 4
 *************************************************************** step1
       up=u(i,j,k)
       uw=u(i-1,j,k)
-	ue=u(i+1,j,k)
+        ue=u(i+1,j,k)
 
       uee=u(i+1,j,k)
       if(i.lt.iss)uee=u(i+2,j,k)
@@ -211,9 +211,9 @@ ccc       goto 4
 
       
         a=1.
-	  if(uw.le.0.)a=0.
+          if(uw.le.0.)a=0.
         b=1.
-	  if(ue.le.0.)b=0.
+          if(ue.le.0.)b=0.
 
       LUm= LUm +(ue*(b*up+(1.-b)*uee) - uw*(a*uww+(1.-a)*up))/dx/2.*arad  !  R
 
@@ -225,13 +225,13 @@ ccc       goto 4
        vu=(v(i,j,k)+v(i-1,j,k))/2.
 
        ud=u(i,j+1,k)
-	 um=u(i,j,k)
+         um=u(i,j,k)
        uu=u(i,j-1,k)
-	 
+         
         a=1.
-	  if(vd.le.0.)a=0.
+          if(vd.le.0.)a=0.
         b=1.
-	  if(vu.le.0.)b=0.
+          if(vu.le.0.)b=0.
 
       LUm=LUm+(vd*(a*um+(1.-a)*ud)*sn(j+1)-vu*(b*uu+(1.-b)*um)*sn(j))
 
@@ -240,8 +240,8 @@ ccc       goto 4
       return
       end
 
-	function LVm(u,v,i,j,k,im,jm,km)
-	  include 'par.inc'
+        function LVm(u,v,i,j,k,im,jm,km)
+          include 'par.inc'
         include 'com.inc'
       dimension
      *          u(im,jm,km),v(im,jm,km)
@@ -258,9 +258,9 @@ ccc       goto 4
       ue=(u(i+1,j,k)+u(i+1,j-1,k))/2.
 
         a=1.
-	  if(ue.le.0.)a=0.
+          if(ue.le.0.)a=0.
         b=1.
-	  if(uw.le.0.)b=0.
+          if(uw.le.0.)b=0.
 
 
 
@@ -289,9 +289,9 @@ ccc       goto 4
 
 
         a=1.
-	  if(vd.le.0.)a=0.
+          if(vd.le.0.)a=0.
         b=1.
-	  if(vu.le.0.)b=0.
+          if(vu.le.0.)b=0.
 
 
 
@@ -356,7 +356,7 @@ c      integer ku(im,jm)
        if(ii.ne.0)then
               aw=u(i-1,j,k)
               ae=u(i+1,j,k)
-	if(ir.eq.2)ae=u(i,j,k)
+        if(ir.eq.2)ae=u(i,j,k)
               dxw=x(i)-x(i-1)
               dxe=x(i+1)-x(i)
               dx=dxw+dxe
@@ -388,7 +388,7 @@ c      integer ku(im,jm)
 
       if(j.ne.1)then
            as=u(i,j-1,k)
-	if(ir.eq.2)as=ap
+        if(ir.eq.2)as=ap
            if(ku(i,j-1).lt.k) as=ap*ll
          else
          as=ap
@@ -506,7 +506,7 @@ c      integer ku(im,jm)
         endif
       if(i.ne.is-1)then
               ae=v(i+1,j,k)
-	if(ir.eq.5)ae=ap
+        if(ir.eq.5)ae=ap
               if(kv(i+1,j).lt.k) ae=ap*ll
               dxe=x(i+2)/2-x(i)/2
               else
