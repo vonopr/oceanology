@@ -8,10 +8,10 @@ c      use DFPORT
       real*8 progtime                            !время счета программы    
       real*8 timestep(120000)
         
-      real  qss(in,jn),sa(in,jn)
+      real  sa(in,jn)
      *     ,thx(in,jn),thy(in,jn)                !bottom stress
      *     ,tax(in,jn),tay(in,jn)                !surface stress
-     *     ,t1(10,19),s1(10,19),p1(10)           !liq.bound cond.
+     *     ,p1(10)           !liq.bound cond.
      *     ,u(in,jn,kn),v(in,jn,kn),w(in,jn,kn)  !velocity components
      *     ,tav(in,jn,kn),sav(in,jn,kn),pav(in,jn)
      *     ,ut(in,jn,kn),vt(in,jn,kn)            !ones from prev.time step
@@ -19,25 +19,23 @@ c      use DFPORT
      *,ro(in,jn,kn),ph(in,jn),pht(in,jn),phtt(in,jn) !dencity,surface pressure
      #     ,ta(in,jn),qt(in,jn),qb(in,jn)        !atmosph.temp,surface t-flux
 
-     #     ,uss(in,jn,kn),wtt(in,jn,kn),pz(in,jn,kn)
      #     ,str(in,jn,kn),str0(in,jn),strt(in,jn,kn)     
       
      *     ,ae(in,jn),aw(in,jn),as(in,jn),an(in,jn),ap(in,jn)
      *     ,af(in,jn),aff(in,jn),x1(in),uh(in,jn),vh(in,jn)
-     *     ,wr1(in,jn),wr(in,jn),um(inn,jnn),vm(inn,jnn) 
+     *     ,wr1(in,jn),wr(in,jn)
      *     ,fu(in,jn,kn), fv(in,jn,kn),us(in,jn,kn)      !work arrays
      *     ,energ(120000),hp(in,jn)
 c       #     ,ene(3900),tim(3900)
      *     ,umt(in,jn,kn),vmt(in,jn,kn),wmt(in,jn,kn)
 c************  work array for pictures   ************************
-     #    ,dzita(in,jn),ttemp(in,jn),stemp(in,jn)
-     #    ,rotemp(in,jn),bottom(in,jn),sect(in,kn)
+     #    ,dzita(in,jn)
+     #    ,rotemp(in,jn),bottom(in,jn)
      #    ,dzit1(in,jn)                    
 c****************************************************************
      *   ,tmt(in,jn,kn),smt(in,jn,kn),ahm(in,jn,kn)
      *     ,ummt(in,jn),vmmt(in,jn),wmmt(in,jn),pmmt(in,jn)
-     *     ,rrt(5,kn,1500),bmt(in,jn,kn),wav(in,jn,kn)
-     *   ,wm(inn,kn-1),uwm(inn,kn-1)
+     *     ,bmt(in,jn,kn),wav(in,jn,kn)
      #     ,ahz(in,jn,kn),pr(in,jn,kn),frf(in,jn,kn)
      #     ,tb(in,jn,kn),te(in,jn,kn),ahzt(in,jn,kn)
      #     ,tbt(in,jn,kn),tet(in,jn,kn)
@@ -45,8 +43,8 @@ c****************************************************************
      #     ,e2(kn),d2(kn),r2(kn),g2(kn),ef(kn),azz(kn)
      #   ,ua(kn),va(kn),pare(5)
      #     ,ala(in),fi(jn)
-     #     ,pmax(in,jn),pc(in,jn),rmax(in,jn),rc(in,jn)
-     #     ,emid(700),emax(700),emin(700),tmid(700) 
+     #     ,pmax(in,jn),pc(in,jn),rc(in,jn)
+     #     ,emid(700),emax(700),emin(700)
      &  ,tam(5),txm(5),tym(5),sg(5),tg(5),vd(5),vo(5),tr(5),
      & dzg(12),taa(24),saa(24),avp(24)
      # ,uav(in,jn,kn),vav(in,jn,kn),levelsolo(2000)
@@ -832,9 +830,6 @@ c  переопределение давления Онеги и Двины    *****   **********
      * ahz,fuu,fvv,azz,e2,d2,r2,g2,a3,b3,c3,ua,va,z0,cstep)
 
 
-
-
-c      wtt=w
 
       cq=1.
       cu=1.
