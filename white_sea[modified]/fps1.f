@@ -56,8 +56,7 @@
 ******  da/dt=d(ah*da/dz)/dz
 ****** z=0       ah*da/dz=-qa
 ****** z=H       ah*da/dz=-qh
-c       include 'par.inc'
-c       include 'com.inc' 
+
         include 'par.inc'
         include 'com.inc'
 
@@ -301,21 +300,6 @@ ccc      goto 2
 	wm1=w(i-1,j,k)
 	wu1=w(i-1,j,k-1)
 	
-c      if(k.eq.2)then
-c        am=fm(a(i,j,3),a(i,j,2),z(2),(z(3)-zw(2)))*(wm+wm1)/2  
-c        au=a(i,j,2)*(wu+wu1)/2
-
-c          advzu=(am-au)/zw(2)
-
-c             else
-
-c        zd=zw(k+1)-z(k+1)
-c        z0=zw(k)-z(k)
-c        zu=zw(k-1)-z(k-1)
-
-      
-c      am=fm(a(i,j,k),a(i,j,k+1),zd,z0)*(wm+wm1)/2     
-c      au=fm(a(i,j,k),a(i,j,k-1),zu,z0)*(wu+wu1)/2
 
 
 
@@ -343,12 +327,12 @@ c           endif
         include 'com.inc'
         real a(im,jm,km),w(im,jm,km)
 
-      
-	wm=w(i,j,k)
-	wu=w(i,j,k-1)
-	wm1=w(i,j-1,k)
-	wu1=w(i,j-1,k-1)
-	
+
+        wm=w(i,j,k)
+        wu=w(i,j,k-1)
+        wm1=w(i,j-1,k)
+        wu1=w(i,j-1,k-1)
+
 
 	  am=a(i,j,k)*(wm+wm1)/2
       if((wm+wm1)/2.lt.0)am=a(i,j,k+1)*(wm+wm1)/2   ! R
@@ -357,10 +341,10 @@ c           endif
       continue
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-          advzv=(am-au)/(zw(k)-zw(k-1))  
-      
+          advzv=(am-au)/(zw(k)-zw(k-1))
+
 c           endif
-      
+
       return
       end
 
