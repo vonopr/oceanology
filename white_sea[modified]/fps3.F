@@ -512,13 +512,18 @@ c-------------------------------------------------
 
 
       
+      
 
 
 
 
 
 
-
+      
+      
+      
+      
+      
 
        subroutine coefNL(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
      #ph,pht,ro,ahz,an,as,aw,ae,ap,af,phtt,
