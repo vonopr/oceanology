@@ -645,14 +645,6 @@ c	if(it(i,j).ne.1)a(i,j,1)=a(i,j,2)
 
 
 
-c     & a(i,j,k)= out11(a(i,j,k),a(i-1,j+1,k),at(i-1,j+1,k),   
-c     #a(i-2,j+2,k),0.5)
-c      function outf (aout,ap,apt,ain,a0,u,i1,j1,k1,ns)
-c      function out11(aout,ap,apt,ain,cf) 
-
-c        cft=0.6
-c         a(i,j,k)=out11ts
-c     %(a(i,j,k),at(i,j,k),a(i,j+1,k),at(i,j+1,k),a(i,j+2,k),cft,j,k) 
 
      
 
@@ -756,59 +748,4 @@ c	 pause 0
  2    continue
       return
       end
-
- 
-
-c----------------------------------------
-      function out11ts(aout,aoutt,ap,apt,ain,cf,j,k)
-        include 'par.inc'
-        include 'com.inc'
-
-
-
-        c0=dy*rad/abs(dt)  !!! grid speed
-
-
-
-        da1=ain-ap
-
-        if(abs(da1).lt.1.e-4)then
-	  out11ts=aout
-        else
-
-        dta=ap-apt
-
-        c1=-c0*dta/da1
-
-
-        if(c1.gt.0.) then  !  WR gt
-           
-        out11ts=aout
-
-        else
-
-	  c10=c1/c0
-
-	  if(abs(c10).gt.abs(cf))c10=cf*abs(c1)/c1
-	
-c	   out11ts=aout*(c10+1)-c10*ap  !!!!   RADIATION явная схема
-
-         out11ts=(-c10*ap+aout)/(1-c10) !!!! неявная схема
-
-
-c	    out11ts=ap  ! df/dn=0 
-	    
-	    	             
-	  endif 
-        endif
-
-c       if(j.eq.30)print*,'cf,z(1),z(2)',c1,' ',out11ts,' ',ap
-c       if(j.eq.30.and.k.eq.1)pause 77
-
-
-      return
-      end
- 
-
-  
 
