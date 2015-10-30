@@ -504,28 +504,14 @@ c-------------------------------------------------
         return
         end
 
-        
 
 
 
 
 
 
-      
-      
 
-
-
-
-
-
-      
-      
-      
-      
-      
-
-       subroutine coefNL(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
+       subroutine coefNL(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,          ! Proved: 'coefNL' is called by 'fps.for'
      #ph,pht,ro,ahz,an,as,aw,ae,ap,af,phtt,
      #im,jm,km,
      #al,al1,cph,cu,cadv,cq,ct,cstep,ns)

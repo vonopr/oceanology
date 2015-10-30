@@ -30,7 +30,6 @@ c      use DFPORT
 c       #     ,ene(3900),tim(3900)
      *     ,umt(in,jn,kn),vmt(in,jn,kn),wmt(in,jn,kn)
 c************  work array for pictures   ************************
-     #    ,zxt(in,kn),zxs(in,kn),zxro(in,kn),zxahz(in,kn)
      #    ,dzita(in,jn),ttemp(in,jn),stemp(in,jn)
      #    ,rotemp(in,jn),bottom(in,jn),sect(in,kn)
      #    ,dzit1(in,jn)                    
