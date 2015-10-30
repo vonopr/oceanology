@@ -512,18 +512,6 @@ ccc	 a2(k)=a2(k)+adv(a,u,v,w,i,j,k,im,jm,km,qt)
 11    continue 
 
 
-c      if(it(i,j).ne.5.or.k.eq.ke) goto 18   !!!!  c - 29.11.03
-
-
-
-
-c	 a2(k)=a2(k)+adv(at,u,v,w,i,j,k,im,jm,km,qt)
-
-c 	 a2(k)=a2(k)+LeithF(t,at,u,v,w,i,j,k,im,jm,km,qt)
-
-c      if(k.ne.ke)goto 18
- 
-
  
 18    continue
 

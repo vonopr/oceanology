@@ -481,11 +481,8 @@ c          print *,'vel00',rad
 
 
                             
-c      call bstr(u,v,thx,thy,hu,hv,im,jm,km,ctah)
-
-    
-        
       
+
       call rpin(u,v,ut,vt,w,fu1,fv1,us,tax,tay,thx,thy,
      # ph,ro,ahz,im,jm,km,al,al1,
      # cph,cu,cadv,cq,cstep)
