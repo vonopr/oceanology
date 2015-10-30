@@ -100,8 +100,8 @@ c  b.c. in the centres of boundary boxes
       endif
 
       if(lb.eq.2)then
-      a1(ke)=+ahz(ke-1)/(z(ke)-z(ke-1))/(zw(ke)-zw(ke-1))	!  was +
-      c1(ke)=-a1(ke)-b1(ke)-1./dt+b2(ke)              	!  was -
+      a1(ke)=+ahz(ke-1)/(z(ke)-z(ke-1))/(zw(ke)-zw(ke-1))               !  was +
+      c1(ke)=-a1(ke)-b1(ke)-1./dt+b2(ke)                                !  was -
       f1(ke)=+qh/(zw(ke)-zw(ke-1))+a2(ke)
 
         elseif(lb.eq.-1)then
@@ -195,7 +195,7 @@ c	pause
               f1=+qh/(zw(ke)-zw(ke-1))
               d2dz=a1*(a(i,j,k-1)-a(i,j,k))-f1
 
-              else
+             else
               d2dz=0.
 
         endif
@@ -266,7 +266,7 @@ ccc      goto 2
       am=(a(i,j,k+1)*dzd/dzsum+a(i,j,k)*dzu/dzsum )*wm !
 
 
-2     continue
+        continue
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -327,7 +327,7 @@ c	goto 1
 
 	au=a(i,j,k-1)*(wu+wu1)/2
 	if((wu+wu1)/2.lt.0)au=a(i,j,k)*(wu+wu1)/2   !  R
-1     continue
+      continue
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
           advzu=(am-au)/(zw(k)-zw(k-1))  
@@ -349,32 +349,12 @@ c           endif
 	wm1=w(i,j-1,k)
 	wu1=w(i,j-1,k-1)
 	
-c      if(k.eq.2)then
-c        am=fm(a(i,j,3),a(i,j,2),z(2),(z(3)-zw(2)))*(wm+wm1)/2  
-c        au=a(i,j,2)*(wu+wu1)/2
-c
-c          advzv=(am-au)/zw(2)
 
-c             else
-
-c        zd=zw(k+1)-z(k+1)
-c        z0=zw(k)-z(k)
-c        zu=zw(k-1)-z(k-1)
-
-      
-c      am=fm(a(i,j,k),a(i,j,k+1),zd,z0)*(wm+wm1)/2     
-c      au=fm(a(i,j,k),a(i,j,k-1),zu,z0)*(wu+wu1)/2
-
-
-
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-c	goto 1
-	am=a(i,j,k)*(wm+wm1)/2 
-	if((wm+wm1)/2.lt.0)am=a(i,j,k+1)*(wm+wm1)/2   ! R
-	au=a(i,j,k-1)*(wu+wu1)/2
-	if((wu+wu1)/2.lt.0)au=a(i,j,k)*(wu+wu1)/2     ! R
-1     continue
+	  am=a(i,j,k)*(wm+wm1)/2
+      if((wm+wm1)/2.lt.0)am=a(i,j,k+1)*(wm+wm1)/2   ! R
+      au=a(i,j,k-1)*(wu+wu1)/2
+	  if((wu+wu1)/2.lt.0)au=a(i,j,k)*(wu+wu1)/2     ! R
+      continue
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
           advzv=(am-au)/(zw(k)-zw(k-1))  

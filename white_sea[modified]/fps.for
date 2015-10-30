@@ -190,46 +190,11 @@ c       str(95,57,1)=100.
        kp(48,74)=3   !!  ÑÏÏ - ñúåìêà,   ãîğà
 
 
-
-c       call priarray(kp,1)
-c       pause 231
-c       call priarray(it,1)
-c       pause 231
-c      if(ns.eq.1)call DUMP(53,energ,timestep,ns,s,t,ta,u,v,w,tax,tay
-c     #,ph,pht,ro,im,jm,km,aday)
-c      stop
-
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
         
 !!!!!!!!!!!!!!!!!!!!!!  îïğåäåëåíèå ÏĞÎÌÅÆÓÒÎ×ÍÎÃÎ ÒÅÏËÎÃÎ ÑËÎß  !!!!!!!!!!!!!!
         goto 493
-c        do i=1,im
-c        do j=1,jm
-c       do k=10,18
-c      ke=kp(i,j)
-c      if(ke.lt.15)goto 578
-c      if(t(i,j,k).gt.t(i,j,k-1))print *,'i,j  ',i,j
-c      if(t(i,j,k).gt.t(i,j,k-1))print *,(t(i,j,kg),kg=1,ke)
-c      if(t(i,j,k).gt.t(i,j,k-1)) pause 577
 
-c578    continue
-c        enddo
-c        enddo
-c        enddo
-493    continue      
-
-
-
-
-
-
-
-
-
+493   continue
 
 
       alb=1.e5          !!!! test for turbulence / temp
