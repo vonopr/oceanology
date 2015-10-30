@@ -3,7 +3,7 @@ c  new
         include 'par.inc'
         include 'com.inc'
 
-  
+
       dimension
      *          xx(im,jm,km)
      *         ,u(im,jm,km),v(im,jm,km),w(im,jm,km)
@@ -19,44 +19,44 @@ c  new
                      dxe=x(i+1)-x(i)
                      dx=dxe+dxw
 
-                             
+
       if(i.eq.1)then
-              aw=ap                      
-              
-           elseif(k.gt.kp(i-1,j))then  
+              aw=ap
+
+           elseif(k.gt.kp(i-1,j))then
                aw=ap
-               
+
                else
               aw=xx(i-1,j,k)
-             
+
        endif
-       
+
 
       if(i.eq.is)then     !  -1
-              ae=ap                      
-              
-           elseif(k.gt.kp(i+1,j))then      
+              ae=ap
+
+           elseif(k.gt.kp(i+1,j))then
                ae=ap
-               
+
                else
               ae=xx(i+1,j,k)
-              
+
       endif
-         
+
 
       if(j.eq.1)then
-              as=ap                      
-          elseif(k.gt.kp(i,j-1))then      !!!!  was gt 23.07.2004 
+              as=ap
+          elseif(k.gt.kp(i,j-1))then      !!!!  was gt 23.07.2004
                as=ap
                else
            as=xx(i,j-1,k)
 
       endif
-         
+
 
       if(j.eq.js)then    !    -1
-              an=ap                       
-           elseif(k.gt.kp(i,j+1))then   !!!! was gt 23.07.2004   
+              an=ap
+           elseif(k.gt.kp(i,j+1))then   !!!! was gt 23.07.2004
                an=ap
                else
             an=xx(i,j+1,k)
@@ -88,7 +88,7 @@ c      else
 c      if(k.eq.2.and.wt1.gt.0.)au=xx(i,j,k+1) ! SUB ONLY!
 
         if(k.lt. kp(i,j))then   !!! lt instead le 03.09  flux=0 if k=kp
-        ad=xx(i,j,k+1)          !!! if, le, flux .ne. 0 
+        ad=xx(i,j,k+1)          !!! if, le, flux .ne. 0
         else
         ad=ap     !!!!  was k  23.07.2004
            au=ap   !!!      27.12.04
@@ -244,7 +244,7 @@ c       endif
      *         ,u(im,jm,km),v(im,jm,km),w(im,jm,km)
      *         ,qt(im,jm)
 
-       LeithF=0.
+       LeithF=0
 
       ap=at(i,j,k)
       snn=sn(j+1)/2.+sn(j)/2.
@@ -299,14 +299,14 @@ c       endif
       ut1=(u(i,j,k)+u(i+1,j,k))/2./rad/snn
       vt1=(v(i,j,k)+v(i,j+1,k))/2./rad
 
-      LeithF=LeithF
+      LeithF = int( LeithF
      *      -(ut1*(dxw**2*(ae-ap)+dxe**2*(ap-aw))/dxe/dxw/dx
-     #      +ut1*ut1*dt*((ae-ap)/dxe-(ap-aw)/dxw)/dx)
+     #      +ut1*ut1*dt*((ae-ap)/dxe-(ap-aw)/dxw)/dx))
 
 
 
-      LeithF=LeithF  - (vt1*(an-as)/dy/2. 
-     *      + vt1*vt1*dt*(an+as-2.*ap)/2./dy/dy)
+      LeithF=int( LeithF  - (vt1*(an-as)/dy/2.
+     *      + vt1*vt1*dt*(an+as-2.*ap)/2./dy/dy))
 
 
 
@@ -334,15 +334,15 @@ c      xx(i,j,k)=xx(i,j,k) - (wt1*qt(i,j)/ql)*dt
 
        if(k.eq.2)then
 
-      LeithF=LeithF  - (wt1*((ad-ap)/dzd  - qt(i,j)/ql)/2.
-     #   + wt1*wt1*dt*((ad-ap)/dzd+qt(i,j)/ql)/(dzd/2.+dzu)/2.)
+      LeithF=int( LeithF  - (wt1*((ad-ap)/dzd  - qt(i,j)/ql)/2.
+     #   + wt1*wt1*dt*((ad-ap)/dzd+qt(i,j)/ql)/(dzd/2.+dzu)/2.) )
 
 
             else
 
-      LeithF=LeithF
+      LeithF=int( LeithF
      #   - (wt1*((ad-ap)*dzu**2+(ap-au)*dzd**2)/dzd/dzu/dz
-     #   + wt1*wt1*dt*((ad-ap)/dzd-(ap-au)/dzu)/dz)
+     #   + wt1*wt1*dt*((ad-ap)/dzd-(ap-au)/dzu)/dz) )
 
 
 
@@ -824,7 +824,7 @@ c-------------------------------------------------
      # ph,ro,ahz,im,jm,km,l,al1,cph,cu,cadv,cq,cstep,pht)
 
      
- 15   continue
+      continue
       do 1 i=1,iss
       do 1 j=1,jss
 
@@ -960,7 +960,7 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
      # ph,ro,ahz,im,jm,km,l,al1,cph,cu,cadv,cq,cstep,pht)
 
      
- 15   continue
+      continue
       do 1 i=1,iss
       do 1 j=1,jss
 
@@ -1131,7 +1131,7 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
      # ph,ro,ahz,im,jm,km,l,al1,cph,cu,cadv,cq,cstep,pht)
 
      
- 15   continue
+      continue
       do 1 i=1,iss
       do 1 j=1,jss
 
@@ -1218,7 +1218,7 @@ c        hpar=(j-1)*hv(i,j)*(it(i,j-1)-2)           !!!!!!
                                                     ass(i,j)=0.
 
                             if(ij.eq.0)as(i,j)=1.
-                                                    if(ij.eq.0)ass(i,j)=1.
+                                                 if(ij.eq.0)ass(i,j)=1.
 
                             endif
         endif
@@ -1268,7 +1268,7 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
               ae(i,j)=0.
               ap(i,j)=1.
 
-                                               aww(I,J)=0.                                               
+                                               aww(I,J)=0.
                                                aee(I,J)=0.
                                                ann(I,J)=0.
                                                ass(I,J)=0.  
@@ -1324,7 +1324,7 @@ c         pause 22
      # ph,ro,ahz,im,jm,km,l,al1,cph,cu,cadv,cq,cstep,pht)
 
      
- 15   continue
+      continue
       do 1 i=1,iss
       do 1 j=1,jss
 
