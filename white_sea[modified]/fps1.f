@@ -201,17 +201,17 @@ c               pause
         end
 
 
-      function advz(a,wu,wm,i,j,k,im,jm,km,mp,ph)
+      function advz(a,wu,wm,i,j,k,im,jm,km,ph)                       ! Proved: it is called in 'fps7.f' only
         include 'par.inc'
         include 'com.inc'
         real a(im,jm,km),ph(im,jm)
 
-                 
+
       advz=0.
 
        zw(1)=-Ph(i,j)/980.   !!!!!  свер йнкеаюмхи спнбмъ
        z(1)=zw(1)
-       z(2)=(zw(1)+zw(2))/2.                                                                                      
+       z(2)=(zw(1)+zw(2))/2.
 
 
 
@@ -223,9 +223,9 @@ c               pause
 
 c      if(k.eq.kp(i,j).and.mp.eq.1)a(i,j,k+1)=a(i,j,k)       !!!!  stop 25.07.2004
 
-       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  IMP!!   TOO  WARN near  bottom 
+       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  IMP!!   TOO  WARN near  bottom
         goto 78
-        am=fm(a(i,j,k),a(i,j,k+1),zd,z0)*wm     !!!!  modified oct. 02. 
+        am=fm(a(i,j,k),a(i,j,k+1),zd,z0)*wm     !!!!  modified oct. 02.
         au=fm(a(i,j,k),a(i,j,k-1),zu,z0)*wu    !!!!   mod.
 78      continue
 
@@ -237,10 +237,10 @@ c      if(k.eq.kp(i,j).and.mp.eq.1)a(i,j,k+1)=a(i,j,k)       !!!!  stop 25.07.20
 
       if(wm.lt.0.)am=a(i,j,k+1)*wm            !Godunov classic
       if(wm.ge.0.)am=a(i,j,k)*wm              !Godunov classic
- 
+
 ccc      if(wm.lt.0.)am=(a(i,j,k)+a(i,j,k+1))/2.*wm         !Godunov  exp.3  +sum/2
-               
-                
+
+
 
 1     continue
 
@@ -274,7 +274,7 @@ ccc      goto 2
 
        zw(1)=0.   !!!!!!   LEVEL    MOD.
        z(1)=0.
-                                                                                      
+
       
       return
       end

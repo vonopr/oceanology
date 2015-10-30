@@ -504,7 +504,7 @@ c       a2(k)=a2(k)+diva
 ccc      aa= adz(k)
 ccc      a2(k)=a2(k)+aa
 
-      aa= advz(a,wu,wm,i,j,k,im,jm,km,1,ph)
+      aa= advz(a,wu,wm,i,j,k,im,jm,km,ph)
       a2(k)=a2(k)+aa
 
 ccc	 a2(k)=a2(k)+adv(a,u,v,w,i,j,k,im,jm,km,qt)
