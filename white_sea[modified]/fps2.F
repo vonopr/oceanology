@@ -17,19 +17,19 @@
 
         if(it(i,j-1).eq.2)as=v(i,j,k)*(sn(j-1)+sn(j))/2.
        dy1=dy
-	if(kv(i,j+1).lt.k)then
-	an=0.
-	dy1=1.5*dy
-	end if
-	if(kv(i,j-1).lt.k)then
-	as=0.
-	dy1=1.5*dy
-	end if
+	   if(kv(i,j+1).lt.k)then
+    	an=0.
+        dy1=1.5*dy
+	      end if
+	    if(kv(i,j-1).lt.k) then
+        as=0.
+        dy1=1.5*dy
+          end if
 
        advv1=advv1+(an-as)/dy1*arad
 
 
-********  step 2
+c********  step 2
 
              if(i.eq.1)then
           aw=v(i,j,k)*(u(i,j,k)+u(i,j-1,k))/2.
@@ -125,7 +125,7 @@ ccc      goto 1
               dxw=x(i)-x(i-1)
               dxe=x(i+1)-x(i)
               dx=(dxw+dxe)/2.
-1     continue
+      continue
 
        !!!!!!!!!!!!!!   end  of  перенос по потоку    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -170,7 +170,7 @@ ccc       goto 4
       if(kp(i,j+1).lt.k)a(i,j+1,k)=a(i,j,k) 
             an=(a(i,j+1,k)*(1-aa)+a(i,j,k)*(1+aa))/2.*vn*sn(j+1)
 
-4     continue
+      continue
                             
         !!!!!!!!!!!!!!!!!!! end`of   перенос по потоку  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -231,10 +231,11 @@ ccc       goto 4
         a=1.
 	  if(vd.le.0.)a=0.
         b=1.
-	  if(vu.le.0.)b=0.	 
+	  if(vu.le.0.)b=0.
 
       LUm=LUm+(vd*(a*um+(1.-a)*ud)*sn(j+1)-vu*(b*uu+(1.-b)*um)*sn(j))
-     !	 /dy*arad                                                   ! R
+
+     !/dy*arad                                                   ! R
 
       return
       end
@@ -272,7 +273,8 @@ ccc       goto 4
 
 
           LVm= LVm +(ue*(a*vm +(1.-a)*ve) - uw*(b*vw +(1.-b)*vm))
-     !		/dx*arad                                             ! R
+
+     !/dx*arad                             !  R
 
 
 *****************************************************************  step2
@@ -294,7 +296,7 @@ ccc       goto 4
 
 
          LVm= LVm + (vd*(a*vm+(1.-a)*vdd)*sn(j+1) 
-     !   	       - vu*(b*vuu+(1.-b)*vm) *sn(j)) /dy/2.*arad   ! R
+     !       - vu*(b*vuu+(1.-b)*vm) *sn(j)) /dy/2.*arad   ! R
 
       return
       end
@@ -439,7 +441,7 @@ c      integer ku(im,jm)
        endif
        endif
 
- 2    continue
+      continue
       return
       end
 
@@ -555,6 +557,6 @@ c      integer ku(im,jm)
        endif
        endif
 
- 2    continue
+      continue
       return
       end

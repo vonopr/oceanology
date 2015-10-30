@@ -29,7 +29,6 @@
 
       fu(2)= - 2*tax/(z(3)+z(2))+fu(2)   !!!! was  2*tax/(z(3)+z(2)) ??? 13.10.
       fv(2)= - 2*tay/(z(3)+z(2))+fv(2)   !!!!!   --!!--    --!!--
-
       endif
 
 
@@ -168,9 +167,9 @@ c  b.c. in the centres of boundary boxes
         include 'com.inc'
 
 c      print*,qa,'d2dz <- qa'
-c	print*,qh,'d2dz <- qh'
-c	pause 
-	
+c               print*,qh,'d2dz <- qh'
+c               pause 
+               
       az1=0.5*(ahz(i,j,k-1)+ahz(i1,j1,k-1))
       az2=0.5*(ahz(i,j,k)+ahz(i1,j1,k))
 
@@ -207,7 +206,7 @@ c	pause
         include 'com.inc'
         real a(im,jm,km),ph(im,jm)
 
-	  
+                 
       advz=0.
 
        zw(1)=-Ph(i,j)/980.   !!!!!  Ó×ÅÒ ÊÎËÅÁÀÍÈÉ ÓÐÎÂÍß
@@ -220,7 +219,7 @@ c	pause
         z0=zw(k)-z(k)
         zu=zw(k-1)-z(k-1)
 
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 c      if(k.eq.kp(i,j).and.mp.eq.1)a(i,j,k+1)=a(i,j,k)       !!!!  stop 25.07.2004
 
@@ -230,18 +229,18 @@ c      if(k.eq.kp(i,j).and.mp.eq.1)a(i,j,k+1)=a(i,j,k)       !!!!  stop 25.07.20
         au=fm(a(i,j,k),a(i,j,k-1),zu,z0)*wu    !!!!   mod.
 78      continue
 
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Godunov !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	goto 1
+               !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Godunov !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               goto 1
 
-	 if(wu.lt.0.)au=a(i,j,k)*wu             !Godunov  classic
-	 if(wu.ge.0.)au=a(i,j,k-1)*wu          !Godunov  classic
+                if(wu.lt.0.)au=a(i,j,k)*wu             !Godunov  classic
+                if(wu.ge.0.)au=a(i,j,k-1)*wu          !Godunov  classic
 
       if(wm.lt.0.)am=a(i,j,k+1)*wm            !Godunov classic
       if(wm.ge.0.)am=a(i,j,k)*wm              !Godunov classic
  
 ccc      if(wm.lt.0.)am=(a(i,j,k)+a(i,j,k+1))/2.*wm         !Godunov  exp.3  +sum/2
-	
-	 
+               
+                
 
 1     continue
 
@@ -253,14 +252,14 @@ ccc      goto 2
 
        dzu=zw(k-1)-z(k-1)
        dzd=z(k)-zw(k-1)
-	 dzsum=z(k)-z(k-1)
+                dzsum=z(k)-z(k-1)
 
       au=(a(i,j,k)*dzd/dzsum + a(i,j,k-1)*dzu/dzsum)*wu !
 
 
        dzu=zw(k)-z(k)
        dzd=z(k+1)-zw(k)
-	 dzsum=z(k+1)-z(k)
+                dzsum=z(k+1)-z(k)
 
       am=(a(i,j,k+1)*dzd/dzsum+a(i,j,k)*dzu/dzsum )*wm !
 
@@ -295,22 +294,22 @@ ccc      goto 2
         real a(im,jm,km),w(im,jm,km)
 
       
-	wm=w(i,j,k)
-	wu=w(i,j,k-1)
-	wm1=w(i-1,j,k)
-	wu1=w(i-1,j,k-1)
-	
+               wm=w(i,j,k)
+               wu=w(i,j,k-1)
+               wm1=w(i-1,j,k)
+               wu1=w(i-1,j,k-1)
+               
 
 
 
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-c	goto 1
-	am=a(i,j,k)*(wm+wm1)/2 
-	if((wm+wm1)/2.lt.0)am=a(i,j,k+1)*(wm+wm1)/2 !  R
+c               goto 1
+               am=a(i,j,k)*(wm+wm1)/2 
+               if((wm+wm1)/2.lt.0)am=a(i,j,k+1)*(wm+wm1)/2 !  R
 
-	au=a(i,j,k-1)*(wu+wu1)/2
-	if((wu+wu1)/2.lt.0)au=a(i,j,k)*(wu+wu1)/2   !  R
+               au=a(i,j,k-1)*(wu+wu1)/2
+               if((wu+wu1)/2.lt.0)au=a(i,j,k)*(wu+wu1)/2   !  R
       continue
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -334,10 +333,10 @@ c           endif
         wu1=w(i,j-1,k-1)
 
 
-	  am=a(i,j,k)*(wm+wm1)/2
+                 am=a(i,j,k)*(wm+wm1)/2
       if((wm+wm1)/2.lt.0)am=a(i,j,k+1)*(wm+wm1)/2   ! R
       au=a(i,j,k-1)*(wu+wu1)/2
-	  if((wu+wu1)/2.lt.0)au=a(i,j,k)*(wu+wu1)/2     ! R
+                 if((wu+wu1)/2.lt.0)au=a(i,j,k)*(wu+wu1)/2     ! R
       continue
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

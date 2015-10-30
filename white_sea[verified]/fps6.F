@@ -128,8 +128,8 @@ ccc      if(l0e.lt.0)qe=(alz**0.75*tb(i,j,2)**1.5*(zw(ke)-z(2)))/0.435  !!!  OLD
 
 
 c       call prarray(frf*100.,8)
-c	frf=frf/100.
-c	pause 999
+c        frf=frf/100.
+c        pause 999
 
 
       return
@@ -211,8 +211,8 @@ c      at2/2.+0.1
        read(5,*)pare,alz,prb,rfcr,z0,qb
        read(5,*) l0t,lbt,l0b,lbb,l0e,lbe
        close(5)
-c	print *,'wt = ',wt
-c	pause 222
+c        print *,'wt = ',wt
+c        pause 222
       do 1 i=1,im
       do 1 j=1,jm
 
@@ -245,7 +245,7 @@ c        print *,'filetur?'
 
 c        file1='be0'  !  new 23.07.2006
        
-c	  read(*,1000)file1
+c          read(*,1000)file1
 c        open(10,file=file1)
 c        read(10,2012)tb
 c        read(10,2012)te
@@ -264,7 +264,7 @@ c        endif
 4     continue
 
 c       call prarray(ahz,12)
-c	 pause 17
+c         pause 17
 
 
         return
@@ -303,13 +303,13 @@ c	 pause 17
       fv1=(fv(i,j,k)*dz1+fv(i,j,k-1)*dz2)/dz
       endif
 c      print *,k
-c	pause 111
+c        pause 111
       a2(k)=-(fu1-fv1)
      #    *tb(i,j,k)**2/te(i,j,k)*frf1*ef(k)
      #    -tbt(i,j,k)/dt - alb*DELTA(tbt,k,i,j,im,jm,km,-1) 
 c       !непонятная вязкость в турбулентной части - убито 1 июля 2002
 c      print *,'in tbs',a2(k)
-c	pause 111
+c        pause 111
 
       b2(k)=-te(i,j,k)/tb(i,j,k)/ef(k)
 
@@ -504,7 +504,7 @@ c      call bstr(u,v,thx,thy,hu,hv,im,jm,km,ctah)
         iv=(it(i,j)-5)*it(i,j)  
 
       if(iv.eq.0.and.ke.gt.1)then    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	 
+         
          tayy=vt1(tay,tay,im,jm,1,i,j,1,1)
          taxx=tax(i,j)
 
@@ -516,7 +516,7 @@ c      call bstr(u,v,thx,thy,hu,hv,im,jm,km,ctah)
          f1=2*omega*(acs(j)+acs(j+1))/2.*(1.-cu)
    
          do 10 k=1,km
-	     
+             
             fuu(k)=-ut(i,j,k)/dt-fu1(i,j,k)
 
             fvv(k)=-vt1(vt,vt,im,jm,km,i,j,k,1)/dt
@@ -539,7 +539,7 @@ ccc      dz=200.  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       udin=sqrt(u(i,j,ke)**2+v2**2)/alo*0.435**2
 
       e2(ke)=-udin/ (zw(ke)-z(ke))   !    !!!was -zw(ke-1) ???
-	  
+          
 
       call zcoeu(azz,tayy,taxx,thyy,thxx,
      #    e2,a3,b3,c3,fvv,fuu,2,ke,km)
@@ -551,12 +551,12 @@ ccc      dz=200.  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 c        ua(1)=ua(2)+taxx*z(2)/azz(2)  !!!!!!!!!!!!!  !!!!! v z=0 
 
       u(i,j,1)=ua(2)  !!!!!!!
-	 
+         
       do 12 k=2,ke
-	if(it(i,j).ne.2.)u(i,j,k)=ua(k)
+        if(it(i,j).ne.2.)u(i,j,k)=ua(k)
 
-	if(it(i,j).eq.2.and.u(i,j,k).eq.u00(i,j,k))u(i,j,k)=ua(k)
-	if(it(i,j).eq.2.and.it(i-1,j).eq.1)u(i,j,k)=ua(k)
+        if(it(i,j).eq.2.and.u(i,j,k).eq.u00(i,j,k))u(i,j,k)=ua(k)
+        if(it(i,j).eq.2.and.it(i-1,j).eq.1)u(i,j,k)=ua(k)
  12   continue
 
        elseif(ke.gt.1)then
@@ -594,7 +594,7 @@ c        ua(1)=ua(2)+taxx*z(2)/azz(2)  !!!!!!!!!!!!!  !!!!! v z=0
 
       f1=2*omega*acs(j)*(1.-cu)
 
-	                                         
+                                                 
 
       do 20 k=1,km
       fvv(k)=-vt(i,j,k)/dt-fv1(i,j,k)
@@ -674,7 +674,7 @@ c                              va(1)=va(2)+tayy*z(2)/azz(2)
       do k=1,ks
 
       if(it(i,j).eq.5)then
-	if(ku(i+1,j).ge.k) u(i+1,j,k)=u(i,j,k)      !
+        if(ku(i+1,j).ge.k) u(i+1,j,k)=u(i,j,k)      !
 
       end if
       end do
@@ -688,8 +688,8 @@ c                              va(1)=va(2)+tayy*z(2)/azz(2)
 
       if(it(i,j).eq.2)then
 
-	if(ku(i+1,j).gt.k) u(i+1,j,k)=u(i,j,k)      !
-	if(ku(i+1,j).le.k) u(i+1,j,k)=0.
+        if(ku(i+1,j).gt.k) u(i+1,j,k)=u(i,j,k)      !
+        if(ku(i+1,j).le.k) u(i+1,j,k)=0.
 
       if(kv(i,j).gt.k) v(i,j,k)=v(i,j+1,k)      !
       if(kv(i,j).le.k) v(i,j,k)=0.    !
@@ -709,9 +709,9 @@ ccc       goto 6733
 
       u(i,j,k)=(u(i-1,j,k)+u(i,j+1,k))/2.  !!! w-point of U
       u(i+1,j,k)=u(i,j,k)                  !!! E-point of U
-	     
+             
       v(i,j,k)=v(i-1,j+1,k)                  !!! N-point of U
-	     
+             
       u(i+1,j-1,k)=u(i,j,k)                  !  it=3
       v(i+1,j,k)=v(i,j,k)                    !  it=3
 
@@ -720,7 +720,7 @@ ccc       goto 6733
       end do
       end do
       end do
-6733	continue
+6733        continue
 
 
 
@@ -743,9 +743,9 @@ c--------------------------------------------
      *     ,ut(im,jm,km),vt(im,jm,km),ahz(im,jm,km)
      *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm)
 
-c	print *,'thx,thy in rpin',thx(120,15),thy(120,15)
-c	pause
-	 
+c        print *,'thx,thy in rpin',thx(120,15),thy(120,15)
+c        pause
+         
        lbu=-1.
 
 
@@ -791,9 +791,9 @@ c        dzi=0.                                 !!!!!!!!
       iv=(it(i,j)-5)*it(i,j)
   
 
-	iad=1
+        iad=1
 
-	if(it(i,j).eq.2) iad=0
+        if(it(i,j).eq.2) iad=0
       if(it(i,j).eq.5)iad=0
       if(it(i+1,j).eq.5.or.it(i,j-1).eq.5)iad=0 
        
@@ -810,11 +810,11 @@ c        dzi=0.                                 !!!!!!!!
 
 
        do 41 k=2,ku(i,j)
-		  
+                  
       ut0=ut(i,j,k)
 
       wu=(w(i,j,k-1)+w(i-1,j,k-1))/2. 
-	wm=(w(i,j,k)+w(i-1,j,k))/2.     
+        wm=(w(i,j,k)+w(i-1,j,k))/2.     
       
 
 
@@ -842,7 +842,7 @@ c     #         -et*ut0*cu
 
       if(ku(i,j).le.km-1)then    
       do 42 k=ku(i,j)+1,km 
-	 u(i,j,k)=0.     
+         u(i,j,k)=0.     
   42  fu(i,j,k)=0.
             
       endif   
@@ -919,10 +919,10 @@ c 24   us(i,j,k)=DELTAv(vt,i,j,k,im,jm,km,lbu)*al
 
       iv=it(i,j)*(it(i,j)-5)
 
-	iad=1
-	if(it(i,j).eq.5)iad=0                  !!! 04.07 .or.it(i,j-1).eq.2)iad=0
+        iad=1
+        if(it(i,j).eq.5)iad=0                  !!! 04.07 .or.it(i,j-1).eq.2)iad=0
       if(it(i+1,j).eq.5)iad=0 
-	if(it(i,j).eq.2)iad=0
+        if(it(i,j).eq.2)iad=0
       if(it(i+1,j).eq.5.or.it(i,j-1).eq.5)iad=0
 
       if(iv.eq.0.and.kv(i,j).gt.1)then
@@ -939,7 +939,7 @@ c 24   us(i,j,k)=DELTAv(vt,i,j,k,im,jm,km,lbu)*al
       do 51 k=2,kv(i,j)
 
       wu=(w(i,j,k-1)+w(i,j-1,k-1))/2.        
-	wm=(w(i,j,k)+w(i,j-1,k))/2.           
+        wm=(w(i,j,k)+w(i,j-1,k))/2.           
 
       vt0=vt(i,j,k)
 
@@ -969,7 +969,7 @@ c     #            -cu*et*vt0
 
       if(kv(i,j).le.km-1)then  
       do 52 k=kv(i,j)+1,km 
-	v(i,j,k)=0.      
+        v(i,j,k)=0.      
  52   fv(i,j,k)=0.
       
         endif

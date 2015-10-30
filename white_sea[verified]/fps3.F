@@ -16,10 +16,10 @@ c  new
       snn=sn(j+1)/2.+sn(j)/2.
 
                dxw=x(i)-x(i-1)
-		   dxe=x(i+1)-x(i)
-		   dx=dxe+dxw
+                 dxe=x(i+1)-x(i)
+                 dx=dxe+dxw
 
-		           
+                         
       if(i.eq.1)then
               aw=ap                      
               
@@ -42,7 +42,7 @@ c  new
               ae=xx(i+1,j,k)
               
       endif
-	
+       
 
       if(j.eq.1)then
               as=ap                      
@@ -52,7 +52,7 @@ c  new
            as=xx(i,j-1,k)
 
       endif
-	
+       
 
       if(j.eq.js)then    !    -1
               an=ap                       
@@ -91,7 +91,7 @@ c      if(k.eq.2.and.wt1.gt.0.)au=xx(i,j,k+1) ! SUB ONLY!
         ad=xx(i,j,k+1)          !!! if, le, flux .ne. 0 
         else
         ad=ap     !!!!  was k  23.07.2004
-	  au=ap   !!!      27.12.04
+         au=ap   !!!      27.12.04
         endif
 
 
@@ -181,13 +181,13 @@ c       endif
 
       dx=dxe+dxw
 
-	if(it(i,j).ne.5) then
+       if(it(i,j).ne.5) then
       ut1=(u(i,j,k)+u(i+1,j,k))/2./rad/snn
       vt1=(v(i,j,k)+v(i,j+1,k))/2./rad
-	                else
+                       else
       ut1=(u(i,j,k)+u(i,j,k))/2./rad/snn
       vt1=(v(i,j,k)+v(i,j,k))/2./rad
-	               endif
+                      endif
 
       adv=   ut1*(dxw**2*(ae-ap)+dxe**2*(ap-aw))/dxe/dxw/dx
      #              -ut1*ut1*dt*((ae-ap)/dxe-(ap-aw)/dxw)/dx
@@ -235,7 +235,7 @@ c       endif
 
 
       function LeithF(xx,at,u,v,w,i,j,k,im,jm,km,qt)
-	include 'par.inc'
+       include 'par.inc'
         include 'com.inc'
 
   
@@ -271,7 +271,7 @@ c       endif
               ae=at(i+1,j,k)
               dxe=x(i+2)/2-x(i)/2
       endif
-	
+       
 
       if(j.eq.1)then
               as=ap                      
@@ -281,7 +281,7 @@ c       endif
            as=at(i,j-1,k)
 
       endif
-	
+       
 
 
 
@@ -293,8 +293,8 @@ c       endif
             an=at(i,j+1,k)
       endif
       
-	
-	 
+       
+        
       dx=dxe+dxw
       ut1=(u(i,j,k)+u(i+1,j,k))/2./rad/snn
       vt1=(v(i,j,k)+v(i,j+1,k))/2./rad
@@ -358,9 +358,9 @@ c      xx(i,j,k)=xx(i,j,k)-diva
     
        return
        end
-	          
+                 
       subroutine Leith(xx,at,u,v,w,i,j,k,im,jm,km,qt)
-	include 'par.inc'
+       include 'par.inc'
         include 'com.inc'
 
   
@@ -395,7 +395,7 @@ c      xx(i,j,k)=xx(i,j,k)-diva
               ae=at(i+1,j,k)
               dxe=x(i+2)/2-x(i)/2
       endif
-	
+       
 
       if(j.eq.1)then
               as=ap                      
@@ -405,7 +405,7 @@ c      xx(i,j,k)=xx(i,j,k)-diva
            as=at(i,j-1,k)
 
       endif
-	
+       
 
 
 
@@ -417,8 +417,8 @@ c      xx(i,j,k)=xx(i,j,k)-diva
             an=at(i,j+1,k)
       endif
       
-	
-	 
+       
+        
       dx=dxe+dxw
       ut1=(u(i,j,k)+u(i+1,j,k))/2./rad/snn
       vt1=(v(i,j,k)+v(i,j+1,k))/2./rad
@@ -485,7 +485,7 @@ c      xx(i,j,k)=xx(i,j,k)-diva
        return
        end
       subroutine LeithC(xx,at,u,v,w,i,j,k,im,jm,km,qt)
-	include 'par.inc'
+       include 'par.inc'
         include 'com.inc'
 
   
@@ -520,7 +520,7 @@ c      xx(i,j,k)=xx(i,j,k)-diva
               ae=at(i+1,j,k)
               dxe=x(i+2)/2-x(i)/2
       endif
-	
+       
 
       if(j.eq.1)then
               as=ap                      
@@ -530,7 +530,7 @@ c      xx(i,j,k)=xx(i,j,k)-diva
            as=at(i,j-1,k)
 
       endif
-	
+       
 
 
 
@@ -542,15 +542,15 @@ c      xx(i,j,k)=xx(i,j,k)-diva
             an=at(i,j+1,k)
       endif
       
-	
-	 
+       
+        
       dx=dxe+dxw
       ut1=(u(i,j,k)+u(i+1,j,k))/2./rad/snn
       vt1=(v(i,j,k)+v(i,j+1,k))/2./rad
       u1=u(i,j,k)/2./rad/snn
-	u2=u(i+1,j,k)/2./rad/snn
-	v1=v(i,j,k)/2./rad
-	v2=v(i,j+1,k)/2./rad
+       u2=u(i+1,j,k)/2./rad/snn
+       v1=v(i,j,k)/2./rad
+       v2=v(i,j+1,k)/2./rad
 
 
       xx(i,j,k)=xx(i,j,k)- 
@@ -568,8 +568,8 @@ c      xx(i,j,k)=xx(i,j,k)-diva
 ****** vertical advection
 
        wt1=w(i,j,k)/2.+w(i,j,k-1)/2. 
-	 w2=w(i,j,k)
-	 w1=w(i,j,k-1)    
+        w2=w(i,j,k)
+        w1=w(i,j,k-1)    
 
       if(k.eq.1)then    !!!!!!! k ne 1 all time see HDRL  ?????????
 c      xx(i,j,k)=xx(i,j,k) - (wt1*qt(i,j)/ql)*dt
@@ -671,19 +671,19 @@ c-------------------------------------------------
 
 
 c         deltaT=a(i,j,k)-ta(i,j) ! Tатмосферы - Tморя
-c	   if(deltaT.LT.25) then
-c	       Aconst=2.0E-03
-c	       Cteta=9.7E-04
-c	   endif
-c	   if(deltaT.GE.25) then 
-c	       Aconst=1.2E-03
-c	       Cteta= 1.46E-03
-c	   endif
+c          if(deltaT.LT.25) then
+c              Aconst=2.0E-03
+c              Cteta=9.7E-04
+c          endif
+c          if(deltaT.GE.25) then 
+c              Aconst=1.2E-03
+c              Cteta= 1.46E-03
+c          endif
 c         Aconst=1.2E-03
 c         Cteta=1.41E-03
-c	   wu=wu/100.0           ! перевод скорости из см/сек в м/сек
+c          wu=wu/100.0           ! перевод скорости из см/сек в м/сек
 c         qt(i,j)=Aconst+ Cteta*wu*deltaT
-c	   qt(i,j)=qt(i,j)*100.0 ! перевод из K*m/sec в K*cm/sec 
+c          qt(i,j)=qt(i,j)*100.0 ! перевод из K*m/sec в K*cm/sec 
   1   continue
 
       return
@@ -698,7 +698,7 @@ c-------------------------------------------------
       do 1 j=2,jss
 
         qt(i,j)=qwa*(ta(i,j)-a(i,j,k))
-     *	     *sqrt(tax(i,j)**2+tay(i,j)**2)*1000.
+     *            *sqrt(tax(i,j)**2+tay(i,j)**2)*1000.
 
   1   continue
       return
@@ -792,7 +792,7 @@ c-------------------------------------------------
         return
         end
 
-	subroutine coef(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
+       subroutine coef(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
      &ph,pht,ro,ahz,an,as,aw,ae,ap,af,aff,
      #im,jm,km,
      #al,al1,cph,cu,cadv,cq,ct,cstep,ns)
@@ -967,21 +967,21 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
                         ddxx=sn(j)*rad*(x(i+1)-x(i))
                         ddyy=dy*rad 
                         ug=ddxx/dt*0.7
-	                  vg=ddyy/dt*0.7
+                         vg=ddyy/dt*0.7
              if((ph(i+1,j)-ph(i,j))/980.lt.1.e-4) then
-		   uf(i,j)=ug 
-     		   else
+                 uf(i,j)=ug 
+                      else
        uf(i,j)=-(ph(i,j)-pht(i,j))/dt/((ph(i+1,j)-ph(i,j))/ddxx)
             endif
          
              if((ph(i,j+1)-ph(i,j))/980.lt.1.e-4) then
-		   vf(i,j)=vg 
-     		   else
+                 vf(i,j)=vg 
+                      else
       vf(i,j)=-(ph(i,j)-pht(i,j))/dt/((ph(i,j+1)-ph(i,j))/ddyy)
             endif
 
                         cx=1/2/dt/ddxx
-	                  cy=1/2/dt/ddyy
+                         cy=1/2/dt/ddyy
 
 
         ke=kp(i,j)
@@ -999,11 +999,11 @@ c      iit=(it(i,j)-4)*(it(i,j)-6)*it(i,j)
         hpar=(i-1)*(ku(i,j)-1)
          if(hpar.le.0.)then
               aw(i,j)=0.
-	                                           aww(i,j)=0.
+                                                  aww(i,j)=0.
                else
                      dxw=x(i+1)/2-x(i-1)/2
                      aw(i,j)=-hh/snn/dxw/dx
-	                                           aww(i,j)=cx*uf(i,j)
+                                                  aww(i,j)=cx*uf(i,j)
                      if(i.eq.iss.and.ku(is,j).gt.1)then
                       aw(i,j)=0.
                                                  aww(i,j)=0.
@@ -1016,14 +1016,14 @@ c        hpar=(iss-i)*hu(i+1,j)*(it(i+1,j)-2)      !!!!!
         hpar=(iss-i)*(ku(i+1,j)-1)      !!!!!
           if(hpar.le.0.)then
                 ae(i,j)=0.
-	                                           aee(i,j)=0.
+                                                  aee(i,j)=0.
                  else
                      dxe=x(i+2)/2-x(i)/2
                      ae(i,j)=-hh/snn/dxe/dx
-	                                           aee(i,j)=-cx*uf(i,j)
+                                                  aee(i,j)=-cx*uf(i,j)
                     if(i.eq.1.and.ku(1,j).gt.1)then
                         ae(i,j)=0.
-	                                           aee(i,j)=0.
+                                                  aee(i,j)=0.
                         if(ij.eq.0)ae(i,j)=1.
                         end if
         end if
@@ -1039,7 +1039,7 @@ c        hpar=(j-1)*hv(i,j)*(it(i,j-1)-2)           !!!!!!
                                                  ass(i,j)=-cx*vf(i,j)
                        if(j.eq.jss.and.kv(i,js).gt.1)then
                               as(i,j)=0.
-	                                           ass(i,j)=0.
+                                                  ass(i,j)=0.
                               if(ij.eq.0)as(i,j)=1.
                             endif
         endif
@@ -1048,13 +1048,13 @@ c        hpar=(j-1)*hv(i,j)*(it(i,j-1)-2)           !!!!!!
         hpar=(jss-j)*(kv(i,j+1)-1)
             if(hpar.le.0.)then
                   an(i,j)=0.
-	                                           ann(i,j)=0.
+                                                  ann(i,j)=0.
                     else
                       an(i,j)=-hh*sn(j+1)/dy/dy
-	                                           ann(i,j)=cx*vf(i,j)  
+                                                  ann(i,j)=cx*vf(i,j)  
                       if(j.eq.1.and.kv(i,1).gt.1)then
                             an(i,j)=0.
-	                                           ann(i,j)=0.
+                                                  ann(i,j)=0.
                             if(ij.eq.0)an(i,j)=1.
                            endif
         endif
@@ -1110,7 +1110,7 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
      #     ,uf(im,jm),vf(im,jm),
      #fu(im,jm,km),fv(im,jm,km),us(im,jm,km),utm(im,jm,km),vtm(im,jm,km)
 
-	
+       
       do 100 i=1,im
       do 100 j=1,jm
              as(i,j)=0.
@@ -1119,10 +1119,10 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
              ae(i,j)=0.
              ap(i,j)=0.
                         aff(i,j)=0 
-					  aww(I,J)=0.				  
-					  aee(I,J)=0.
-					  ann(I,J)=0.
-					  ass(I,J)=0.  
+                                     aww(I,J)=0.                              
+                                     aee(I,J)=0.
+                                     ann(I,J)=0.
+                                     ass(I,J)=0.  
  100         af(i,j)=0.
 
         l=1    !!!!  l=0  -> правая часть (rppw) ->  -dw/dz
@@ -1136,25 +1136,25 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
       do 1 j=1,jss
 
       ke=kp(i,j)
-	if(ke.le.1)goto 1
-	                  if(ns.eq.1)aff(i,j)=0   
+       if(ke.le.1)goto 1
+                         if(ns.eq.1)aff(i,j)=0   
 
                         ddxx=sn(j)*rad*(x(i+1)-x(i))
                         ddyy=dy*rad 
                         
                         cx=1./2./dt/ddxx
-	                  cy=1./2./dt/ddyy
+                         cy=1./2./dt/ddyy
 
 c                       print*,ddxx,ddyy,cx,cy
-c	                  pause 44
+c                         pause 44
 
 
                         uf(i,j)=0.               
-					                       
+                                                          
 
                         vf(i,j)=0.                                    
-					  
-					  
+                                     
+                                     
 
       
       
@@ -1171,11 +1171,11 @@ c      iit=(it(i,j)-4)*(it(i,j)-6)*it(i,j)
         hpar=(i-1)*(ku(i,j)-1)
          if(hpar.le.0.)then
               aw(i,j)=0.
-	                                           aww(i,j)=0.
+                                                  aww(i,j)=0.
                else
                      dxw=x(i+1)/2-x(i-1)/2
                      aw(i,j)=-hh/snn/dxw/dx
-	                                           aww(i,j)=-cx*uf(i,j)
+                                                  aww(i,j)=-cx*uf(i,j)
                      if(i.eq.iss.and.ku(is,j).gt.1)then
                       aw(i,j)=0.
                                                  aww(i,j)=0.
@@ -1190,14 +1190,14 @@ c        hpar=(iss-i)*hu(i+1,j)*(it(i+1,j)-2)      !!!!!
         hpar=(iss-i)*(ku(i+1,j)-1)      !!!!!
           if(hpar.le.0.)then
                 ae(i,j)=0.
-	                                           aee(i,j)=0.
+                                                  aee(i,j)=0.
                  else
                      dxe=x(i+2)/2-x(i)/2
                      ae(i,j)=-hh/snn/dxe/dx
-	                                           aee(i,j)=cx*uf(i,j)
+                                                  aee(i,j)=cx*uf(i,j)
                     if(i.eq.1.and.ku(1,j).gt.1)then
                         ae(i,j)=0.
-	                                           aee(i,j)=0.
+                                                  aee(i,j)=0.
                         if(ij.eq.0)ae(i,j)=1.
                                                  if(ij.eq.0)aee(i,j)=1.
 
@@ -1215,10 +1215,10 @@ c        hpar=(j-1)*hv(i,j)*(it(i,j-1)-2)           !!!!!!
                                                  ass(i,j)=-cy*vf(i,j)
                        if(j.eq.jss.and.kv(i,js).gt.1)then
                               as(i,j)=0.
-	                                           ass(i,j)=0.
+                                                  ass(i,j)=0.
 
                             if(ij.eq.0)as(i,j)=1.
-	                                           if(ij.eq.0)ass(i,j)=1.
+                                                  if(ij.eq.0)ass(i,j)=1.
 
                             endif
         endif
@@ -1227,13 +1227,13 @@ c        hpar=(j-1)*hv(i,j)*(it(i,j-1)-2)           !!!!!!
         hpar=(jss-j)*(kv(i,j+1)-1)
             if(hpar.le.0.)then
                   an(i,j)=0.
-	                                           ann(i,j)=0.
+                                                  ann(i,j)=0.
                     else
                       an(i,j)=-hh*sn(j+1)/dy/dy
-	                                           ann(i,j)=cy*vf(i,j)  
+                                                  ann(i,j)=cy*vf(i,j)  
                       if(j.eq.1.and.kv(i,1).gt.1)then
                             an(i,j)=0.
-	                                           ann(i,j)=0.
+                                                  ann(i,j)=0.
                             if(ij.eq.0)an(i,j)=1.
                                                  if(ij.eq.0)ann(i,j)=1.
 
@@ -1268,10 +1268,10 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
               ae(i,j)=0.
               ap(i,j)=1.
 
-					  aww(I,J)=0.					  
-					  aee(I,J)=0.
-					  ann(I,J)=0.
-					  ass(I,J)=0.  
+                                     aww(I,J)=0.                                     
+                                     aee(I,J)=0.
+                                     ann(I,J)=0.
+                                     ass(I,J)=0.  
 
        endif
       
@@ -1280,7 +1280,7 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
 
        if(i.ne.1.and.j.ne.1)then
   
-      	 aff(i,j)=cx*(uf(i,j)*(ph(i+1,j)-ph(i-1,j))/(-980))
+              aff(i,j)=cx*(uf(i,j)*(ph(i+1,j)-ph(i-1,j))/(-980))
      #             +cy*(vf(i,j)*(ph(i,j+1)-ph(i,j-1))/(-980))
        endif
 
@@ -1288,7 +1288,7 @@ c     *        +((2.*ph(i,j)-pht(i,j))/dt/dt
 
 
 c       print *,aff(100,40)
-c	pause 22
+c       pause 22
 
       return
       end
@@ -1399,8 +1399,8 @@ c        hpar=(j-1)*hv(i,j)*(it(i,j-1)-2)           !!!!!!
       
       ww=w(i,j,1)
 c      dzw=zw(2)-zw(1)
-c	dzi=ph(i,j)/980.
-c	d=abs(dzi)
+c       dzi=ph(i,j)/980.
+c       d=abs(dzi)
 c      if(d.gt.dzw.and.dzi.lt.0.)ww=w(i,j,3)
 c      if(d.lt.dzw.and.dzi.lt.0.)ww=w(i,j,2)
      

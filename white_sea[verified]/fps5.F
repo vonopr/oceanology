@@ -127,9 +127,9 @@ c       close(5)
       real tb(im,jm,km),te(im,jm,km)
       Character*5   file1(11)
 
-     	do i1=1,11
-	   file1(i1)='be'//char(i1+46) ! файлы от be0 до be9
-	enddo  
+            do i1=1,11
+          file1(i1)='be'//char(i1+46) ! файлы от be0 до be9
+       enddo  
 c      if(ln-1.eq.1)file1='be1'
 c      if(ln-1.eq.2)file1='be2'
 c      if(ln-1.eq.3)file1='be3'
@@ -570,11 +570,11 @@ c     >print *,'sipp warning : no sufficient accuracy res=',resmax,anorm
       dx=x(2)
       ddx=(a(i+1,j,k)-a(i,j,k))/dx/rad/snn
       else 
-	if(kp(i-1,j).ge.k.and.kp(i,j).ge.k)then
+       if(kp(i-1,j).ge.k.and.kp(i,j).ge.k)then
       dx=x(i+1)/2-x(i-1)/2
       ddx=(a(i,j,k)-a(i-1,j,k))/dx/rad/snn
-	else
-	ddx=0.
+       else
+       ddx=0.
       endif
       endif
       RETURN
@@ -585,14 +585,14 @@ c     >print *,'sipp warning : no sufficient accuracy res=',resmax,anorm
         include 'par.inc'
         include 'com.inc'
       DIMENSION a(im,jm,km)
-	ddy=0.
+       ddy=0.
       if(j.eq.1)then
       ddy=(a(i,j+1,k)-a(i,j,k))/dy/rad
       else
       if(kp(i,j-1).ge.k.and.kp(i,j).ge.k)then
        ddy=(a(i,j,k)-a(i,j-1,k))/dy/rad
       else
-	ddy=0.
+       ddy=0.
        endif
        endif
       RETURN
@@ -621,7 +621,7 @@ c       ll=1.
            else
 
 
-		 if(k.ge.kp(i-1,j))then
+               if(k.ge.kp(i-1,j))then
                aw=ap*ll
                dxw=x(i+1)-x(i)
            else
@@ -637,7 +637,7 @@ c       ll=1.
               ae=ap*ll                       !
               dxe=x(i+1)-x(i)
            else
-		 if(k.ge.kp(i+1,j))then
+               if(k.ge.kp(i+1,j))then
                ae=ap*ll
                dxe=x(i+1)-x(i)
            else
@@ -652,20 +652,20 @@ c       ll=1.
       if(j.eq.1)then
               as=ap*ll                       !
            else
-		 if(k.ge.kp(i,j-1))then
+               if(k.ge.kp(i,j-1))then
               as=ap*ll
            else
               as=xx(i,j-1,k)
 
            endif
-	endif
+       endif
 
 
 
       if(j.eq.js-1)then
               an=ap*ll                       !
            else
-		 if(k.ge.kp(i,j+1))then
+               if(k.ge.kp(i,j+1))then
                an=ap*ll
            else
             an=xx(i,j+1,k)
@@ -710,7 +710,7 @@ c       ll=1.
               ae=xx(i+1,j,k)
               dxe=x(i+1)-x(i)
          if(it(i,j).eq.2.and.it(i+1,j).eq.3)ae=ap
-	           else
+                  else
               ae=ap*ll
               dxe=x(i)-x(i-1)
          endif
@@ -718,7 +718,7 @@ c       ll=1.
 
       if(j.ne.1)then
            as=xx(i,j-1,k)
-	if(it(i,j).eq.2)as=ap
+       if(it(i,j).eq.2)as=ap
            if(ku(i,j-1).lt.k) as=ap*ll
          else
 ****** if    u=0 on s.b.
@@ -756,7 +756,7 @@ c     &,an,ap,as,ae,aw,dy,dxe,dxw,snn,rad
         include 'com.inc'
       DIMENSION xx(im,jm,km)
 
-	
+       
 
       deltav=0.
       ap=xx(i,j,k)
@@ -776,7 +776,7 @@ c     &,an,ap,as,ae,aw,dy,dxe,dxw,snn,rad
 
       if(i.ne.is-1)then
        ae=xx(i+1,j,k)
-	
+       
         if(kv(i+1,j).lt.k) ae=ap*ll
          dxe=x(i+1)/2-x(i)/2
           else
@@ -787,9 +787,9 @@ c     &,an,ap,as,ae,aw,dy,dxe,dxw,snn,rad
 
        if(j.ne.1)then
       as=xx(i,j-1,k)
-	if(kv(i,j-1).lt.k)as=ap*ll
+       if(kv(i,j-1).lt.k)as=ap*ll
       if(it(i-1,j-1).eq.5.or.it(i-1,j-1).eq.2)as=ap
-	       else
+              else
         as=ap*ll
          endif
 
@@ -810,7 +810,7 @@ c     &,an,ap,as,ae,aw,dy,dxe,dxw,snn,rad
       END
 
        function div(u,v,i,j,k,im,jm,km)
-	  include 'par.inc'
+         include 'par.inc'
         include 'com.inc'
       dimension
      *  u(im,jm,km),v(im,jm,km)
@@ -820,15 +820,15 @@ c     &,an,ap,as,ae,aw,dy,dxe,dxw,snn,rad
       ue=u(i+1,j,k)
       vn=v(i,j+1,k)
 
-	 if(ku(i,j).lt.k)up=0.
-	  if(ku(i+1,j).lt.k)ue=0.
-	   if(kv(i,j).lt.k)vp=0.
-	    if(kv(i,j+1).lt.k)vn=0.
+        if(ku(i,j).lt.k)up=0.
+         if(ku(i+1,j).lt.k)ue=0.
+          if(kv(i,j).lt.k)vp=0.
+           if(kv(i,j+1).lt.k)vn=0.
 
-c	if(it(i,j).eq.2)then
-c	if(it(i+1,j).eq.3)ue=u(i,j,k)
-c	if(it(i,j-1).ne.1)vp=vn
-c	end if
+c       if(it(i,j).eq.2)then
+c       if(it(i+1,j).eq.3)ue=u(i,j,k)
+c       if(it(i,j-1).ne.1)vp=vn
+c       end if
 
        dx=x(i+1)-x(i)
        snn=sn(j+1)/2+sn(j)/2
@@ -856,10 +856,10 @@ c      fv(i,j,1)=0.0 ! временно
       do k=2,ke-1
       fv(i,j,k)=980.*
      #   (tt(i,j,k+1)-tt(i,j,k))/(z(k+1)-z(k))
-c	if((tt(i,j,k+1)-tt(i,j,k)).LT.0.) then
-c	   print *,(tt(i,j,k+1)-tt(i,j,k)),fv(i,j,k),i,j,k
-c	   pause
-c	endif
+c       if((tt(i,j,k+1)-tt(i,j,k)).LT.0.) then
+c          print *,(tt(i,j,k+1)-tt(i,j,k)),fv(i,j,k),i,j,k
+c          pause
+c       endif
       enddo
 c       fv(i,j,2)=0.
       fv(i,j,ke)=0.

@@ -1,5 +1,5 @@
       subroutine pout(p0,p0t,p0md,p0d,timestep,ns)
-	real*8 timestep(120000)
+       real*8 timestep(120000)
 
       parameter (fpi=3.1415926)
 
@@ -454,12 +454,12 @@ c      if(ns.gt.0)goto 16
 
       IF( (rh.gt.0.) ) goto  25     !!!!! (zh.gt.0.).OR. was deleted 6.12.
 
-	rm=(ro(i,j,k)+ro(i,j,k+1))/2.
-	tm=(t(i,j,k)+t(i,j,k+1))/2.
+       rm=(ro(i,j,k)+ro(i,j,k+1))/2.
+       tm=(t(i,j,k)+t(i,j,k+1))/2.
       sm=(s(i,j,k)+s(i,j,k+1))/2.
-	                             
+                                    
       ro(i,j,k+1)=rm
-	ro(i,j,k)=rm                                         
+       ro(i,j,k)=rm                                         
       s(i,j,k+1)=sm
       s(i,j,k)=sm
       t(i,j,k+1)=tm
@@ -475,16 +475,16 @@ c      if(ns.gt.0)goto 16
       DO 35 J=2,Js-1
       DO 35 I=2,Is-1
       do 35 k=1,ks-1
-c	if(it(i,j).ne.3)goto 25
+c       if(it(i,j).ne.3)goto 25
 
       zh=zw(k+1)-zw(kp(i,j))  ! zh<0  - liquid point
       IF(zh.gt.0.) goto  35
       rh=ro(i,j,k+1)-ro(i,j,k)
       if(rh.lt.0)then
-	print*,'i,j,k,it,tt,ss,rr',i,j,k,it(i,j),
+       print*,'i,j,k,it,tt,ss,rr',i,j,k,it(i,j),
      !t(i,j,k),t(i,j,k+1),s(i,j,k),s(i,j,k+1),ro(i,j,k),ro(i,j,k+1)
-c	pause 222
-	endif
+c       pause 222
+       endif
 35    continue
 
 
@@ -560,7 +560,7 @@ c	pause 222
 
       if(l.eq.0)us(i,j,k)=
      # -div(u,v,i,j,k,im,jm,km)/dt + div(ut,vt,i,j,k,im,jm,km)/dt
-c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt   
+c     #       us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt   
       enddo
         else
          do k=1,ks
@@ -573,12 +573,12 @@ c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
 
       do 2 i=1,is-1
       do 2 j=1,js-1
-	
+       
        zw(1)=-ph(i,j)/980.   !!!!!  Ó×ÅÒ ÊÎËÅÁÀÍÈÉ ÓÐÎÂÍß
        z(1)=zw(1)
        z(2)=(zw(1)+zw(2))/2.
 
-	k1=1      
+       k1=1      
       if(it(i,j).ne.1.and.it(i,j).ne.3)
      #call intw(us,fu,i,j,k1,km,im,jm,km,ph)
 
@@ -600,11 +600,11 @@ c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
       do i=1,is
       do j=1,js
       if(it(i,j).eq.2.)then
-	ph(i,j)= 
+       ph(i,j)= 
      &outf(ph(i,j),ph(i-1,j+1),pht(i-1,j+1),ph(i-2,j+2),p0,1.,i,j,k,ns)
 c     &outf(phb(i,j),phb(i-1,j+1),pht(i,j),ph(i,j),p0,1.,i,j,k,ns)
-c	 write(6,*)'ph,ph-1',ph(i,j),ph(i-1,j)
-	end if
+c        write(6,*)'ph,ph-1',ph(i,j),ph(i-1,j)
+       end if
 C      if(it(i,j).eq.2.and.ph(i-2,j+2).gt.ph(i-1,j+1))ph(i,j)= 
 C     &outf(ph(i,j),ph(i-1,j+1),pht(i-1,j+1),ph(i-2,j+2),p0t,1.,i,j,k,ns)
       enddo
@@ -674,7 +674,7 @@ cc       print *,af(i,j)
 1     continue
         return
         end
-	     
+            
       subroutine avts(t,im,jm,km)
         include 'par.inc'
         include 'com.inc'
@@ -834,7 +834,7 @@ c       call intr1(us,fv,i,j,kv(i,j),im,jm,km,kv(i,j),dzi)
         do 1 i=1,im
         do 1 j=1,jm
 
-	if(it(i,j).eq.1)goto 1
+       if(it(i,j).eq.1)goto 1
 
          if(kp(i,j).le.3)kp(i,j)=3
          if(kp(i,j).ge.23)kp(i,j)=23
@@ -881,13 +881,13 @@ c---------------------------------------------------------
      *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
      *     ,energ(ns)
 
-	real*8 timestep(120000)
+       real*8 timestep(120000)
 
 
       Character*3   file1(10)
 
-c	print *,ta(100,40)
-c	pause 33 
+c       print *,ta(100,40)
+c       pause 33 
          
 c      if(ln.gt.4)ln=1
 c      if(ln.eq.1)file1='aa1'
@@ -895,11 +895,11 @@ c      if(ln.eq.2)file1='aa2'
 c      if(ln.eq.3)file1='aa3'
 c      if(ln.eq.4)file1='aa4'
       ! çàäàíèå èìåí ôàéëîâ
-	do i1=1,10
-	   file1(i1)='aa'//char(i1+47) ! ôàéëû îò àà0 äî àà9
-	enddo  
+       do i1=1,10
+          file1(i1)='aa'//char(i1+47) ! ôàéëû îò àà0 äî àà9
+       enddo  
 
-	if(ln.GT.9) ln=1
+       if(ln.GT.9) ln=1
       nm=12
       open(12,file=file1(ln))
       rewind 12
@@ -925,8 +925,8 @@ c       write(nm,2012)te
 c      write(nm,2012)umt,vmt,wmt,tmt,smt
 c      write(nm,2012)ummt,vmmt,wmmt
 c      write(nm,2012)ta
-c	write(nm,2012)ahz
-ccc	write(nm,2012)str
+c       write(nm,2012)ahz
+ccc       write(nm,2012)str
 
       close(12)
       ln=ln+1
@@ -936,17 +936,17 @@ ccc	write(nm,2012)str
        print*,' save dump # ',ln-2
 c     âðåìåííî äëÿ çàïèñè ahz
 c         open(761,file='ahz')
-c	   write(761,*) 'written from proc. SAVE'
-c	   do ktmp=1, kn
-c	   do jtmp=1, jn
-c	   do itmp=1, in
-c	      if( (it(itmp,jtmp).EQ.0).AND.(ktmp.LE.kp(itmp,jtmp))) then
-c	      write (761,761) ahz(itmp,jtmp,ktmp),itmp,jtmp,ktmp
-c	      endif
-c	   enddo
-c	   enddo
-c	   enddo 
-c	   close(761)
+c          write(761,*) 'written from proc. SAVE'
+c          do ktmp=1, kn
+c          do jtmp=1, jn
+c          do itmp=1, in
+c             if( (it(itmp,jtmp).EQ.0).AND.(ktmp.LE.kp(itmp,jtmp))) then
+c             write (761,761) ahz(itmp,jtmp,ktmp),itmp,jtmp,ktmp
+c             endif
+c          enddo
+c          enddo
+c          enddo 
+c          close(761)
  761  format(F12.3,3I5)
       return
         end
@@ -963,7 +963,7 @@ c	   close(761)
      *     ,u(im,jm,km),v(im,jm,km),tax(im,jm),tay(im,jm)
      *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
      *     ,energ(ns)
-	real*8 timestep(120000)
+       real*8 timestep(120000)
 
 
       Character*4   file1(10)
@@ -1016,7 +1016,7 @@ c      imonth=imonth+1
      *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
      *     ,energ(ns)
 
-	real*8 timestep(120000)
+       real*8 timestep(120000)
 
 
 
@@ -1049,7 +1049,7 @@ c      write(nm,2012)ph,tax,tay
 
 c      write(nm,2012)uav,vav,wav,tav,sav,pav
 c      write(nm,2012)ahz
-	    
+           
 c      imonth=imonth+1
        
 2012  format(20e12.6)   
