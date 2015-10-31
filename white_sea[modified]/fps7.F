@@ -144,7 +144,6 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
 
       w(i,j,k)=us(i,j,k)*dt                    !!!!!!!!!!!!!! WR !!!!!!!!!!!   
 	    
-c      if(k.eq.1)ph(i,j)=ph(i,j)+w(i,j,1)*dt
 
 
  2    continue
@@ -156,7 +155,6 @@ c      if(k.eq.1)ph(i,j)=ph(i,j)+w(i,j,1)*dt
 
 
 
-ccc       goto 23   !!!!!!!!!!!!  switch off  w из уравнения неразрывности
       
 
       do 22 i=2,iss
@@ -402,30 +400,15 @@ comment:  t  - s    calculation
      *         ,u(im,jm,km),v(im,jm,km),w(im,jm,km)
      #         ,ahz(im,jm,km),us(im,jm,km),a2(km),pr(im,jm,km)
      #         ,a1(km),b1(km),c1(km),f1(km),azz(km),b2(km)
-     !         ,ua(im,jm,km),va(im,jm,km),wa(im,jm,km)
-     !         ,tw(kn),tw1(kn),adz(kn)
 
-c      call taflux(a,ta,qt,qwa,im,jm,1)
+
 
 
       cstep1=cstep
       us=0.
       resm=0.
      
-c	 do i=2,is
-c	 do j=2,js
-c	 do k=2,ks
 
-c	ua(i,j,k)=u(i,j,k)*(a(i,j,k)+a(i-1,j,k))/2.
-c	va(i,j,k)=v(i,j,k)*(a(i,j,k)+a(i,j-1,k))/2.
-c	wa(i,j,k-1)=w(i,j,k-1)*(a(i,j,k)+a(i,j,k-1))/2.
-
-c      enddo
-c      enddo
-c      enddo
-
-
-ccc	goto 352  
 
       do  1 i=2,iss
       do  1 j=jss,2,-1
@@ -476,38 +459,21 @@ ccc	goto 352
       wu=w(i,j,k-1)                      
       wm=w(i,j,k)           
 
-c      diva=(div(ua,va,i,j,k,im,jm,km)
-c     !    +(wa(i,j,k)-wa(i,j,k-1))/(zw(k)-zw(k-1)))
-
 
        
       difuu= -delta(at,k,i,j,im,jm,km,1)*aq1      
       a2(k)=difuu
 
 
-c	goto 301 !!!!!!!!!!!!!LEITH!!!!!!!!!!!!!!!!!!!!!!   11.11.03
-	 
 
-c      ahz(i,j,k)=ahz(i,j,k)*pr(i,j,k)
-c      aa= -d2dz(a,ahz,qt,0,kp(i,j),i,j,k,i,j,im,jm,km)
-c      a2(k)=a2(k)+aa                                 
-                                            
-
-	  
-c      if(it(i,j).eq.5.or.k.eq.ke)goto 11   !!!   c   -   29.11.03
-
-c       a2(k)=a2(k)+diva
 
       aa= adv1(a,u,v,i,j,k,im,jm,km)
       a2(k)=a2(k)+aa
 
-ccc      aa= adz(k)
-ccc      a2(k)=a2(k)+aa
 
       aa= advz(a,wu,wm,i,j,k,im,jm,km,ph)
       a2(k)=a2(k)+aa
 
-ccc	 a2(k)=a2(k)+adv(a,u,v,w,i,j,k,im,jm,km,qt)
 
 11    continue 
 
@@ -515,13 +481,7 @@ ccc	 a2(k)=a2(k)+adv(a,u,v,w,i,j,k,im,jm,km,qt)
  
 18    continue
 
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	!!!!!!!!!   контроль divU=0 и коррекция при divU .ne. 0  ->  у дна  
-	                              
-c      if(k.ne.ke)goto 17
-c      a2(k)=a2(k)-diva   !!!!!!!!!!!!!! c -- 30.11.03
 
-      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 17    continue
 
 301   continue  !!!!!!!!!!!!!!!LEITH!!!!!!!!!!!!!!!!!!!!!!!!!!!! 11.11.03.
@@ -745,7 +705,7 @@ c	 pause 0
       pt(i,j,k)=p(i,j,k)-avp(k)
       endif
 
- 2    continue
+     continue
       return
       end
 
