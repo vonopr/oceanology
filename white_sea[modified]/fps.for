@@ -5,13 +5,11 @@ c      use DFPORT
       
       common ns                                  ! ns - number of steps -  defined as a common variable 
       
-      real*8 progtime                            !время счета программы    
       real*8 timestep(120000)
         
       real  sa(in,jn)
      *     ,thx(in,jn),thy(in,jn)                !bottom stress
      *     ,tax(in,jn),tay(in,jn)                !surface stress
-     *     ,p1(10)           !liq.bound cond.
      *     ,u(in,jn,kn),v(in,jn,kn),w(in,jn,kn)  !velocity components
      *     ,tav(in,jn,kn),sav(in,jn,kn),pav(in,jn)
      *     ,ut(in,jn,kn),vt(in,jn,kn)            !ones from prev.time step
@@ -30,11 +28,11 @@ c       #     ,ene(3900),tim(3900)
      *     ,umt(in,jn,kn),vmt(in,jn,kn),wmt(in,jn,kn)
 c************  work array for pictures   ************************
      #    ,dzita(in,jn)
-     #    ,rotemp(in,jn),bottom(in,jn)
+     #    ,bottom(in,jn)
      #    ,dzit1(in,jn)                    
 c****************************************************************
      *   ,tmt(in,jn,kn),smt(in,jn,kn),ahm(in,jn,kn)
-     *     ,ummt(in,jn),vmmt(in,jn),wmmt(in,jn),pmmt(in,jn)
+     *     ,ummt(in,jn),vmmt(in,jn),wmmt(in,jn)
      *     ,bmt(in,jn,kn),wav(in,jn,kn)
      #     ,ahz(in,jn,kn),pr(in,jn,kn),frf(in,jn,kn)
      #     ,tb(in,jn,kn),te(in,jn,kn),ahzt(in,jn,kn)
@@ -43,7 +41,7 @@ c****************************************************************
      #     ,e2(kn),d2(kn),r2(kn),g2(kn),ef(kn),azz(kn)
      #   ,ua(kn),va(kn),pare(5)
      #     ,ala(in),fi(jn)
-     #     ,pmax(in,jn),pc(in,jn),rc(in,jn)
+     #     ,pmax(in,jn),rc(in,jn)
      #     ,emid(700),emax(700),emin(700)
      &  ,tam(5),txm(5),tym(5),sg(5),tg(5),vd(5),vo(5),tr(5),
      & dzg(12),taa(24),saa(24),avp(24)
