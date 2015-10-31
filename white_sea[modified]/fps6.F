@@ -766,7 +766,7 @@ c	pause
 
 
 c        dzi=0.                                 !!!!!!!!
-      call intr1(us,fu,i,j,ku(i,j),im,jm,km,ku(i,j),dzi)
+      call intr1(us,fu,i,j,ku(i,j),im,jm,km)
 
        zw(1)=0.    !!!!!!   LEVEL   MOD.
        z(1)=zw(1)

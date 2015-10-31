@@ -276,7 +276,7 @@ c	if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
       end
 
 
-       subroutine intr1(a,b,i,j,k2,im,jm,km,ke,dzi)
+       subroutine intr1(a,b,i,j,k2,im,jm,km)
 ****** for vel.calculation, all T-S variables are in the box's centres
         include 'par.inc'
         include 'com.inc'

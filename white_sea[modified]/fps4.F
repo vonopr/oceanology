@@ -737,8 +737,8 @@ cc       print *,af(i,j)
       do i=1,im
       do j=1,jm
         ke=kp(i,j)
-      call intr1(fv,fu,i,j,ke,im,jm,km,ke,0.)
-c       call intr1(us,fv,i,j,kv(i,j),im,jm,km,kv(i,j),dzi)
+      call intr1(fv,fu,i,j,ke,im,jm,km)
+
       enddo
       enddo
       do 12 i=1,im
