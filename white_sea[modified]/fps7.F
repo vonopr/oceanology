@@ -699,7 +699,7 @@ c	if(it(i,j).ne.1)a(i,j,1)=a(i,j,2)
       end
 
 
-      subroutine av(p,pt,im,jm,km,k1,k2,aaa,avp)
+      subroutine av(p,pt,im,jm,km,k1,k2,avp)                        ! Proved: 'av' is called in 'fps4.f' in subroutine 'Ravtime' only. It's absence in fps4.f does not affect first 24 days of calculations.
         include 'par.inc'
         include 'com.inc'
 
@@ -729,10 +729,6 @@ c	if(it(i,j).ne.1)a(i,j,1)=a(i,j,2)
         if(n1.ge.1)avp(k)=avp(k)/n1
 
 3     continue
-
-c       print*,'av',avp(kp(90,40)),p(90,40,kp(90,40))
-c	 pause 0 
-
 
       
       do 2 i=1,iss

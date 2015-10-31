@@ -731,7 +731,7 @@ cc       print *,af(i,j)
         include 'com.inc'
 
       do 11 k=1,ks
-      call av(ro,fv,im,jm,km,k,k,aaa,ppp)
+      call av(ro,fv,im,jm,km,k,k,ppp)
         
   11   continue
       do i=1,im
