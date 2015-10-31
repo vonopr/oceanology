@@ -297,8 +297,7 @@ c	if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
 
 
 
-
-       subroutine intrA(a,b,i,j,k2,im,jm,km,ke,dzi,par)
+       subroutine intrA(a,b,i,j,k2,im,jm,km,dzi)
         include 'par.inc'
         include 'com.inc'
 
