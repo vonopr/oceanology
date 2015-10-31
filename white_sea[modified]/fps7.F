@@ -155,8 +155,6 @@ c      if(k.eq.1)ph(i,j)=ph(i,j)+w(i,j,1)*dt
 24     continue
 
 
-
-ccc       goto 23   !!!!!!!!!!!!  switch off  w из уравнения неразрывности
       
 
       do 22 i=2,iss
@@ -185,12 +183,11 @@ ccc       goto 23   !!!!!!!!!!!!  switch off  w из уравнения неразрывности
        z(2)=(zw(1)+zw(2))/2.
 22    continue
 
-23    continue  
+      continue
 
 
       RETURN
       END
-
 
 
        function zint(a,i,j,k1,k2,im,jm,ka)
@@ -338,17 +335,13 @@ c       print *,'i,j,dz',i,j,ph(i,j)
        jmn=j
    25 CONTINUE                               
          sdz=sdz/ps                           
-c123     format(1X,'maxdz,mindz',1F6.1,1x,1f6.1,1x,
-c     & 'Imax,Jmax',2i4,'Imin,Jmin',2i4,'avdz=',2f6.1)
-c           WRITE(6,123)
-c     &DZMAX/980.,DZMIN/980.,imx,jmx,imn,jmn,sdz/980.,ph(55,8)/980.
         umm=0.
        do j=1,jn
         do i=1,in
 c       print *,'i,j,uv',i,j,k,u(i,j,2),v(i,j,2)
        do k=1,ks
       UV=SQRT(u(i,j,K)*u(i,j,K)+v(i,j,K)*v(i,j,K))
- 12   IF(ABS(UV).LE.UMM)GO TO 22                                        
+      IF(ABS(UV).LE.UMM)GO TO 22
        KM=K                                                
         IM=I                                                
          JM=J                                                   
@@ -362,13 +355,8 @@ c       print *,'i,j,uv',i,j,k,u(i,j,2),v(i,j,2)
       day=timestep/(24.*60.)
       hr=timestep/60.-int(day)*24.
 	minu=int(timestep-60.*aint(timestep/60.))
-c902    format(5x,'days=',1i4,2x,'hours='1i4,1x,'min=',1i4)
-c903   format('UMM,umx,vmx,im,km,jm',3f7.2,3i3)
-c      WRITE(6,902)int(day),int(hr),minu 
-c        write(6,903)UMM,umx,vmx,im,km,jm
       RETURN
       END	
-	
 	
 													
       SUBROUTINE HDRL(a,at,ta,qt,u,v,w,us,ahz,
@@ -465,8 +453,7 @@ ccc	goto 352
       wu=w(i,j,k-1)                      
       wm=w(i,j,k)           
 
-c      diva=(div(ua,va,i,j,k,im,jm,km)
-c     !    +(wa(i,j,k)-wa(i,j,k-1))/(zw(k)-zw(k-1)))
+
 
 
        
@@ -474,46 +461,28 @@ c     !    +(wa(i,j,k)-wa(i,j,k-1))/(zw(k)-zw(k-1)))
       a2(k)=difuu
 
 
-c	goto 301 !!!!!!!!!!!!!LEITH!!!!!!!!!!!!!!!!!!!!!!   11.11.03
-	 
 
-c      ahz(i,j,k)=ahz(i,j,k)*pr(i,j,k)
-c      aa= -d2dz(a,ahz,qt,0,kp(i,j),i,j,k,i,j,im,jm,km)
-c      a2(k)=a2(k)+aa                                 
-                                            
-
-	  
-c      if(it(i,j).eq.5.or.k.eq.ke)goto 11   !!!   c   -   29.11.03
-
-c       a2(k)=a2(k)+diva
 
       aa= adv1(a,u,v,i,j,k,im,jm,km)
       a2(k)=a2(k)+aa
 
-ccc      aa= adz(k)
-ccc      a2(k)=a2(k)+aa
+
 
       aa= advz(a,wu,wm,i,j,k,im,jm,km,ph)
       a2(k)=a2(k)+aa
 
-ccc	 a2(k)=a2(k)+adv(a,u,v,w,i,j,k,im,jm,km,qt)
 
-11    continue 
+
+      continue
 
 
  
-18    continue
+      continue
 
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	!!!!!!!!!   контроль divU=0 и коррекция при divU .ne. 0  ->  у дна  
-	                              
-c      if(k.ne.ke)goto 17
-c      a2(k)=a2(k)-diva   !!!!!!!!!!!!!! c -- 30.11.03
 
-      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-17    continue
+      continue
 
-301   continue  !!!!!!!!!!!!!!!LEITH!!!!!!!!!!!!!!!!!!!!!!!!!!!! 11.11.03.
+      continue  !!!!!!!!!!!!!!!LEITH!!!!!!!!!!!!!!!!!!!!!!!!!!!! 11.11.03.
        
       a2(k)=a2(k)-at(i,j,k)/dt 
 	
@@ -564,7 +533,7 @@ c        if(l0.eq.2)a(i,j,1)=a(i,j,2)
   1   continue
 
 	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-352    continue
+      continue
 
 
 
