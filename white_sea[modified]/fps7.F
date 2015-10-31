@@ -298,15 +298,6 @@ c	if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
 
 
 
-
-
-
-
-
-
-
-
-
        subroutine intrA(a,b,i,j,k2,im,jm,km,ke,dzi,par)
         include 'par.inc'
         include 'com.inc'
@@ -314,13 +305,13 @@ c	if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
       dimension a(im,jm,km),b(im,jm,km)
 
       b(i,j,1)=dzi
-
+                                
       do 1 k=2,k2
 
-      dz=zw(k)-zw(k-1)
-
+      dz=zw(k)-zw(k-1)           
+            
       b(i,j,k)=b(i,j,k-1)  +(1.+a(i,j,k))*dz*980.  !+dz*par
-
+      
   1   continue
       return
       end
@@ -361,7 +352,7 @@ c       print *,'i,j,uv',i,j,k,u(i,j,2),v(i,j,2)
       UV=SQRT(u(i,j,K)*u(i,j,K)+v(i,j,K)*v(i,j,K))
  12   IF(ABS(UV).LE.UMM)GO TO 22                                        
        KM=K                                                
-        IM=I
+        IM=I                                                
          JM=J                                                   
         UMX=u(i,j,k)                                                     
        VMX=v(i,j,k)                                                     
@@ -382,9 +373,9 @@ c        write(6,903)UMM,umx,vmx,im,km,jm
 	
 	
 													
-      SUBROUTINE HDRL(a,at,ta,qt,u,v,w,us,ahz
-     *                 ,aq1,pr,wt,im,jm,km
-     #                 ,a1,b1,c1,f1,a2,b2,cstep,azz,l0,ph,lp)
+      SUBROUTINE HDRL(a,at,ta,qt,u,v,w,us,ahz,
+     *                 aq,aq1,pr,wt,im,jm,km,
+     #                 a1,b1,c1,f1,a2,b2,cstep,azz,l0,ph,lp)
 
 
 ******************************************************************
@@ -402,6 +393,7 @@ comment:  t  - s    calculation
      *         ,u(im,jm,km),v(im,jm,km),w(im,jm,km)
      #         ,ahz(im,jm,km),us(im,jm,km),a2(km),pr(im,jm,km)
      #         ,a1(km),b1(km),c1(km),f1(km),azz(km),b2(km)
+     !
      !         ,tw(kn),tw1(kn),adz(kn)
 
 c      call taflux(a,ta,qt,qwa,im,jm,1)
@@ -411,7 +403,20 @@ c      call taflux(a,ta,qt,qwa,im,jm,1)
       us=0.
       resm=0.
      
+c	 do i=2,is
+c	 do j=2,js
+c	 do k=2,ks
 
+c	ua(i,j,k)=u(i,j,k)*(a(i,j,k)+a(i-1,j,k))/2.
+c	va(i,j,k)=v(i,j,k)*(a(i,j,k)+a(i,j-1,k))/2.
+c	wa(i,j,k-1)=w(i,j,k-1)*(a(i,j,k)+a(i,j,k-1))/2.
+
+c      enddo
+c      enddo
+c      enddo
+
+
+ccc	goto 352  
 
       do  1 i=2,iss
       do  1 j=jss,2,-1
