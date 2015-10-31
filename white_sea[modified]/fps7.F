@@ -86,15 +86,16 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
 
       subroutine ww(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
      #ph,ro,ahz,im,jm,km,
-     #al,al1,cph,cu,cadv,cq,ct,cstep,pht)
+     #al1,cph,cu,cadv,cq,cstep,pht)
         include 'par.inc'
         include 'com.inc'
       real
-     *      fu(im,jm,km), fv(im,jm,km),us(im,jm,km),uss(im,jm,km)
+     *      fu(im,jm,km), fv(im,jm,km),us(im,jm,km)
      *     ,thx(im,jm),thy(im,jm)
      *     ,u(im,jm,km),v(im,jm,km),tax(im,jm),tay(im,jm)
      *     ,ut(im,jm,km),vt(im,jm,km),ahz(im,jm,km)
-     *   ,w(im,jm,km),ro(im,jm,km),ph(im,jm),wtt(im,jm,km),pht(im,jm)
+     *   ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
+
 *******    w -calculation:
 *******
 *******      dw/dt +aga*w =int_h_z (div(rpu,rpv))+al*delta w
@@ -104,7 +105,6 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
 ****** w - calculation *************************
 
 
-        
        GOTO 24   !!!!!!!!   W  ->  ÈÇ ÓĞÀÂÍÅÍÈß ÍÅĞÀÇĞÛÂÍÎÑÒÈ
 
 
@@ -296,8 +296,7 @@ c	if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
       end
 
 
-
-       subroutine intrA(a,b,i,j,k2,im,jm,km,dzi)
+       subroutine intrA(a,b,i,j,k2,im,jm,km,dzi)                        ! Proved: called  in 'fps4.f' once and in 'fps6.f' twice only.
         include 'par.inc'
         include 'com.inc'
 
