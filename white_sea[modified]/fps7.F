@@ -374,7 +374,7 @@ c        write(6,903)UMM,umx,vmx,im,km,jm
 	
 													
       SUBROUTINE HDRL(a,at,ta,qt,u,v,w,us,ahz,
-     *                 aq,aq1,pr,wt,im,jm,km,
+     *                 aq1,pr,wt,im,jm,km,
      #                 a1,b1,c1,f1,a2,b2,cstep,azz,l0,ph,lp)
 
 

@@ -1003,7 +1003,7 @@ ccc   call tafluxSOM(s,sa,qt,qwa,im,jm,2,tax,tay)
 
       ii=0
       call HDRL(s,st,sa,qt,u,v,w,us,ahz,
-     *          al,al1,pr,wt,im,jm,km,
+     *          al1,pr,wt,im,jm,km,
      #          a3,b3,c3,fuu,d2,r2,cstep,azz,l0s,ph,0)  ! 1 - not abc,  0 - abc 
 
       call taflux(t,ta,qt,qwa,im,jm,2,uw)
@@ -1011,7 +1011,7 @@ ccc      call tafluxSOM(t,ta,qt,qwa,im,jm,2,tax,tay)
 
       ii=0
       call HDRL(t,at,ta,qt,u,v,w,us,ahz,
-     *          al,al1,pr,wt,im,jm,km,
+     *          al1,pr,wt,im,jm,km,
      #          a3,b3,c3,fuu,d2,r2,cstep,azz,l0t,ph,0)  ! 1 - not abc,  0 - abc 
 
 
@@ -1074,7 +1074,7 @@ c       pause 4
 
       ii=0
       call HDRL(str,strt,str0,qt,u,v,w,us,ahz,
-     *          al,al1,pr,wt,im,jm,km,
+     *          al1,pr,wt,im,jm,km,
      #          a3,b3,c3,fuu,d2,r2,cstep,azz,l0s,ph,1)
 
       do i=1,is
