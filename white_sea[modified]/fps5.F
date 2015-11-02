@@ -2,7 +2,6 @@
       include 'par.inc'
       include 'com.inc'
       Character   file1*10
-      Character   file2*10
       real a(im,jm,k1),b(im),c(jm),d(im,jm)
 
       do 1 i=1,im
@@ -130,10 +129,7 @@ c       close(5)
      	do i1=1,11
 	   file1(i1)='be'//char(i1+46) ! פאיכû מע be0 המ be9
 	enddo  
-c      if(ln-1.eq.1)file1='be1'
-c      if(ln-1.eq.2)file1='be2'
-c      if(ln-1.eq.3)file1='be3'
-c      if(ln-1.eq.4)file1='be4'
+
       nm=12
       open(12,file=file1(ln))
       write(12,2012)tb
@@ -474,7 +470,7 @@ C xx,yy - user coordinates
         do 1 i=1,im
         do 1 j=1,jm
         do 1 k=1,km
-        iiv(im,jm,km,nn/2)=v(im,jm,km)*n3
+        iiv(im,jm,km,nn/2)=int( v(im,jm,km)*n3 )
   1     continue
         return
         end
