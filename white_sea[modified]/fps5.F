@@ -627,7 +627,6 @@ c       ll=1.
       endif
 
 
-
       if(i.eq.is-1)then
               ae=ap*ll                       !
               dxe=x(i+1)-x(i)
