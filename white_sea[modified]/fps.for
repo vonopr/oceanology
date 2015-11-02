@@ -176,7 +176,7 @@ c       str(95,57,1)=100.
 
        ahzt=9.
 
-      call kk(hp,im,jm,km)
+      call kk(hp,im,jm)
 
       kp(120,11)=5   !  IMP ! GORLO
       it(120,11)=3   !  IMP !

@@ -631,8 +631,6 @@ c
       do j=1,js
        if(it(i,j).eq.2)then
         af(i,j)=ph(i,j)
-c        af(i,j)=ph(i,j)-dq+p0
-cc       print *,af(i,j) 
         endif
       enddo
       enddo
@@ -819,7 +817,7 @@ cc       print *,af(i,j)
 
 
 
-      subroutine kk(hp,im,jm,km)
+      subroutine kk(hp,im,jm)                                        ! Proved: it is used in 'fps.for' only
         include 'par.inc'
         include 'com.inc'
         real hp(im,jm)
