@@ -922,16 +922,15 @@ c---------------------------------------------------------
 
 
  
-      subroutine savemonth(imonth,energ,timestep,ns,
-     #    s,t,ta,u,v,w,tax,tay,ph,pht,ro,im,jm,km,aday)
+      subroutine savemonth(imonth,  ns,                                 ! Proved: it is called in fps.for only
+     #    s,t,    u,v,w,      ph,pht,       im,jm,km    )
 
         include 'par.inc'
         include 'com.inc'
 
-      real s(im,jm,km),t(im,jm,km),ta(im,jm),ahz(im,jm,km)
-     *     ,u(im,jm,km),v(im,jm,km),tax(im,jm),tay(im,jm)
-     *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
-     *     ,energ(ns)
+      real s(im,jm,km),t(im,jm,km)
+     *     ,u(im,jm,km),v(im,jm,km)
+     *     ,w(im,jm,km),ph(im,jm),pht(im,jm)
 	real*8 timestep(120000)
 
 
@@ -972,7 +971,6 @@ c---------------------------------------------------------
       real s(im,jm,km),t(im,jm,km)
      *     ,u(im,jm,km),v(im,jm,km)
      *     ,w(im,jm,km),ph(im,jm),pht(im,jm)
-
 
 
       Character*8   file1(53)
