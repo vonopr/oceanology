@@ -946,7 +946,6 @@ c---------------------------------------------------------
       write(nm,*)ns  !,aday
 
 
-
       write(nm,2012)u
       write(nm,2012)v
       write(nm,2012)w
@@ -957,7 +956,7 @@ c---------------------------------------------------------
 
 
 
-       
+
 2012  format(20e12.6)   
       close(12)
 
@@ -965,15 +964,14 @@ c---------------------------------------------------------
         end
 
 
-      subroutine DUMP(iD,energ,ns,                                      ! Proved: it is called in 'fps.for' only
-     #    s,t,ta,u,v,w,tax,tay,ph,pht,ro,im,jm,km,aday)
+      subroutine DUMP(iD,ns,s,t,u,v,w,ph,pht,im,jm,km,aday)                                    ! Proved: it is called in 'fps.for' only
+
         include 'par.inc'
         include 'com.inc'
 
-      real s(im,jm,km),t(im,jm,km),ta(im,jm),ahz(im,jm,km)
-     *     ,u(im,jm,km),v(im,jm,km),tax(im,jm),tay(im,jm)
-     *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
-     *     ,energ(ns)
+      real s(im,jm,km),t(im,jm,km),ahz(im,jm,km)
+     *     ,u(im,jm,km),v(im,jm,km)
+     *     ,w(im,jm,km),ph(im,jm),pht(im,jm)
 
 
 

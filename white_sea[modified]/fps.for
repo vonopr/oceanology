@@ -1196,8 +1196,7 @@ c ******************************************************
 
       if(ns.ge.31200.and.ns.lt.33704)       then  !  COM 2006 SOLO
 
-      if(ns.eq.33565)call DUMP(53,energ,ns,s,t,ta,u,v,w,tax,tay
-     #,ph,pht,ro,im,jm,km,aday)
+      if(ns.eq.33565)call DUMP(53,ns,s,t,u,v,w,ph,pht,im,jm,km,aday)
 
       nswr=480
       if(ns.ge.33565)nswr=20
@@ -1207,8 +1206,7 @@ c ******************************************************
 
        idd=idd+1
 
-      call DUMP(idd,energ,ns,s,t,ta,u,v,w
-     !      ,tax,tay,ph,pht,ro,im,jm,km,aday)
+      call DUMP(idd,ns,s,t,u,v,w,ph,pht,im,jm,km,aday)
 
 
 
