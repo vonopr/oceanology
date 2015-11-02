@@ -190,7 +190,7 @@ c      at2/2.+0.1
         include 'par.inc'
         include 'com.inc'
 
-      character file1*11
+
 
       real
      # tb(im,jm,km),te(im,jm,km),frf(im,jm,km),pr(im,jm,km)
@@ -239,18 +239,7 @@ c        pause 222
  1     continue
 
         
-c        if(ns.ne.0)then
-c        print *,'filetur?'
 
-
-c        file1='be0'  !  new 23.07.2006
-       
-c          read(*,1000)file1
-c        open(10,file=file1)
-c        read(10,2012)tb
-c        read(10,2012)te
-c        close(10)
-c        endif
 2012    format(20e12.6)
 
 
@@ -439,7 +428,7 @@ c      print * ,thx,thy
       end
 
       SUBROUTINE HRVL(u,v,ut,vt,w,fu1,fv1,us,tax,tay,thx,thy,
-     * ph,ro,im,jm,km,cq,al1,cu,cadv,ctah,cph,
+     * ph,ro,im,jm,km,cq,al1,cu,cadv,cph,
      * ahz,fuu,fvv,azz,e2,d2,r2,g2,a3,b3,c3,ua,va,z0,cstep)
  
 ************************************************************************
@@ -461,7 +450,7 @@ comments     bound.cond.   from geostr
      *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm)
      *     ,e2(km),d2(km),r2(km),g2(km),fuu(km),fvv(km)
      *     ,a3(km),b3(km),c3(km),ua(km),va(km),azz(km)
-     *     ,u00(im,jm,km),v00(im,jm,km),ahz(im,jm,km)
+     *     ,u00(im,jm,km),ahz(im,jm,km)
 c          print *,'vel00',rad 
 
 
