@@ -172,10 +172,10 @@ ccc      if(l0e.lt.0)qe=(alz**0.75*tb(i,j,2)**1.5*(zw(ke)-z(2)))/0.435  !!!  OLD
 
 
 
-      subroutine incbe(tb,te,frf,pr,prt,ahz,ef
+      subroutine incbe(tb,te,frf,pr,prt,ahz,ef                          ! Proved: it is called in fps.for only
      #           ,tb0,te0,im,jm,km
      #           ,wt,drdt,pare,alz,z0,rfcr,qb !initial
-     #           ,l0t,lbt,l0b,lbb,l0e,lbe,qa,prb,ns,alb)
+     #           ,l0t,lbt,l0b,lbb,l0e,lbe,qa,prb,alb)
 
         include 'par.inc'
         include 'com.inc'

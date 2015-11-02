@@ -204,7 +204,7 @@ c       str(95,57,1)=100.
       call incbe(tb,te,frf,pr,prt,ahz,ef,
      #           tb0,te0,im,jm,km,
      #           wt,drdt,pare,alz,z0,rfcr,qb, !initial
-     #           l0t,lbt,l0b,lbb,l0e,lbe,ql,prb,ns,alb)
+     #           l0t,lbt,l0b,lbb,l0e,lbe,ql,prb,alb)
 
       close(11)
 
