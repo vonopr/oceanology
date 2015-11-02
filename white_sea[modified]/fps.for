@@ -824,7 +824,7 @@ c  переопределение давления Онеги и Двины    *****   **********
 33    continue 
 
       call HRVL(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
-     * ph,ro,im,jm,km,cq,al1,cu,cadv,ctah,cph,
+     * ph,ro,im,jm,km,cq,al1,cu,cadv,cph,
      * ahz,fuu,fvv,azz,e2,d2,r2,g2,a3,b3,c3,ua,va,z0,cstep)
 
 

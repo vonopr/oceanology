@@ -127,10 +127,6 @@ ccc      if(l0e.lt.0)qe=(alz**0.75*tb(i,j,2)**1.5*(zw(ke)-z(2)))/0.435  !!!  OLD
  1    continue
 
 
-c       call prarray(frf*100.,8)
-c        frf=frf/100.
-c        pause 999
-
 
       return
       end
@@ -203,8 +199,7 @@ c        pause 999
        read(5,*)pare,alz,prb,rfcr,z0,qb
        read(5,*) l0t,lbt,l0b,lbb,l0e,lbe
        close(5)
-c        print *,'wt = ',wt
-c        pause 222
+
       do 1 i=1,im
       do 1 j=1,jm
 
@@ -231,18 +226,7 @@ c        pause 222
  1     continue
 
         
-c        if(ns.ne.0)then
-c        print *,'filetur?'
 
-
-c        file1='be0'  !  new 23.07.2006
-       
-c          read(*,1000)file1
-c        open(10,file=file1)
-c        read(10,2012)tb
-c        read(10,2012)te
-c        close(10)
-c        endif
 2012    format(20e12.6)
 
 
@@ -254,11 +238,6 @@ c        endif
 3     continue
         if(ke.gt.1)call turb(tb,te,ef,frf,ahz,i,j,im,jm,km,ke)
 4     continue
-
-c       call prarray(ahz,12)
-c         pause 17
-
-
         return
       end
 
@@ -430,8 +409,8 @@ c      print * ,thx,thy
       return
       end
 
-      SUBROUTINE HRVL(u,v,ut,vt,w,fu1,fv1,us,tax,tay,thx,thy,
-     * ph,ro,im,jm,km,cq,al1,cu,cadv,ctah,cph,
+      SUBROUTINE HRVL(u,v,ut,vt,w,fu1,fv1,us,tax,tay,thx,thy,           ! Proved: it is called in fps.for once only.
+     * ph,ro,im,jm,km,cq,al1,cu,cadv,cph,
      * ahz,fuu,fvv,azz,e2,d2,r2,g2,a3,b3,c3,ua,va,z0,cstep)
  
 ************************************************************************
