@@ -227,7 +227,7 @@ ccc      if(l0e.lt.0)qe=(alz**0.75*tb(i,j,2)**1.5*(zw(ke)-z(2)))/0.435  !!!  OLD
 
         
 
-2012    format(20e12.6)
+       format(20e12.6)
 
 
         do 4 i=1,im
@@ -669,7 +669,7 @@ c                              va(1)=va(2)+tayy*z(2)/azz(2)
 5634  continue
 
 
-ccc       goto 6733
+
       do k=1,ks
       do j=2,jss
       do i=2,iss
@@ -688,7 +688,7 @@ ccc       goto 6733
       end do
       end do
       end do
-6733        continue
+        continue
 
 
 
@@ -714,7 +714,7 @@ c--------------------------------------------
 c        print *,'thx,thy in rpin',thx(120,15),thy(120,15)
 c        pause
          
-       lbu=-1.
+       lbu=- int(1.0)
 
 
       fu=0.
@@ -869,8 +869,7 @@ c       dzi=0.                                  !!!!!!!!!
 
       if(kv(i,j).le.1)goto 23
 
-c      do 24 k=2,kv(i,j)
-c 24   us(i,j,k)=DELTAv(vt,i,j,k,im,jm,km,lbu)*al
+
 
         if(kv(i,j).lt.km)then
           do 25 k=kv(i,j)+1,km
@@ -917,7 +916,6 @@ c 24   us(i,j,k)=DELTAv(vt,i,j,k,im,jm,km,lbu)*al
 
      #+iad*(-advzv(vt,w,i,j,k,im,jm,km))*cstep*cadv
 
-ccc     # - advv(ut,vt,w,i,j,k,im,jm,km,tay,lbu,it(i,j))*iad
 
      #  - LVm(ut,vt,i,j,k,im,jm,km)*cadv*cstep*iad
 
@@ -925,7 +923,6 @@ ccc     # - advv(ut,vt,w,i,j,k,im,jm,km,tay,lbu,it(i,j))*iad
                               
      #        +cu*2*omega*ut1(u,ut,im,jm,km,i,j,k,0)
 
-c     #            -cu*et*vt0
 
      #                  +AL1*DELTAv(vt,i,j,k,im,jm,km,lbu)*iad !!vt 1,11.02 *iad
 
@@ -952,7 +949,7 @@ c     #            -cu*et*vt0
  5    continue
 
 
-100   continue
+      continue
       return
       end
 
