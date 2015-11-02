@@ -886,14 +886,7 @@ c---------------------------------------------------------
 
       Character*3   file1(10)
 
-c	print *,ta(100,40)
-c	pause 33 
-         
-c      if(ln.gt.4)ln=1
-c      if(ln.eq.1)file1='aa1'
-c      if(ln.eq.2)file1='aa2'
-c      if(ln.eq.3)file1='aa3'
-c      if(ln.eq.4)file1='aa4'
+
       ! задание имен файлов
 	do i1=1,10
 	   file1(i1)='aa'//char(i1+47) ! файлы от аа0 до аа9
@@ -906,11 +899,6 @@ c      if(ln.eq.4)file1='aa4'
 
       write(nm,*)ns  !,aday
 
-c      write(nm,2012)(timestep(kk),kk=1,ns)
-c      write(nm,2012)(energ(kk),kk=1,ns)
-c      write(nm,*)tax
-c      write(nm,*)tay
-c      write(nm,*)ta
 
       write(nm,2012)u
       write(nm,2012)v
@@ -920,13 +908,6 @@ c      write(nm,*)ta
       write(nm,2012)t
       write(nm,2012)s
 
-c       write(nm,2012)tb
-c       write(nm,2012)te
-c      write(nm,2012)umt,vmt,wmt,tmt,smt
-c      write(nm,2012)ummt,vmmt,wmmt
-c      write(nm,2012)ta
-c	write(nm,2012)ahz
-ccc	write(nm,2012)str
 
       close(12)
       ln=ln+1
@@ -934,19 +915,7 @@ ccc	write(nm,2012)str
 2012  format(20e12.6)
 
        print*,' save dump # ',ln-2
-c     временно для записи ahz
-c         open(761,file='ahz')
-c	   write(761,*) 'written from proc. SAVE'
-c	   do ktmp=1, kn
-c	   do jtmp=1, jn
-c	   do itmp=1, in
-c	      if( (it(itmp,jtmp).EQ.0).AND.(ktmp.LE.kp(itmp,jtmp))) then
-c	      write (761,761) ahz(itmp,jtmp,ktmp),itmp,jtmp,ktmp
-c	      endif
-c	   enddo
-c	   enddo
-c	   enddo 
-c	   close(761)
+
  761  format(F12.3,3I5)
       return
         end
@@ -972,15 +941,11 @@ c	   close(761)
       if(imonth.gt.9)imonth=0
       nm=12
       open(12,file=file1(imonth))
-c      rewind 12
+
 
       write(nm,*)ns  !,aday
 
-c      write(nm,2012)(timestep(kk),kk=1,ns)
-c      write(nm,2012)(energ(kk),kk=1,ns)
-c      write(nm,*)tax
-c      write(nm,*)tay
-c      write(nm,*)ta
+
 
       write(nm,2012)u
       write(nm,2012)v
@@ -991,13 +956,7 @@ c      write(nm,*)ta
       write(nm,2012)s
 
 
-c       write(nm,2012)tb
-c       write(nm,2012)te
-c      write(nm,2012)umt,vmt,wmt,tmt,smt
-c      write(nm,2012)ummt,vmmt,wmmt
-c      write(nm,2012)ta
-c      write(nm,2012)ahz    
-c      imonth=imonth+1
+
        
 2012  format(20e12.6)   
       close(12)
@@ -1034,8 +993,6 @@ c      imonth=imonth+1
 c      rewind 12
       write(nm,*)ns   !,aday
 
-c      write(nm,2012)(timestep(kk),kk=1,ns)
-c      write(nm,2012)(energ(kk),kk=1,ns)
 
       write(nm,2012)u
       write(nm,2012)v
@@ -1045,13 +1002,7 @@ c      write(nm,2012)(energ(kk),kk=1,ns)
       write(nm,2012)t
       write(nm,2012)s
 
-c      write(nm,2012)ph,tax,tay
 
-c      write(nm,2012)uav,vav,wav,tav,sav,pav
-c      write(nm,2012)ahz
-	    
-c      imonth=imonth+1
-       
 2012  format(20e12.6)   
       close(22)
 
