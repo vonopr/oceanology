@@ -964,12 +964,12 @@ c---------------------------------------------------------
         end
 
 
-      subroutine DUMP(iD,ns,s,t,u,v,w,ph,pht,im,jm,km,aday)                                    ! Proved: it is called in 'fps.for' only
+      subroutine DUMP(iD,ns,s,t,u,v,w,ph,pht,im,jm,km)                                    ! Proved: it is called in 'fps.for' only
 
         include 'par.inc'
         include 'com.inc'
 
-      real s(im,jm,km),t(im,jm,km),ahz(im,jm,km)
+      real s(im,jm,km),t(im,jm,km)
      *     ,u(im,jm,km),v(im,jm,km)
      *     ,w(im,jm,km),ph(im,jm),pht(im,jm)
 
