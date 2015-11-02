@@ -863,64 +863,6 @@ cc       print *,af(i,j)
         return
         end
 
-
-
-
-      subroutine save(ln,energ,timestep,ns,
-     #    s,t,ta,u,v,w,tax,tay,ph,pht,ro,im,jm,km,aday)
-c--------------------------------------------------
-c       call save(ln,energ,timestep,ns,
-c             s,t,ta,u,v,w,tax,tay,ph,pht,ro,im,jm,km,
-c             umt,vmt,wmt,tmt,smt,ummt,vmmt,wmmt,kmm,aday,ahz)
-c---------------------------------------------------------
-        include 'par.inc'
-        include 'com.inc'
-
-      real s(im,jm,km),t(im,jm,km),ta(im,jm),ahz(im,jm,km)
-     *     ,u(im,jm,km),v(im,jm,km),tax(im,jm),tay(im,jm)
-     *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
-     *     ,energ(ns)
-
-	real*8 timestep(120000)
-
-
-      Character*3   file1(10)
-
-
-      ! задание имен файлов
-	do i1=1,10
-	   file1(i1)='aa'//char(i1+47) ! файлы от аа0 до аа9
-	enddo  
-
-	if(ln.GT.9) ln=1
-      nm=12
-      open(12,file=file1(ln))
-      rewind 12
-
-      write(nm,*)ns  !,aday
-
-
-      write(nm,2012)u
-      write(nm,2012)v
-      write(nm,2012)w
-      write(nm,2012)ph
-      write(nm,2012)pht
-      write(nm,2012)t
-      write(nm,2012)s
-
-
-      close(12)
-      ln=ln+1
-       
-2012  format(20e12.6)
-
-       print*,' save dump # ',ln-2
-
- 761  format(F12.3,3I5)
-      return
-        end
-
-
  
       subroutine savemonth(imonth,ns,s,t,u,v,w,ph                     ! Proved: it is called in fps.for only
      #                     ,pht,im,jm,km)
