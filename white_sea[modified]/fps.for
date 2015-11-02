@@ -1196,7 +1196,7 @@ c ******************************************************
 
       if(ns.ge.31200.and.ns.lt.33704)       then  !  COM 2006 SOLO
 
-      if(ns.eq.33565)call DUMP(53,energ,timestep,ns,s,t,ta,u,v,w,tax,tay
+      if(ns.eq.33565)call DUMP(53,energ,ns,s,t,ta,u,v,w,tax,tay
      #,ph,pht,ro,im,jm,km,aday)
 
       nswr=480
@@ -1207,7 +1207,7 @@ c ******************************************************
 
        idd=idd+1
 
-      call DUMP(idd,energ,timestep,ns,s,t,ta,u,v,w
+      call DUMP(idd,energ,ns,s,t,ta,u,v,w
      !      ,tax,tay,ph,pht,ro,im,jm,km,aday)
 
 
@@ -1412,18 +1412,13 @@ c      fi(j)=-cos(yy)
        nm=11
        rewind 11
 
-ccc        print *,'filename to read'
-ccc        read(*,1100)file1
-ccc        open(11,file=file1)
-c1100  format(a3)
 
 
       open(11,file='c:\somws_2007\mon')  !!
 
 
       read(nm,*)ns   !,aday     !,wq,wq,wq,wq,wq,wq,wg  ! for a0-climate  file
-c      read(nm,2012)(timestep(kk),kk=1,ns)
-c      read(nm,2012)(energ(kk),kk=1,ns)
+
       read(nm,2012)u
       read(nm,2012)v
       read(nm,2012)w

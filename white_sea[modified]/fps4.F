@@ -965,7 +965,7 @@ c---------------------------------------------------------
         end
 
 
-      subroutine DUMP(iD,energ,timestep,ns,
+      subroutine DUMP(iD,energ,ns,                                      ! Proved: it is called in 'fps.for' only
      #    s,t,ta,u,v,w,tax,tay,ph,pht,ro,im,jm,km,aday)
         include 'par.inc'
         include 'com.inc'
@@ -975,7 +975,6 @@ c---------------------------------------------------------
      *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
      *     ,energ(ns)
 
-	real*8 timestep(120000)
 
 
 
