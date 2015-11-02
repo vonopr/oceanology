@@ -185,7 +185,7 @@ ccc      if(l0e.lt.0)qe=(alz**0.75*tb(i,j,2)**1.5*(zw(ke)-z(2)))/0.435  !!!  OLD
      # ,ahz(im,jm,km),pare(5),ef(km)
 
 
-1000  format(a11)
+
 
 
       open(5,file='pare.dat')
@@ -225,9 +225,7 @@ ccc      if(l0e.lt.0)qe=(alz**0.75*tb(i,j,2)**1.5*(zw(ke)-z(2)))/0.435  !!!  OLD
 
  1     continue
 
-        
 
-       format(20e12.6)
 
 
         do 4 i=1,im
