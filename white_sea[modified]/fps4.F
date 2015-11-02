@@ -637,41 +637,7 @@ c
       return
       end
 
-      subroutine flux(u,v,im,jm,km,lpar1,qin, qout)
-  
-        include 'par.inc'
-        include 'com.inc'
 
-      real
-     *      u(im,jm,km), v(im,jm,km)
-        qin=0.
-        qout=0.
-        do 1 i=2,im
-        do 1 j=2,jm
-        if(it(i,j).eq.2)then
-        ke=ku(i,j)
-        do 2 k=2,ku(i,j)
-        ds=dy*rad*(zw(k)-zw(k-1))
-        if(u(i,j,k).gt.0.)then
-        qout=qout+ u(i,j,k)*ds
-        else
-        qin=qin+u(i,j,k)*ds
-        endif
- 2    continue
-        elseif(it(i,j).eq.5)then
-        ke=kv(i,j)
-        do 3 k=2,kv(i,j)
-        ds=(x(i+1)-x(i))*rad*(zw(k)-zw(k-1))*sn(j)
-        if(v(i,j,k).lt.0.)then
-        qout=qout+ v(i,j,k)*ds
-        else
-        qin=qin+v(i,j,k)*ds
-        endif
- 3    continue
-      endif
-1     continue
-        return
-        end
 	     
       subroutine avts(t,im,jm,km)
         include 'par.inc'
