@@ -493,8 +493,8 @@ C     ÇÀÏÈÑÜ ÄÀÍÍÛÕ ×ÅĞÅÇ 15, 30... ñóòîê
       if(mod(timestep(ns),time15).EQ.0) then    
          ic=timestep(ns)/time15
             
-         call savemonth(ic,             ns,s,t,        u,v,w,      ph,
-     #pht,       im,jm,km)
+         call savemonth(ic,ns,s,t,u,v,w,ph
+     #                  ,pht,im,jm,km)
          print  *,ic
 
       endif
