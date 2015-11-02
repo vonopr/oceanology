@@ -539,8 +539,8 @@ c-------------------------------------------------
         l=1   !!!!  l=0  -> правая часть (rppw) ->  -dw/dz    !!!! 06.04.03
         
 
-       call rppw(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
-     # ph,ro,ahz,im,jm,km,l,al1,cph,cu,cadv,cq,cstep,pht)
+       call rppw(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,                  ! Proved: it is calle in 'fps3.f' and 'fps7.f' only
+     # ph,ro,ahz,im,jm,km,l,al1,cph,cu,cadv,cq,cstep)
 
      
       continue

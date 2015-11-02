@@ -518,8 +518,7 @@ c	pause 222
       end
 
         subroutine rppw(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
-     # ph,ro,ahz,im,jm,km,l,al1,cph,cu,cadv,cq,cstep,pht)
-
+     # ph,ro,ahz,im,jm,km,l,al1,cph,cu,cadv,cq,cstep)
 
 
         include 'par.inc'

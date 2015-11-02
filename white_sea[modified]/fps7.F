@@ -112,7 +112,7 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
 
       call rppw(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
      #ph,ro,ahz,im,jm,km
-     #,l,al1,cph,cu,cadv,cq,cstep,pht)
+     #,l,al1,cph,cu,cadv,cq,cstep)
 
       do 1 i=2,iss
       do 1 j=2,jss
