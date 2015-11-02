@@ -13,9 +13,9 @@
        iv1=(it(i,j)-2)*(it(i,j)-9)
        iv2=(it(i,j)-4)*(it(i,j)-6)
        if(iv1.eq.0.and.it(i-1,j).eq.1)then
-	 iv1=-1
-	iv=0
-	end if
+         iv1=-1
+        iv=0
+        end if
       if(iv.eq.0)then
 
       vt1=(v(i,j,k)+v(i-1,j,k)+vt(i,j,k)+vt(i-1,j,k))*c1/8
@@ -34,7 +34,7 @@ c      if(v(i,j+1,k).eq.0.)ci2=0.
 c      vt1=0.
        vt1=                  !!!!(ci1*(v(i-1,j,k)+vt(i-1,j,k))*c1/2.  !!!m.9.10
      *     +(v(i,j+1,k)+vt(i,j+1,k))*c2/2.           !!!(ci1+ci2)
-c	 if((ci1+ci2).eq.0.)write(6,*)'cii1112',i,j,k
+c         if((ci1+ci2).eq.0.)write(6,*)'cii1112',i,j,k
 
          elseif(iv2.eq.0)then
 
@@ -116,12 +116,12 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
 
       do 1 i=2,iss
       do 1 j=2,jss
-	ke=kp(i,j)
+        ke=kp(i,j)
       iit=(it(i,j)-5)*it(i,j)
 
       if(iit.eq.0)then
        do  k=1,ke
-	   
+           
       us(i,j,k)=fu(i,j,ke)- fu(i,j,k)   
                         !!!! in rppw '+w(i,j,k)/dt' have been  included
                         !!!! w=div(ut,vt,,,, 
@@ -143,7 +143,7 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
 
 
       w(i,j,k)=us(i,j,k)*dt                    !!!!!!!!!!!!!! WR !!!!!!!!!!!   
-	    
+            
 c      if(k.eq.1)ph(i,j)=ph(i,j)+w(i,j,1)*dt
 
 
@@ -158,18 +158,18 @@ c      if(k.eq.1)ph(i,j)=ph(i,j)+w(i,j,1)*dt
       
 
       do 22 i=2,iss
-	do 22 j=2,jss
+        do 22 j=2,jss
 
-	ke=kp(i,j)
-	if(ke.le.2.or.it(i,j).eq.1)goto 22
+        ke=kp(i,j)
+        if(ke.le.2.or.it(i,j).eq.1)goto 22
 
-	w(i,j,ke)=0.
+        w(i,j,ke)=0.
       
        zw(1)=-Ph(i,j)/980.   !!!!!  ”◊≈“  ŒÀ≈¡¿Õ»… ”–Œ¬Õﬂ
        z(1)=zw(1)
        z(2)=(zw(1)+zw(2))/2.
-	        
-	do 122 k=ke,2,-1
+                
+        do 122 k=ke,2,-1
 
       dzw=zw(k)-zw(k-1)
 
@@ -210,13 +210,13 @@ c      dz=ha(i,j)-z(k-1)
 
        function zintw(a,i,j,k1,k2,im,jm,kt,za)
       
-	  include 'par.inc'
+          include 'par.inc'
         include 'com.inc'
       dimension a(im,jm,k2),za(k2),kt(im,jm)
 
 c         if(i.eq.120.and.j.eq.15)print*,'',kt(i,j)
-c	if(i.eq.120.and.j.eq.15)pause
-	ke=kt(I,J)
+c        if(i.eq.120.and.j.eq.15)pause
+        ke=kt(I,J)
       
 
       zintw=0.
@@ -229,8 +229,8 @@ c      dz=ha(i,j)-za(k-1)
       dz=0.
       endif
       zintw=zintw+a(i,j,k)*dz
-c	if(i.eq.120.and.j.eq.15.and.k.eq.2)print*,'zintw in zintw',zintw
-c	if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
+c        if(i.eq.120.and.j.eq.15.and.k.eq.2)print*,'zintw in zintw',zintw
+c        if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
   1   continue
     
       return
@@ -246,7 +246,7 @@ c	if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
 
 
 
-	   !!!!!!  HAVE TO BE:    k1=1    and   dzeta  <  or   = zw(3)
+           !!!!!!  HAVE TO BE:    k1=1    and   dzeta  <  or   = zw(3)
 
        zw(1)=-ph(i,j)/980.   !!!!!  ”◊≈“  ŒÀ≈¡¿Õ»… ”–Œ¬Õﬂ
        z(1)=zw(1)
@@ -260,7 +260,7 @@ c	if(i.eq.120.and.j.eq.15.and.k.eq.2)pause
       do 1 k=k1+1,k2                              ! WR 
             
       dz=zw(k)-zw(k-1)                            ! WR 
-	
+        
       b(i,j,k)=b(i,j,k-1)+a(i,j,k)*dz             ! WR
 
   1   continue
@@ -354,11 +354,11 @@ c       print *,'i,j,uv',i,j,k,u(i,j,2),v(i,j,2)
        end do
       day=timestep/(24.*60.)
       hr=timestep/60.-int(day)*24.
-	minu=int(timestep-60.*aint(timestep/60.))
+        minu=int(timestep-60.*aint(timestep/60.))
       RETURN
-      END	
-	
-													
+      END        
+        
+                                                                                                        
       SUBROUTINE HDRL(a,at,ta,qt,u,v,w,us,ahz,
      *                 aq1,pr,wt,im,jm,km,
      #                 a1,b1,c1,f1,a2,b2,cstep,azz,l0,ph,lp)
@@ -373,7 +373,7 @@ comment:  t  - s    calculation
 
         include 'par.inc'
         include 'com.inc'
-	common ns
+        common ns
       dimension ph(im,jm),
      *          a(im,jm,km),at(im,jm,km),ta(im,jm),qt(im,jm)
      *         ,u(im,jm,km),v(im,jm,km),w(im,jm,km)
@@ -389,29 +389,29 @@ c      call taflux(a,ta,qt,qwa,im,jm,1)
       us=0.
       resm=0.
      
-c	 do i=2,is
-c	 do j=2,js
-c	 do k=2,ks
+c         do i=2,is
+c         do j=2,js
+c         do k=2,ks
 
-c	ua(i,j,k)=u(i,j,k)*(a(i,j,k)+a(i-1,j,k))/2.
-c	va(i,j,k)=v(i,j,k)*(a(i,j,k)+a(i,j-1,k))/2.
-c	wa(i,j,k-1)=w(i,j,k-1)*(a(i,j,k)+a(i,j,k-1))/2.
+c        ua(i,j,k)=u(i,j,k)*(a(i,j,k)+a(i-1,j,k))/2.
+c        va(i,j,k)=v(i,j,k)*(a(i,j,k)+a(i,j-1,k))/2.
+c        wa(i,j,k-1)=w(i,j,k-1)*(a(i,j,k)+a(i,j,k-1))/2.
 
 c      enddo
 c      enddo
 c      enddo
 
 
-ccc	goto 352  
+ccc        goto 352  
 
       do  1 i=2,iss
       do  1 j=jss,2,-1
 
 
        zw(1)=-Ph(i,j)/980.   !!!!!  ”◊≈“  ŒÀ≈¡¿Õ»… ”–Œ¬Õﬂ
-	 z(1)=zw(1)
+         z(1)=zw(1)
        z(2)=(zw(1)+zw(2))/2.
-	
+        
       ke=kp(i,j)
 
       iit=it(i,j)*(it(i,j)-5)
@@ -433,13 +433,13 @@ ccc	goto 352
         tw(1)=a(i,j,1)*w(i,j,1)*zw(2)
 
        do k=2,ke
-	dz=zw(k+1)-zw(k)
-	dz1=zw(k+1)-zw(k-1)
+        dz=zw(k+1)-zw(k)
+        dz1=zw(k+1)-zw(k-1)
 
         adz(k)= (tw(k+1)/dz1 - tw(k)/dz1)/dz
        enddo
 
-	adz(1)=adz(2)
+        adz(1)=adz(2)
 79    continue
 !!!!!!!!!!!!!!!!!!!!!!!!!!  smoothing w*t !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -485,7 +485,7 @@ ccc	goto 352
       continue  !!!!!!!!!!!!!!!LEITH!!!!!!!!!!!!!!!!!!!!!!!!!!!! 11.11.03.
        
       a2(k)=a2(k)-at(i,j,k)/dt 
-	
+        
       azz(k)=ahz(i,j,k)*pr(i,j,k)
 
       b2(k)=0.
@@ -499,14 +499,14 @@ ccc	goto 352
 
       if(lp.eq.1)      goto 10        !ˇ‚Ì‡ˇ ÒıÂÏ‡!   !    new    
     
-					 
+                                         
 
       a2(1)=-Ta(i,j)*wt
 
       b2(1)=-wt
 
       lb=2 ! (b.c.- flux to the bottom (=0.))
-ccc	if(it(i,j).ne.5)lb=2       
+ccc        if(it(i,j).ne.5)lb=2       
 
       call zcoef(azz,qt(i,j),0.,a2,b2,a1,b1,c1,f1,l0,lb,ke,km)
            
@@ -532,7 +532,7 @@ c        if(l0.eq.2)a(i,j,1)=a(i,j,2)
 
   1   continue
 
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       continue
 
 
@@ -542,9 +542,9 @@ c        if(l0.eq.2)a(i,j,1)=a(i,j,2)
              goto 913  !!!!  Leith  off
 
        c=0.99
-			  
-	do  i=2,im-1
-	do  j=2,jm-1
+                          
+        do  i=2,im-1
+        do  j=2,jm-1
 
       if(it(i,j).ne.0.or.it(i,j).ne.5)goto 1000
 
@@ -554,9 +554,9 @@ c        if(l0.eq.2)a(i,j,1)=a(i,j,2)
 
       
 
-	do  k=2,kp(i,j)
+        do  k=2,kp(i,j)
 
-	call LeithC(a,at,u,v,w,i,j,k,im,jm,km,0.) !  at  normaly  
+        call LeithC(a,at,u,v,w,i,j,k,im,jm,km,0.) !  at  normaly  
 
       a(i,j,k)=(a(i,j,k)*c +at(i,j,k)*(1-c)) 
 
@@ -571,14 +571,14 @@ c        if(l0.eq.2)a(i,j,1)=a(i,j,2)
 
 
 1000   continue
-	enddo
-	enddo
+        enddo
+        enddo
 
 913   continue
 
 
 c       print*,'a1,a2,at1',a(60,60,1),a(60,60,2),at(60,60,1)
-c	 pause 000
+c         pause 000
 
 
 !!!!!!!!!!!!!!!!!!!!!   RAD    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -586,41 +586,41 @@ c	 pause 000
 
       goto 349
 
-	do  i=2,iss
-	do  j=2,jss
+        do  i=2,iss
+        do  j=2,jss
 
-c	if(it(i,j).ne.1)a(i,j,1)=a(i,j,2)
+c        if(it(i,j).ne.1)a(i,j,1)=a(i,j,2)
 
       if(it(i,j).eq.2)then
 
-	do  k=1,kp(i,j)
+        do  k=1,kp(i,j)
 
        if(k.gt.kp(i,j))goto 347
 
       a(i,j,k)=(a(i-1,j+1,k)+a(i,j-1,k))/2.
 
-	if(v(i-1,j+1,k).gt.0.)a(i,j,k)=a(i,j-1,k)
+        if(v(i-1,j+1,k).gt.0.)a(i,j,k)=a(i,j-1,k)
 
 
 
 
      
 
-	if(k.eq.kp(i,j)) a(i,j,k+1)=a(i,j,k)
+        if(k.eq.kp(i,j)) a(i,j,k+1)=a(i,j,k)
       
-     	enddo
+             enddo
 
-	endif
+        endif
 
 347   continue
 
   
-	enddo
-	enddo
+        enddo
+        enddo
 349   continue
 
       return
-	end
+        end
 
 
 
@@ -666,7 +666,7 @@ c	if(it(i,j).ne.1)a(i,j,1)=a(i,j,2)
 
       do 3 k=k1,k2
 
-	avp(k)=0.
+        avp(k)=0.
       n1=0
 
       do 1 i=1,im
