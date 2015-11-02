@@ -29,7 +29,7 @@
 
   1   continue
 
-ccc        frf(i,j,1)=frf(i,j,2)
+
 
 
       return
@@ -170,12 +170,6 @@ c        pause 999
      # *frf(i,j,ke)
 
 
-c      at2/2.+0.1
-
-
-
-
-
       return
       end
 
@@ -189,8 +183,6 @@ c      at2/2.+0.1
 
         include 'par.inc'
         include 'com.inc'
-
-
 
       real
      # tb(im,jm,km),te(im,jm,km),frf(im,jm,km),pr(im,jm,km)
@@ -239,7 +231,18 @@ c        pause 222
  1     continue
 
         
+c        if(ns.ne.0)then
+c        print *,'filetur?'
 
+
+c        file1='be0'  !  new 23.07.2006
+       
+c          read(*,1000)file1
+c        open(10,file=file1)
+c        read(10,2012)tb
+c        read(10,2012)te
+c        close(10)
+c        endif
 2012    format(20e12.6)
 
 
@@ -428,7 +431,7 @@ c      print * ,thx,thy
       end
 
       SUBROUTINE HRVL(u,v,ut,vt,w,fu1,fv1,us,tax,tay,thx,thy,
-     * ph,ro,im,jm,km,cq,al1,cu,cadv,cph,
+     * ph,ro,im,jm,km,cq,al1,cu,cadv,ctah,cph,
      * ahz,fuu,fvv,azz,e2,d2,r2,g2,a3,b3,c3,ua,va,z0,cstep)
  
 ************************************************************************
