@@ -591,52 +591,6 @@ c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
       return
       end
 
-      subroutine pcorr(ph,pht,af,im,jm,km,p0,p0t,dq,dqc)
-        include 'par.inc'
-        include 'com.inc'
-      real
-     *     ph(im,jm),pht(im,jm),af(im,jm)
-          
-      do i=1,is
-      do j=1,js
-      if(it(i,j).eq.2.)then
-	ph(i,j)= 
-     &outf(ph(i,j),ph(i-1,j+1),pht(i-1,j+1),ph(i-2,j+2),p0,1.,i,j,k,ns)
-c     &outf(phb(i,j),phb(i-1,j+1),pht(i,j),ph(i,j),p0,1.,i,j,k,ns)
-c	 write(6,*)'ph,ph-1',ph(i,j),ph(i-1,j)
-	end if
-C      if(it(i,j).eq.2.and.ph(i-2,j+2).gt.ph(i-1,j+1))ph(i,j)= 
-C     &outf(ph(i,j),ph(i-1,j+1),pht(i-1,j+1),ph(i-2,j+2),p0t,1.,i,j,k,ns)
-      enddo
-      enddo
-
-      dq=0.
-      dqdp=0.
-      do 2 i=1,is-1
-      do 2 j=1,js-1
-      if(it(i,j).eq.2)then
-c       
-        dx1=(x(i+1)-x(i))*(sn(j)+sn(j+1))/2.
-c
-      bh=dy/dx1*zw(ku(i,j))+dx1/dy*zw(kv(i,j+1))
-      dq=dq+bh*ph(i,j)
-      dqdp=dqdp+bh
-   
-      endif
-  2   continue
-c         
-          dq=dq/dqdp*dqc
- 
-      do i=1,is
-      do j=1,js
-       if(it(i,j).eq.2)then
-        af(i,j)=ph(i,j)
-        endif
-      enddo
-      enddo
-      return
-      end
-
 
 	     
       subroutine avts(t,im,jm,km)
