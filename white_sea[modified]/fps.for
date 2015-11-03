@@ -674,23 +674,16 @@ c     n6=120
       enddo
 
        if(ns.eq.31200)print*,'o"key assimilation, rec between  =',nr,nrr
-       if(n6.ge.n66)    print*,'o"key assimilation, rec between  =',nr,nrr
+       if(n6.ge.n66)  print*,'o"key assimilation, rec between  =',nr,nrr
 
              
 5000  continue
-
-cc     if(ns.gt.33240)  call prarray(tax,1)
-cc     if(ns.gt.33240)  print*,' '
-cc     if(ns.gt.33240)  call prarray(tay,1)
-cc     if(ns.gt.33240)  pause 77
-
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!  LEVEL    LEVEL   LEVEL  LEVEL EVEL !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-c            dt0=60.*60.*3.
 c          timh=timestep(ns)/3600.-dt0 !время=часы,со сдвигом на настройку начала
 
 
@@ -751,14 +744,11 @@ c       RAD    RAD     RAD
          j=iny(ni)
 
       ph(i,j)=outf(ph(i,j),ph(i-1,j+1),pht(i-1,j+1),ph(i-2,j+2),
-     #dzg(ni),0.,i,j,1,ns)
+     #dzg(ni),0.,ns)
 
       enddo
 c       RAD    RAD     RAD
 
-c       print*,dzg(3)/980.
-c       pause 555
- 
       if(ns.eq.0)ct1=0.
 
 c  переопределение давления Онеги и Двины    *****   **********
@@ -1401,30 +1391,17 @@ c---------------------------------------------
       return
       end
 c----------------------------------------
-      function outf(aout,ap,apt,ain,a0,u,i1,j1,k1,ns)
+      function outf(aout,ap,apt,ain,a0,u,ns)
         include 'par.inc'
         include 'com.inc'
       cns=float(ns)
-c     print *,'ns=  ',ns,' u= ',u,' u> .1 - t/s',' aout= ',aout 
-      
-c      outf=0.
-c     if(kp(i1,j1).lt.k1) then
-c        outf=aout !(aout+a0)*0.5    !!! for T,S only,   ph d'nt be 
-c        goto 1  !go to exit
-c     endif
-c     if(kp(i1+1,j1-1).lt.k1) a0=aout
-c     if(kp(i1-1,j1+1).lt.k1) ap=aout
-c     if(kp(i1-1,j1+1).lt.k1) apt=ap
-c     if(kp(i1-2,j1+2).lt.k1) ain=ap
+
       c0=360000/(3*60)*sqrt(2.)  !!! заменить на DX/DT  
         sns=480. !!!!!! parametr determ's relaxetion speed init. cond.
       da1=ain-ap
       if(abs(da1).lt.1.e-10)then
         outf=a0   !*(1.-sns/(cns+sns))+aout*(sns/(sns+cns))
-c        outf=(a0+aout)/2.
-c       outff=outf-aout
-c       if(u.gt.0.1)print *,'divide by small value, delta',outff   
-ccc        if(u.lt.0.1) outf=a0     !!! for ph    u=0
+
       else
         dta=ap-apt
         c1=c0*dta/da1
@@ -1432,15 +1409,13 @@ ccc        if(u.lt.0.1) outf=a0     !!! for ph    u=0
            signC=c1/abs(c1)
        
            c1=c0*signC
-c          print *,'c1 changed=',c1
         endif
         if(c1.LT.0.) then
            
            outf=a0    !*(1.-sns/(cns+sns))+aout*(sns/(cns+sns))
-c            outf=(a0+aout)/2.
+
                   outff=outf-aout
-c     if(u.gt.0.1.and.abs(outff).gt..5)print*,'d,a0,aout',outff,a0,aout
-c                 pause
+
              if(u.lt.0.1)  outf=a0
         else
 
@@ -1583,33 +1558,33 @@ c        ******************************************
       j56=(it(i,j+1)-5)*(it(i,j+1)-6)
       i46=(it(i+1,j)-4)*(it(i+1,j)-6)
       if(it(i,j).eq.2)then
-         ares=outf(a(i,j,k),a(i-1,j,k),at(i-1,j,k),ainw,a0,ue,i,j,k,ns)
+         ares=outf(a(i,j,k),a(i-1,j,k),at(i-1,j,k),ainw,a0,ue,ns)
          if(it(i,j+1).eq.5)ares=ares/2.+
-     #      outf(a(i,j,k),a(i,j+1,k),at(i,j+1,k),ainn,a0,vs,i,j,k,ns)/2.
+     #      outf(a(i,j,k),a(i,j+1,k),at(i,j+1,k),ainn,a0,vs,ns)/2.
           ares=ares+a1
 *####################################################################
 
       elseif(it(i,j).eq.9)then
-       ares=outf(a(i,j,k),a(i-1,j,k),at(i-1,j,k),ainw,a0,ue,i,j,k,ns)/2.
-     #    + outf(a(i,j,k),a(i,j-1,k),at(i,j-1,k),ains,a0,vn,i,j,k,ns)/2.
+       ares=outf(a(i,j,k),a(i-1,j,k),at(i-1,j,k),ainw,a0,ue,ns)/2.
+     #    + outf(a(i,j,k),a(i,j-1,k),at(i,j-1,k),ains,a0,vn,ns)/2.
          ares=ares+a1
 
 *####################################################################
       elseif(it(i,j).eq.7)then
-         ares=outf(a(i,j,k),a(i,j-1,k),at(i,j-1,k),ains,a0,vn,i,j,k,ns)
+         ares=outf(a(i,j,k),a(i,j-1,k),at(i,j-1,k),ains,a0,vn,ns)
          if(it(i+1,j).eq.4)ares=ares/2.+
-     #      outf(a(i,j,k),a(i+1,j,k),at(i+1,j,k),aine,a0,uw,i,j,k,ns)/2.
+     #      outf(a(i,j,k),a(i+1,j,k),at(i+1,j,k),aine,a0,uw,ns)/2.
           ares=ares+a1
 
 *####################################################################
       elseif(j56.eq.0)then
-         ares=outf(a(i,j,k),a(i,j+1,k),at(i,j+1,k),ainn,a0,vs,i,j,k,ns)
+         ares=outf(a(i,j,k),a(i,j+1,k),at(i,j+1,k),ainn,a0,vs,ns)
          if(it(i,j+1).eq.6)ares=ares/2.+
-     #      outf(a(i,j,k),a(i+1,j,k),at(i+1,j,k),aine,a0,uw,i,j,k,ns)/2.
+     #      outf(a(i,j,k),a(i+1,j,k),at(i+1,j,k),aine,a0,uw,ns)/2.
           ares=ares+a1
 *######################################################################
       elseif(i46.eq.0)then
-       ares=outf(a(i,j,k),a(i+1,j,k),at(i+1,j,k),aine,a0,uw,i,j,k,ns)/2.
+       ares=outf(a(i,j,k),a(i+1,j,k),at(i+1,j,k),aine,a0,uw,ns)/2.
           ares=ares+a1
       else
           ares=0.
