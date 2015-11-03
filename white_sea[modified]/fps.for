@@ -1747,41 +1747,6 @@ c      write(19,7)k
 
       return
       end
-
-
-      subroutine prIARRAY(iip,kkk)
-        include 'par.inc'
-        include 'com.inc'
-
-      real iip(in,jn)   !!!   ,kkk
-
-
-      open(18,file='prIARRAY')
-
-      i1=51
-      i2=58
-
-       do k=1,1  ! 5
-       do j=35,41
-
-
-       write(6,5) (iip(i,j),i=i1,i2)    !!   ,kkk 
-c       write(18,5) (iip(i,j),i=i1,i2)    !!   ,kkk
-
-       enddo
-
-       write(6,7)k
-
-       i1=i1+10
-       i2=i2+10
-
-       enddo
-
-5     format(8i5)
-7     format(i1)
-
-      return
-      end
        
          subroutine txty(p,tx,ty,rad,omega,anu)
        real tx(133,110),ty(133,110),p(133,110)
