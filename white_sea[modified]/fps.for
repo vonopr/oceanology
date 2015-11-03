@@ -28,7 +28,6 @@ c       #     ,ene(3900),tim(3900)
      *     ,umt(in,jn,kn),wmt(in,jn,kn)
 
 c****************************************************************
-     *     ,smt(in,jn,kn)
      *     ,bmt(in,jn,kn),wav(in,jn,kn)
      #     ,ahz(in,jn,kn),pr(in,jn,kn),frf(in,jn,kn)
      #     ,tb(in,jn,kn),te(in,jn,kn),ahzt(in,jn,kn)
@@ -52,8 +51,6 @@ c****************************************************************
       REAL Ts(in,jn,kn),Ss(in,jn,kn),Usum(in,jn,kn),Rosum(in,jn,kn),  ! Temperature, Salinity, X-Velocity, Density, Y-Velocity, Z-Velocity, Height over average level for (X_i, Y_j, Z_k) points
      #Vsum(in,jn,kn),Wsum(in,jn,kn),Zs(in,jn)  ! для записи осреднения
       integer kh(inn,jnn),inx(12),iny(12)         
-     #       ,kpp(in,jn)
-c     #     ,jju(in,jn,kn,72),jjv(in,jn,kn,72),ii
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!! for  POLY_WS_2007  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -157,9 +154,9 @@ c       str(95,57,1)=100.
        
 
       call cond(nstep,nprin,nk,niter,al,al1,ctah,ct,cadv,eps,
-     #          aaa,qwa,cu1,x1,energ,timestep,ns,taa,saa,
-     #          kh,s,t,ta,u,v,w,tx,ty,thx,thy,ph,pht,phtt,im,jm,km,smt
-     *          ,hp,kmm,aday,p0d,p0md,cst,str)
+     #          aaa,qwa,cu1,x1,ns,taa,saa,
+     #          kh,s,t,u,v,w,tx,ty,ph,pht,im,jm,km
+     *          ,hp,p0d,p0md,cst)
 
 
 
@@ -1147,45 +1144,28 @@ ccc       print  *,'ns,irr =',ns,irr
 *************************
 
       subroutine cond(nstep,nprin,nk,iter,al,al1,ctah,ct,cadv,
-     #  eps,aaa,qwa,cu1,x1,energ,timestep,ns,taa,saa,
-     #  kh,s,t,ta,u,v,w,tx,ty,thx,thy,ph,pht,phtt,im,jm,km
-     *  ,smt ,hp
-     *  ,kmm,aday,p0d,p0md,cstep,str)
+     #  eps,aaa,qwa,cu1,x1,ns,taa,saa,
+     #  kh,s,t,u,v,w,tx,ty,ph,pht,im,jm,km,hp
+     *  ,p0d,p0md,cstep)
         include 'par.inc'
         include 'com.inc'
        
        integer  kh(im-1,jm-1)
-      real s(in,jn,kn),t(in,jn,kn),fi(jm),ta(im,jm)
-     *     ,thx(im,jm),thy(im,jm),x1(im),taa(kn),saa(kn)
+      real s(in,jn,kn),t(in,jn,kn),fi(jm)
+     *     ,x1(im),taa(kn),saa(kn)
      *     ,u(im,jm,km),v(im,jm,km),tax(in,jn),tay(in,jn)
-     *     ,w(im,jm,km),ph(im,jm),pht(im,jm),phtt(im,jm)
-     *     ,energ(120000)
-     *     ,str(im,jm,km)
-     *     ,smt(im,jm,kmm),hp(in,jn),aff(im,jm)
-
-c      DOUBLE PRECISION s(in,jn,kn),t(in,jn,kn)
-
-      real*8 timestep(120000)
+     *     ,w(im,jm,km),ph(im,jm),pht(im,jm)
+     *     ,hp(in,jn)
 
 
       parameter (fpi=3.1415926)
 
       open(8,file='par0.dat')
       open(3,file='hbot.dat')
-c      pause 333
       open(2,file='rrrr.dat')
-c     pause 444
-
-c        write(40,*)'8 begin'
-
-c     pause 111
         read(8,*)init,aaa
-c      print *, 'after read par0'
-c     pause 222
       
       read(8,*)dt,vis,p0d,p0md
-c     print *,'  dt=',dt
-c     pause 111
       read(8,*)rad,ql,al,al1,grad,omega,ddd,ddw
       read(8,*)nstep,nprin,nk,eps,iter
       read(8,*)u0,v0,t0,tx,ty,ctah,ct,cadv
@@ -1195,23 +1175,14 @@ c     pause 111
       read(8,*)(zw(k),k=19,km)
 
       read(3,*)alamb0,almax,teta0,tetmax
-c     print*,'l0,ll,f0,fl',alamb0,almax,teta0,tetmax
-c     pause 2
-
       read(3,*)hp
-
-c      print *,'tx,ty',tx,ty
-c     pause 111 
-
       do j=1,jm
       read(2,1000)(it(i,j),i=1,im)
       enddo
 1000  format(133i1)
         do k=1,km
-c                                 print*,'zw',zw(k)
         zw(k)=zw(k)*100.
         enddo
-c                                  pause
 
 
       z(1)=zw(1)       !!!!! was deleted       
