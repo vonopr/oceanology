@@ -789,10 +789,10 @@ c  переопределение давления Онеги и Двины    *****   **********
       cq=1.
       cu=1.
       cph=0.
-      call coefNL(u,v,u,v,w,fu,fv,us,tax,tay,thx,thy,
-     #      ph,pht,ro,ahz,an,as,aw,ae,ap,af,phtt,
-     #      im,jm,km,
-     #      al,al1,cph,cu,cadv,cq,ct,cstep,ns)        !eq. calc.
+      call coefNL(u,v,u,v,w,fu,fv,us,tax,tay,thx,thy
+     #      ,ph,     ro,ahz,an,as,aw,ae,ap,af
+     #      ,im,jm,km
+     #      ,al1,cph,cu,cadv,cq, cstep)        !eq. calc.
 
       do 1 i=1,is
       do 1 j=1,js

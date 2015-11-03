@@ -507,24 +507,20 @@ c-------------------------------------------------
 
 
 
-
-
-
-
        subroutine coefNL(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,          ! Proved: 'coefNL' is called by 'fps.for'
-     #ph,pht,ro,ahz,an,as,aw,ae,ap,af,phtt,
-     #im,jm,km,
-     #al,al1,cph,cu,cadv,cq,ct,cstep,ns)
+     #ph,ro,ahz,an,as,aw,ae,ap,af,
+     #im,jm,km
+     #      ,    al1,cph,cu,cadv,cq,cstep)
         include 'par.inc'
         include 'com.inc'
       real
-     #   fv(im,jm,km),fu(im,jm,km),us(im,jm,km),ffu(im,jm,km)
+     #   fv(im,jm,km),fu(im,jm,km),us(im,jm,km)
      *     ,thx(im,jm),thy(im,jm) 
      *     ,u(im,jm,km),v(im,jm,km),tax(im,jm),tay(im,jm)
      *     ,ut(im,jm,km),vt(im,jm,km),ahz(im,jm,km)
-     *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
+     *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm)
      *     ,ae(im,jm),aw(im,jm),as(im,jm),an(im,jm)
-     #     ,ap(im,jm),af(im,jm),phtt(im,jm)
+     #     ,ap(im,jm),af(im,jm)
 
 
       do 100 i=1,im
@@ -617,19 +613,13 @@ c        hpar=(j-1)*hv(i,j)*(it(i,j-1)-2)           !!!!!!
        !!!!!!!!!!!!!!!!!!!!!!!!  коррекция из-за колебаний уровня   !!!!!!!
       
       ww=w(i,j,1)
-c      dzw=zw(2)-zw(1)
-c         dzi=ph(i,j)/980.
-c         d=abs(dzi)
-c      if(d.gt.dzw.and.dzi.lt.0.)ww=w(i,j,3)
-c      if(d.lt.dzw.and.dzi.lt.0.)ww=w(i,j,2)
+
      
       af(i,j)=
 
      * -fu(i,j,ks)
 
-c     *-(-ffu(i,j,ks)-(pht(i,j)-phtt(i,j))/dt**2/980.) !NL->uf(dz/dx)+vf(dz/dy)явно!
 
-c     *-(-ww/dt-(pht(i,j)-phtt(i,j))/dt**2/980.)*.2 !NL->uf(dz/dx)+vf(dz/dy)явно!
 
      *        + ph(i,j)/dt/dt/980. 
 

@@ -1,5 +1,5 @@
       subroutine pout(p0,p0t,p0md,p0d,timestep,ns)
-	real*4 timestep(120000)
+        real*4 timestep(120000)
 
       parameter (fpi=3.1415926)
 
@@ -454,12 +454,12 @@ c      if(ns.gt.0)goto 16
 
       IF( (rh.gt.0.) ) goto  25     !!!!! (zh.gt.0.).OR. was deleted 6.12.
 
-	rm=(ro(i,j,k)+ro(i,j,k+1))/2.
-	tm=(t(i,j,k)+t(i,j,k+1))/2.
+        rm=(ro(i,j,k)+ro(i,j,k+1))/2.
+        tm=(t(i,j,k)+t(i,j,k+1))/2.
       sm=(s(i,j,k)+s(i,j,k+1))/2.
-	                             
+                                     
       ro(i,j,k+1)=rm
-	ro(i,j,k)=rm                                         
+        ro(i,j,k)=rm                                         
       s(i,j,k+1)=sm
       s(i,j,k)=sm
       t(i,j,k+1)=tm
@@ -475,16 +475,16 @@ c      if(ns.gt.0)goto 16
       DO 35 J=2,Js-1
       DO 35 I=2,Is-1
       do 35 k=1,ks-1
-c	if(it(i,j).ne.3)goto 25
+c        if(it(i,j).ne.3)goto 25
 
       zh=zw(k+1)-zw(kp(i,j))  ! zh<0  - liquid point
       IF(zh.gt.0.) goto  35
       rh=ro(i,j,k+1)-ro(i,j,k)
       if(rh.lt.0)then
-	print*,'i,j,k,it,tt,ss,rr',i,j,k,it(i,j),
+        print*,'i,j,k,it,tt,ss,rr',i,j,k,it(i,j),
      !t(i,j,k),t(i,j,k+1),s(i,j,k),s(i,j,k+1),ro(i,j,k),ro(i,j,k+1)
-c	pause 222
-	endif
+c        pause 222
+        endif
 35    continue
 
 
@@ -559,7 +559,7 @@ c	pause 222
 
       if(l.eq.0)us(i,j,k)=
      # -div(u,v,i,j,k,im,jm,km)/dt + div(ut,vt,i,j,k,im,jm,km)/dt
-c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt   
+c     #        us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt   
       enddo
         else
          do k=1,ks
@@ -572,12 +572,12 @@ c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
 
       do 2 i=1,is-1
       do 2 j=1,js-1
-	
+        
        zw(1)=-ph(i,j)/980.   !!!!!  Ó×ÅÒ ÊÎËÅÁÀÍÈÉ ÓÐÎÂÍß
        z(1)=zw(1)
        z(2)=(zw(1)+zw(2))/2.
 
-	k1=1      
+        k1=1      
       if(it(i,j).ne.1.and.it(i,j).ne.3)
      #call intw(us,fu,i,j,k1,km,im,jm,km,ph)
 
@@ -591,7 +591,7 @@ c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
       end
 
 
-	     
+             
       subroutine avts(t,im,jm,km)
         include 'par.inc'
         include 'com.inc'
@@ -751,7 +751,7 @@ c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
         do 1 i=1,im
         do 1 j=1,jm
 
-	if(it(i,j).eq.1)goto 1
+        if(it(i,j).eq.1)goto 1
 
          if(kp(i,j).le.3)kp(i,j)=3
          if(kp(i,j).ge.23)kp(i,j)=23
