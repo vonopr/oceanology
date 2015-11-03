@@ -86,7 +86,7 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
 
       subroutine ww(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
      #ph,ro,ahz,im,jm,km,
-     #al1,cph,cu,cadv,cq,cstep,pht)
+     #al1,cph,cu,cadv,cq,cstep)
         include 'par.inc'
         include 'com.inc'
       real
@@ -94,7 +94,7 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
      *     ,thx(im,jm),thy(im,jm)
      *     ,u(im,jm,km),v(im,jm,km),tax(im,jm),tay(im,jm)
      *     ,ut(im,jm,km),vt(im,jm,km),ahz(im,jm,km)
-     *   ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
+     *   ,w(im,jm,km),ro(im,jm,km),ph(im,jm)
 
 *******    w -calculation:
 *******

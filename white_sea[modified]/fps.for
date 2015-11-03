@@ -838,7 +838,7 @@ c      print*,w(96,52,1),(ph(96,52)-pht(96,52))/dt/(-980.), ' <- w,dz/dt'
 
        call ww(u,v,u,v,w,fu,fv,us,tax,tay,thx,thy,
      #ph,ro,ahz,im,jm,km,al,al1,cph,
-     #cu,cadv,cq,ct,cstep,nn)
+     #cu,cadv,cq,ct,cstep)
 
 
 ccc        uu=sqrt(u(80,60,1)**2+v(80,60,1)**2)
