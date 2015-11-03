@@ -158,9 +158,8 @@ c       str(95,57,1)=100.
 
       call cond(nstep,nprin,nk,niter,al,al1,ctah,ct,cadv,eps,
      #          aaa,qwa,cu1,x1,energ,timestep,ns,taa,saa,
-     #          kh,s,t,ta,u,v,w,tx,ty,thx,thy,ph,pht,phtt,im,jm,km,
-     *          ,smt,hp
-     *          ,kmm,aday,p0d,p0md,cst,str)
+     #          kh,s,t,ta,u,v,w,tx,ty,thx,thy,ph,pht,phtt,im,jm,km,smt
+     *          ,hp,kmm,aday,p0d,p0md,cst,str)
 
 
 
@@ -999,63 +998,6 @@ c       ***************************
        enddo
        enddo
 
-
-
-      goto  342
-   
-       call prarray(ph/980.,1)
-       pause 1
-       call priarray(real(it),1)
-        pause 2
-
-
-       call priarray(real(kp),1)
-       pause 2
-       call prarray(t,12)
-       pause 2
-       call prarray(s,12)
-       pause 3
-
-       call prarray(u,5)
-       pause 4
-       call prarray(v,5)
-
-
-342    continue
-
-
-
-        goto 303
-!!!!!!!!!!!!!!!!!!!!!!!!!!   STR   !!!!!!!!!!!!!!!!!
-
-      kpp=kp
-      kp=3
-
-
-      strt=str
-
-      call taflux(str,str0,qt,qwa,im,jm,2,uw)
-
-      ii=0
-      call HDRL(str,strt,str0,qt,u,v,w,us,ahz,
-     *          al1,pr,wt,im,jm,km,
-     #          a3,b3,c3,fuu,d2,r2,cstep,azz,l0s,ph,1)
-
-      do i=1,is
-      do j=1,js
-      do k=4,ks
-      str(i,j,k)=0.
-      enddo
-      enddo
-      enddo
-
-      kp=kpp
-!!!!!!!!!!!!!!!!!!!!!!!!!!   STR   !!!!!!!!!!!!!!!!!
-303    continue
-
-
-c     print*,str(105,77,2)
-c     print*,str(105,70,2)
 
 
 c   qt - temperature flux is defined- for ture
