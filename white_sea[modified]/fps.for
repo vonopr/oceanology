@@ -5,7 +5,7 @@ c      use DFPORT
       
       common ns                                  ! ns - number of steps -  defined as a common variable 
       
-      real*8 timestep(120000)
+      real*4 timestep(120000)
         
       real  sa(in,jn)
      *     ,thx(in,jn),thy(in,jn)                !bottom stress
@@ -25,11 +25,10 @@ c      use DFPORT
      *     ,fu(in,jn,kn), fv(in,jn,kn),us(in,jn,kn)      !work arrays
      *     ,energ(120000),hp(in,jn)
 c       #     ,ene(3900),tim(3900)
-     *     ,umt(in,jn,kn),vmt(in,jn,kn),wmt(in,jn,kn)
+     *     ,umt(in,jn,kn),wmt(in,jn,kn)
 
 c****************************************************************
-     *   ,tmt(in,jn,kn),smt(in,jn,kn)
-     *     ,ummt(in,jn),vmmt(in,jn),wmmt(in,jn)
+     *     ,smt(in,jn,kn)
      *     ,bmt(in,jn,kn),wav(in,jn,kn)
      #     ,ahz(in,jn,kn),pr(in,jn,kn),frf(in,jn,kn)
      #     ,tb(in,jn,kn),te(in,jn,kn),ahzt(in,jn,kn)
@@ -160,8 +159,8 @@ c       str(95,57,1)=100.
       call cond(nstep,nprin,nk,niter,al,al1,ctah,ct,cadv,eps,
      #          aaa,qwa,cu1,x1,energ,timestep,ns,taa,saa,
      #          kh,s,t,ta,u,v,w,tx,ty,thx,thy,ph,pht,phtt,im,jm,km,
-     *          umt,vmt,wmt,tmt,smt,hp,
-     *          ummt,vmmt,wmmt,kmm,aday,p0d,p0md,cst,str)
+     *          ,smt,hp
+     *          ,kmm,aday,p0d,p0md,cst,str)
 
 
 
@@ -201,13 +200,12 @@ c       str(95,57,1)=100.
 
 
 
-      nf=60*60/dt
+      nf=int( 60*60/dt )
 
       if(ntype.eq.0)nstep=nprin
       m=0
-60    format(60i6)
-201   format(25i2)
- 25   format (30i2)
+
+
               
       time1=0. 
       do j=1,jss
@@ -346,7 +344,7 @@ c     goto 54
   312    continue
 
 
-   54  continue
+
 
 
 
@@ -482,7 +480,7 @@ C     ЗАПИСЬ ДАННЫХ ЧЕРЕЗ 15, 30... суток
       time15=24*3600*15 !sec in 15 days
 
       if(mod(timestep(ns),time15).EQ.0) then    
-         ic=timestep(ns)/time15
+         ic=int( timestep(ns)/time15 )
             
          call savemonth(ic,ns,s,t,u,v,w,ph
      #                  ,pht,im,jm,km)
@@ -515,11 +513,11 @@ c      if(ns.GE.960) al1=al11
       tgc=tg(mon)+((timestep(ns)-secm*mon0)*(tg(mon+1)-tg(mon)))/secm
       trc=tr(mon)+((timestep(ns)-secm*mon0)*(tr(mon+1)-tr(mon)))/secm
       vdc=vd(mon)+((timestep(ns)-secm*mon0)*(vd(mon+1)-vd(mon)))/secm       
-      voc=vo(mon)+((timestep(ns)-secm*mon0)*(vo(mon+1)-vo(mon)))/secm  
+      voc=vo(mon)+((timestep(ns)-secm*mon0)*(vo(mon+1)-vo(mon)))/secm
            
-      uwx=txm(mon)+((timestep(ns)-secm*mon0)*
+      uwx=  txm(mon)+((timestep(ns)-secm*mon0)*
      &(txm(mon+1)-txm(mon)))/secm
-      uwy=tym(mon)+((timestep(ns)-secm*mon0)*
+      uwy=  tym(mon)+((timestep(ns)-secm*mon0)*
      &(tym(mon+1)-tym(mon)))/secm
       uw=sqrt(uwx*uwx+uwy*uwy) !модуль скорости
 
@@ -584,7 +582,7 @@ c              pause 111
        if(ns.lt.30725) goto  500
 c      интерполяция по времени первичных полей Ра и Та
         nsr=ns-30719   ! 30719       
-       cnm=(timestep(nsr-1)-dt)/(6.*3600.)
+       cnm= (timestep(nsr-1)-dt)/(6.*3600.)
         iterm=int(cnm)
          acnm=aint(cnm)
         nterm1=iterm+1
@@ -609,17 +607,17 @@ c     &time0p/(3600.*24)
 c     write(6,*)'tam2',nterm2,timestep(ns)/(3600.*24.)
       read(81,rec=nterm2)pam2
       read(82,rec=nterm2)tam2
-      tm0=timestep(nsr-1)-dt
+      tm0= timestep(nsr-1)-dt
 c     close (12)
        print*, 'taa1',timestep(nsr-1)-dt,tm0
      &,nterm1,nterm2
       end if
       do j=1,110
        do i=1,133
-      ta(i,j)=tam1(i,j)+((timestep(nsr-1)-dt-tm0)*(tam2(i,j)-     
-     &tam1(i,j)))/21600.                                      
-      pi(i,j)=pam1(i,j)+((timestep(nsr-1)-dt-tm0)*(pam2(i,j)-     
-     &pam1(i,j)))/21600.                                      
+      ta(i,j)=   tam1(i,j)+((timestep(nsr-1)-dt-tm0)*(tam2(i,j)-
+     &tam1(i,j)))/21600.
+      pi(i,j)=  pam1(i,j)+((timestep(nsr-1)-dt-tm0)*(pam2(i,j)-
+     &pam1(i,j)))/21600.
        end do
         end do
 
@@ -707,7 +705,7 @@ c          timh=timestep(ns)/3600.-dt0 !время=часы,со сдвигом на настройку начал
 ccc         3216  -   основной сдвиг (в часах) от начала года до 00 часов 15 мая  ns=64320
 
 
-           timh=3216. + timestep(ns)/3600.  ! Greenwhich strongly
+           timh= 3216. + timestep(ns)/3600. ! Greenwhich strongly
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -812,7 +810,7 @@ c  переопределение давления Онеги и Двины    *****   **********
       cq=0.
       cu=.45
       cph=1.
-33    continue 
+      continue
 
       call HRVL(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
      * ph,ro,im,jm,km,cq,al1,cu,cadv,cph,
@@ -970,27 +968,17 @@ c       ***************************
           t(i-1,j,k)=trc   !+t(i,j,k)/17.
 
        enddo
-879   CONTINUE
 
-
-
-
-c      goto 212
        do j=1,jn
        do i=1,in
             sa(i,j)=s(i,j,1)
-
-c         str0(i,j)=str(i,j,2)
-c         str(i,j,1)=str(i,j,2)
        enddo
        enddo
        
       at=t
       st=s
                                     
-      
       call taflux(s,sa,qt,qwa,im,jm,2,uw)
-ccc   call tafluxSOM(s,sa,qt,qwa,im,jm,2,tax,tay)
 
       ii=0
       call HDRL(s,st,sa,qt,u,v,w,us,ahz,
@@ -998,8 +986,6 @@ ccc   call tafluxSOM(s,sa,qt,qwa,im,jm,2,tax,tay)
      #          a3,b3,c3,fuu,d2,r2,cstep,azz,l0s,ph,0)  ! 1 - not abc,  0 - abc 
 
       call taflux(t,ta,qt,qwa,im,jm,2,uw)
-ccc      call tafluxSOM(t,ta,qt,qwa,im,jm,2,tax,tay)
-
       ii=0
       call HDRL(t,at,ta,qt,u,v,w,us,ahz,
      *          al1,pr,wt,im,jm,km,
@@ -1015,29 +1001,16 @@ ccc      call tafluxSOM(t,ta,qt,qwa,im,jm,2,tax,tay)
 
 
 
-
-c       call prarray(pi,1)
-c       call prarray(tax*1000.,1)
-c       call prarray(tay*1000.,1)
-c       call prarray(ta,1)
-c       print*,l0t,l0s
-c       pause 333
-
       goto  342
    
        call prarray(ph/980.,1)
        pause 1
-       call priarray(it,1)
+       call priarray(real(it),1)
         pause 2
 
 
-       call priarray(kp,1)
+       call priarray(real(kp),1)
        pause 2
-
-c       call priarray(ku,1)
-c       pause 3
-c       call priarray(kv,1)
-c       pause 4
        call prarray(t,12)
        pause 2
        call prarray(s,12)
@@ -1114,11 +1087,6 @@ c -------------- проверка и запись в STMP t < -2.0  или  s > 30
            enddo
  777  format(F10.4,6I6)
 c--------------------------------------
- 233  continue
-
-212   continue
-
- 444  continue
 
 
        ahzt=ahz
@@ -1212,12 +1180,12 @@ ccc       print  *,'ns,irr =',ns,irr
 
                            endif
 
-  674    continue
 
        !################################################################
-79     continue
 
-      if(ns.eq.33725)pause 777      ! finish POLY  - 33704, finish meteo (now) - 33980
+
+      if(ns.eq.33725) print *,  ' finish POLY  - 33704,
+     *                            finish meteo (now) - 33980 '                ! finish POLY  - 33704, finish meteo (now) - 33980
 
 
   9   continue   !  GLOBAL  MAIN  ns
@@ -1239,8 +1207,8 @@ ccc       print  *,'ns,irr =',ns,irr
       subroutine cond(nstep,nprin,nk,iter,al,al1,ctah,ct,cadv,
      #  eps,aaa,qwa,cu1,x1,energ,timestep,ns,taa,saa,
      #  kh,s,t,ta,u,v,w,tx,ty,thx,thy,ph,pht,phtt,im,jm,km
-     *  ,umt,vmt,wmt,tmt,smt ,hp
-     *  ,ummt,vmmt,wmmt,kmm,aday,p0d,p0md,cstep,str)
+     *  ,smt ,hp
+     *  ,kmm,aday,p0d,p0md,cstep,str)
         include 'par.inc'
         include 'com.inc'
        
@@ -1250,9 +1218,8 @@ ccc       print  *,'ns,irr =',ns,irr
      *     ,u(im,jm,km),v(im,jm,km),tax(in,jn),tay(in,jn)
      *     ,w(im,jm,km),ph(im,jm),pht(im,jm),phtt(im,jm)
      *     ,energ(120000)
-     *     ,umt(im,jm,kmm),vmt(im,jm,kmm),wmt(im,jm,kmm)
-     *     ,ummt(im,jm),vmmt(im,jm),wmmt(im,jm),str(im,jm,km)
-     *     ,tmt(im,jm,kmm),smt(im,jm,kmm),hp(in,jn),aff(im,jm)
+     *     ,str(im,jm,km)
+     *     ,smt(im,jm,kmm),hp(in,jn),aff(im,jm)
 
 c      DOUBLE PRECISION s(in,jn,kn),t(in,jn,kn)
 
@@ -1477,7 +1444,7 @@ c---------------------------------------------
          end
 *************************
       function cstadv(nn,cst) 
-      icst=cst
+      icst=int( cst )
         au=float(nn)/cst-nn/icst
       if(au.lt.1.e-3)then
       cstadv=0.
@@ -1790,7 +1757,7 @@ c        ******************************************
       va(k)=g2(k)       +r2(k)*ua(k+1)+e2(k)*va(k+1)
   2   continue
 
- 5    continue
+      continue
       return
       end
 
@@ -1843,6 +1810,7 @@ c      write(19,7)k
       subroutine prIARRAY(iip,kkk)
         include 'par.inc'
         include 'com.inc'
+
       real iip(in,jn)   !!!   ,kkk
 
 
