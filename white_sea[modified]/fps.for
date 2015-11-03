@@ -20,18 +20,15 @@ c      use DFPORT
      #     ,str(in,jn,kn),str0(in,jn),strt(in,jn,kn)     
       
      *     ,ae(in,jn),aw(in,jn),as(in,jn),an(in,jn),ap(in,jn)
-     *     ,af(in,jn),aff(in,jn),x1(in),uh(in,jn),vh(in,jn)
+     *     ,af(in,jn),x1(in),uh(in,jn),vh(in,jn)
      *     ,wr1(in,jn),wr(in,jn)
      *     ,fu(in,jn,kn), fv(in,jn,kn),us(in,jn,kn)      !work arrays
      *     ,energ(120000),hp(in,jn)
 c       #     ,ene(3900),tim(3900)
      *     ,umt(in,jn,kn),vmt(in,jn,kn),wmt(in,jn,kn)
-c************  work array for pictures   ************************
-     #    ,dzita(in,jn)
-     #    ,bottom(in,jn)
-     #    ,dzit1(in,jn)                    
+
 c****************************************************************
-     *   ,tmt(in,jn,kn),smt(in,jn,kn),ahm(in,jn,kn)
+     *   ,tmt(in,jn,kn),smt(in,jn,kn)
      *     ,ummt(in,jn),vmmt(in,jn),wmmt(in,jn)
      *     ,bmt(in,jn,kn),wav(in,jn,kn)
      #     ,ahz(in,jn,kn),pr(in,jn,kn),frf(in,jn,kn)
@@ -40,12 +37,11 @@ c****************************************************************
      #     ,a3(kn),b3(kn),c3(kn),fuu(kn),fvv(kn)
      #     ,e2(kn),d2(kn),r2(kn),g2(kn),ef(kn),azz(kn)
      #   ,ua(kn),va(kn),pare(5)
-     #     ,ala(in),fi(jn)
-     #     ,pmax(in,jn),rc(in,jn)
-     #     ,emid(700),emax(700),emin(700)
+
+     #     ,rc(in,jn)
      &  ,tam(5),txm(5),tym(5),sg(5),tg(5),vd(5),vo(5),tr(5),
-     & dzg(12),taa(24),saa(24),avp(24)
-     # ,uav(in,jn,kn),vav(in,jn,kn),levelsolo(2000)
+     & dzg(12),taa(24),saa(24)
+     # ,uav(in,jn,kn),vav(in,jn,kn)
 
 
 
@@ -57,7 +53,7 @@ c****************************************************************
       REAL Ts(in,jn,kn),Ss(in,jn,kn),Usum(in,jn,kn),Rosum(in,jn,kn),  ! Temperature, Salinity, X-Velocity, Density, Y-Velocity, Z-Velocity, Height over average level for (X_i, Y_j, Z_k) points
      #Vsum(in,jn,kn),Wsum(in,jn,kn),Zs(in,jn)  ! для записи осреднения
       integer kh(inn,jnn),inx(12),iny(12)         
-     #       ,iiu(in,jn),kpp(in,jn)
+     #       ,kpp(in,jn)
 c     #     ,jju(in,jn,kn,72),jjv(in,jn,kn,72),ii
 
 
@@ -73,11 +69,7 @@ c     #     ,jju(in,jn,kn,72),jjv(in,jn,kn,72),ii
 
 
       parameter (fpi=3.141592)
-      character file1*11
-      character file2*11
-      character file3*11
       character*2 fnum(25)
-      character*1 name
 
       data taa/7.61,6.91,5.16,4.32,3.63,2.39,1.18,.25,-.46,-.41,-.41,
      &-.48,-.74,-.88,-1.02,-1.12,-1.19,-1.22,-1.37,-1.44,-1.45,-1.49,
