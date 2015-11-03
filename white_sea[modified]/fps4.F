@@ -1,5 +1,5 @@
       subroutine pout(p0,p0t,p0md,p0d,timestep,ns)
-	real*8 timestep(120000)
+	real*4 timestep(120000)
 
       parameter (fpi=3.1415926)
 
@@ -159,7 +159,7 @@ C     .. Local Scalars ..
      *                  N1M1, N1P1, N2M1, N2P1
 C     .. Local Arrays ..
       dimension         ALP(9)
-      CHARACTER*1       P01REC(1)
+cccc      CHARACTER*1       P01REC(1)                                   ! My own comment. To avoid compiler's warning about unused character.
 C     .. External Functions ..
 ccc      INTEGER           P01ABF
 ccc      EXTERNAL          P01ABF
@@ -323,12 +323,12 @@ C
 C           CALCULATE AND STORE THE ELEMENTS OF THE UPPER TRIANGULAR
 C           MATRIX
 C
-            WRKSP1(I,J) = (D(I,J)-ALPHA*SBSEIJ)*SD
-            WRKSP2(I,J) = (XKS1*E(I,J)+XKS2*A(I,J)-ALPHA*SCSFIJ)*SD
+         WRKSP1(I,J) = real( (D(I,J)-ALPHA*SBSEIJ)*SD)
+         WRKSP2(I,J) = real( (XKS1*E(I,J)+XKS2*A(I,J)-ALPHA*SCSFIJ)*SD )
 C
 C           CALCULATION OF THE ELEMENTS OF THE INVERSE OF L * RES VECTOR
 C
-            R(I,J) = (R(I,J)-SB*RIJB-SC*RIBJL)*SD
+            R(I,J) =   real( (R(I,J)-SB*RIJB-SC*RIBJL)*SD )
 C
             GO TO 120
 C
@@ -529,7 +529,7 @@ c	pause 222
      *     ,thx(im,jm),thy(im,jm)
      *     ,u(im,jm,km),v(im,jm,km),tax(im,jm),tay(im,jm)
      *     ,ut(im,jm,km),vt(im,jm,km),ahz(im,jm,km)
-     *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm),pht(im,jm)
+     *     ,w(im,jm,km),ro(im,jm,km),ph(im,jm)
 
 
       call rpin(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,
@@ -761,7 +761,8 @@ c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
 
         hp(i,j)=zw(ke)
    1    continue
- 25   format (30i2)
+
+
          do 2 j=1,jm
         ku(1,j)=kp(1,j)
         do 2 i=2,im
@@ -775,7 +776,8 @@ c     #	us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
    3    continue
 
 
-   54  continue
+
+        continue
 
         return
         end
