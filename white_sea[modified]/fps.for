@@ -7,10 +7,10 @@ c      use DFPORT
       
       real*4 timestep(120000)
         
-      real  sa(in,jn)
-     *     ,thx(in,jn),thy(in,jn)                !bottom stress
-     *     ,tax(in,jn),tay(in,jn)                !surface stress
-     *     ,u(in,jn,kn),v(in,jn,kn),w(in,jn,kn)  !velocity components
+      real  sa(in,jn)                                                   ! sa   - Salinity of the Atmosphere;                     always equals zero
+     *     ,thx(in,jn),thy(in,jn)                                       ! thx  - Tension at H(bottom) X-component;               bottom stress
+     *     ,tax(in,jn),tay(in,jn)                                       ! tax  - Tension of the Atmosphere X-component           surface stress
+     *     ,u(in,jn,kn),v(in,jn,kn),w(in,jn,kn)                         ! u    - zonal component of velocity                     velocity components
      *     ,tav(in,jn,kn),sav(in,jn,kn),pav(in,jn)
      *     ,ut(in,jn,kn),vt(in,jn,kn)            !ones from prev.time step
      *  ,s(in,jn,kn),t(in,jn,kn),at(in,jn,kn),st(in,jn,kn) !temperature,salinity
