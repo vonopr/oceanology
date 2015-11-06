@@ -263,12 +263,11 @@ c     dt0=60.*60.*3.
          saa(k)=saa(k)+20.   !???????????????????????????
       enddo
 
-c     lnf=0
       nfd=330
       ic=1 ! счетчик числа записей в по месяцам
       open(758,file='stmp.dat') ! Запись S>=30
 
-      Ts=0.0  !!сумматор T, S и пр. 
+      Ts=0.0                                                            !!сумматор T, S и пр.
       Ss=0.0
       Rosum=0.0
       Usum=0.0
@@ -295,10 +294,6 @@ c     lnf=0
       !!!!  по рельефу 
       !!!!  центров боксов ( массив kp(i,j)) 
 
-
-
-c     goto 54
-
         do 112 i=1,im
         do 112 j=1,jm
          if(kp(i,j).eq.2)kp(i,j)=3
@@ -318,18 +313,7 @@ c     goto 54
         kv(i,j)=min0(kp(i,j-1),kp(i,j))
   312    continue
 
-
-
-
-
-
-
-
-
       al11=al1
-
-
-
 
 !!!!!!!!!!!!!!!!!!! for dim4 WS 2007   !!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -344,8 +328,8 @@ c     goto 54
 !       ns=34065       !     absolute start DIM4_WS_2007     
 !       nsback=34204   !        absolute global back DIM4_WS_2007
 
-!     ns=1    !         real start DIM4_WS_2007   
-!     nsback=139  !       real global back DIM4_WS_2007
+!       ns=1    !         real start DIM4_WS_2007
+!       nsback=139  !       real global back DIM4_WS_2007
 
       i1=51
       i2=58
@@ -353,24 +337,14 @@ c     goto 54
       j2=41
 
 !!!!!!!!!!!!!!!!!!!   for  dim4 WS 2007   !!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-
        open(82,file='ta.dat',access='direct',recl=4*133*110)
        open(81,file='pa.dat',access='direct',recl=4*133*110)
        open(540,file='levelsolo.dat')
-
-
 
          id=0
           ir=0
            idd=0
             irr=0
-
-
 
        uav=0.
        vav=0.
@@ -379,48 +353,21 @@ c     goto 54
        sav=0.
        pav=0.
 
-
-
-
        nr=1   ! need to save by DUMP, if to continue (atm. assimilation)
        nrr=2
        n6=0
 
 
-c
+c||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+c||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+c||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 c _______________ ОСНОВНОЙ ЦИКЛ ПО ВРЕМЕНИ  _____________
 
 
       do 9 nn=1,nstep
 
-
-
-       go to 779  !!!!    ACOUSTIC     don't work
-
-      !!!!!!!!!!!!!!    ACOUSTIC   !!!!!!!!!!!!!!!!!  
-
-      nA=nA+1
-
-c     if(nA.eq.nACO) call ACO1(t,s,ph,pz,ro,num)
-c     if(nA.eq.nACO) call ACO2(t,s,ph,pz,ro,num)  ! don't modified
-
-      if(nA.eq.nACO) num=num+1
-      if(nA.eq.nACO) nA=0
-
-779   continue
-
-
-      !!!!!!!!!!!!!!    ACOUSTIC   !!!!!!!!!!!!!!!!!  
-
-
-
-
-
-
       n3=1000
       nsave=nsave+1
-
-
 
       cstep=1    !!!!!  старт с дивергентной схемы адвекции
 
@@ -505,8 +452,8 @@ c     print *,' ta, taV   ',  tac,'   ',tacV
 
          ta(i,j)=tac
 
-         tax(i,j)=rns*.000006*uw*uwx  +RAND(0)*0.05     !!!! was  .000006*  MAIN
-         tay(i,j)=rns*.000006*uw*uwy  +RAND(0)*0.05     !!!!    
+         tax(i,j)=rns*.000006*uw*uwx  +RAND(0)*0.05                     !!!! was  .000006*  MAIN
+         tay(i,j)=rns*.000006*uw*uwy  +RAND(0)*0.05                     !!!!
 
 
 
@@ -519,8 +466,6 @@ c     print *,' ta, taV   ',  tac,'   ',tacV
        if(s(i,j,k).GT.30.) print *,'Gorlo s>30',s(i,j,k),i,j,k
        if(t(i,j,k).lT.-1.6) print *,'Gorlo t<-1.6',t(i,j,k),i,j,k
 
-ccc      print*,t(i,j,k),s(i,j,k)
-
            enddo
 
            do k=13, kn
@@ -531,10 +476,6 @@ ccc      print*,t(i,j,k),s(i,j,k)
          endif    
       enddo
       enddo
-
-c      print*,tay(5,5)
-c              pause 111
-
 
       time1=time1+dt/60./60.
       
@@ -557,11 +498,9 @@ c      интерполяция по времени первичных полей Ра и Та
        write(6,*)'pam1',nterm1,cnm
 
       read(81,rec=nterm1)pam1
-c     write(6,*)'pam1'
       read(82,rec=nterm1)tam1
        end if
-c       write(6,*)'tam01',nterm1,timestep(ns)/(3600.*24.),
-c     &time0p/(3600.*24)
+
       if(nn.gt.1)then
       do j=1,jn
       do i=1,in
@@ -569,11 +508,11 @@ c     &time0p/(3600.*24)
       end do
       end do
       end if
-c     write(6,*)'tam2',nterm2,timestep(ns)/(3600.*24.)
+
       read(81,rec=nterm2)pam2
       read(82,rec=nterm2)tam2
       tm0= timestep(nsr-1)-dt
-c     close (12)
+
        print*, 'taa1',timestep(nsr-1)-dt,tm0
      &,nterm1,nterm2
       end if
@@ -778,17 +717,10 @@ c  переопределение давления Онеги и Двины    *****   **********
       cph=1.
       cnn=nn/2.
 
-c      print*,w(99,40,1),(ph(99,40)-pht(99,40))/dt/(-980.), ' <- w,dz/dt'
-c      print*,w(96,52,1),(ph(96,52)-pht(96,52))/dt/(-980.), ' <- w,dz/dt'
 
        call ww(u,v,u,v,w,fu,fv,us,tax,tay,thx,thy,
      #ph,ro,ahz,im,jm,km,al,al1,cph,
      #cu,cadv,cq,ct,cstep)
-
-
-ccc        uu=sqrt(u(80,60,1)**2+v(80,60,1)**2)
-ccc        print*,uu
-
 
          
       call energy(energ(ns),u,v,im,jm,km,l1)
@@ -821,12 +753,6 @@ ccc        print*,uu
       write(11,rec=(ns-33564))Uf  !
       write(12,rec=(ns-33564))Vf
       write(13,rec=(ns-33564))Wf
-
-
-cc      print*,u(55,38,2)
-cc      print*,'O KEY recording UVW, rec=,ns= ',rec,ns
-
-cc    pause 555
 
 795    continue
 
@@ -874,11 +800,6 @@ c      ***************** Dvina *****
             if(ph(i,j).le.6000.)then
               s(i,j+1,k)=11.   !!-4.+s(i,j,k) ! соленость в устье Двины
               t(i,j+1,k)=trc  !+t(i,j,k)/20.
-
-c                 print*,'k,trc,t',k,trc,t(i,j+1,k)
-c                 print*,'ke',kp(i,j+1)
-c                 pause 11 
-                   
                                 end if
          end do
                                              end if
@@ -895,9 +816,6 @@ c                 pause 11
         if(ph(i,j).le.6000.)then
            s(i+1,j,k)=11.                !  соленость в устье Двины
            t(i+1,j,k)=trc !+t(i,j,k)/20.   ! +t(i,j,k)-5.
-c                 print*,'t',t(i+1,j,k)
-c                 print*,'ke',kp(i+1,j)
-c                 pause 11  
                             end if
        end do
 
@@ -956,7 +874,7 @@ c       ***************************
 
 
 
-c   qt - temperature flux is defined- for ture
+c      qt - temperature flux is defined- for ture
 
        
 
@@ -1026,13 +944,8 @@ c_________________________________________________
 
 
        !###################################################################
-
-
-ccc       goto 674
-
-        !ЗАПИСЬ DUMP  ЧЕРЕЗ ПРОИЗВОЛЬНЫЙ ИНТЕРВАЛ = ri (в шагах)
+        !ЗАПИСЬ DUMP  ЧЕРЕЗ ПРОИЗВОЛЬНЫЙ ИНТЕРВАЛ = ri (в шагах)        ! Writes into file 'levelsolo' the level in Solovki
        if(ns.gt.31200)  then
-ccc       if(ns.gt.1)  then
 
       if(ir.eq.20)then
 
@@ -1045,8 +958,6 @@ ccc       if(ns.gt.1)  then
                   endif
       ir=ir+1
                         endif
-
-
 c ******************************************************
 
 
@@ -1074,8 +985,6 @@ c ******************************************************
                      endif
 
           irr=irr+1
-ccc       print  *,'ns,irr =',ns,irr
-
                            endif
 
 
@@ -1087,9 +996,9 @@ ccc       print  *,'ns,irr =',ns,irr
 
 
   9   continue   !  GLOBAL  MAIN  ns
-
-
-
+!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
       call layer(bmt,rc,im,jm,km,tb0)
 
        close (11)
@@ -1164,12 +1073,6 @@ ccc       print  *,'ns,irr =',ns,irr
       dx=(almax-alamb0)/(is-1.)*grad
       
  
-    
-  
-      
-          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 
 
       do 2 i=1,is
@@ -1183,25 +1086,15 @@ ccc       print  *,'ns,irr =',ns,irr
          CS(J)=COS(TETA)
   4   continue
 *******************************************************
-c      print*,dx*rad*sn(109),dy*rad,rad,grad
-c     pause 1
 
 
 
       do 5 j=1,js
-c      acs(j)=cs(1)+(cs(js)-cs(1))/(js-1)*(j-1)
-c      asn(j)=(cs(js)-cs(1))
          acs(j)=cs(j)
          asn(j)=sn(j)
-c      yy=2*(j-0.5)/(js-1.)*fpi
          yy=(j-0.5)/(js-1.)*fpi
          fi(j)=cos(yy)
-c      fi(j)=-cos(yy)
   5   continue
-*c      do 13 j=1,js
-*c      sn(j)=1.
-*c      cs(j)=1.
-*c  13  continue
       et=(ql*omega*acs(6))**0.5*ctah/z(ks)!!!!!! 04.08.02 delete c  
 
 
@@ -1393,21 +1286,12 @@ c----------------------------------------
       
 
          outf=(aout+c10*ap)/(c10+1)   !!!!   RADIATION
-
-c     outff=aout-outf
-c     if(u.gt.0.1)print *,'DELTA  radiation, c1/c0   ','  ',outff,c1/c0
-c     pause 
-
-
              if (u.lt.0.1)   outf= (outf-aout)+a0   !!! free wave out and in
 
 
-
-c          if (kp(i1+1,j1-1).LE.k1)  outf=aout
         endif
       endif
-c1     continue
-c      if(abs(outf-aout).gt..2)print *,'C =  ',c1,' a0=',a0,' k=',k1
+
       return
       end
 
@@ -1490,22 +1374,6 @@ c        outss=aout*(1-c10)+ap*c10   !!!!   RADIATION явная схема
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 c        ******************************************
       function ares(a,at,it,i,j,k,im,jm,km,k1m,k1,a0,a1,hp,u,v)
       integer it(im,jm)
@@ -1575,9 +1443,6 @@ c        ******************************************
         subroutine abcu(ua,va,a3,b3,c3,fuu,fvv,
      #  e2,d2,r2,g2,f1,k1,ke,km) 
 
-*  du/dt +fv = d(ahz*du/dz)/dz -u2
-*  dv/dt -fu = d(ahz*dv/dz)/dz -v2
-*
       real ua(km),va(km),
      *     fuu(km),fvv(km),
      *     a3(km),b3(km),c3(km),
@@ -1624,16 +1489,11 @@ c        ******************************************
         include 'com.inc'
       real p(in,jn,kkk)   !!!   
 
-
-c      open(19,file='prARRAY')
-
        do i=1,is
       do j=1,js
-c     do k=1,ks
       if(it(i,j).eq.1)p(i,j,1)=0.
       enddo
       enddo
-c     enddo
 
 
 
@@ -1644,13 +1504,11 @@ c     enddo
        do j=35,41
 
 
-       write(6,5) (p(i,j,kkk),i=i1,i2)    !!    
-c       write(19,5) (p(i,j,kkk),i=i1,i2)    !!   
+       write(6,5) (p(i,j,kkk),i=i1,i2)    !!
 
        enddo
 
        write(6,7)k
-c      write(19,7)k
 
        i1=i1+10
        i2=i2+10
@@ -1668,8 +1526,7 @@ c      write(19,7)k
       fpi=3.1415926
       da1=fpi/180.
       an0=23.
-c     dax=2.
-c     day=1.
+
        ds=300000.
       day=ds/rad
           do j=1,109
@@ -1679,9 +1536,6 @@ c     day=1.
 
 
         do i=1,132
-
-c       print*,cf,alf,an,anu
-c      pause 5
 
          dpx=(p(i+1,j)+p(i+1,j+1)-p(i,j)-p(i,j+1))/(2.*ds)  
           dpy=(p(i,j+1)+p(i+1,j+1)-p(i,j)-p(i+1,j))/(2.*ds)
@@ -1697,9 +1551,6 @@ c      pause 5
        tx(i,110)=tx(i,109)
        ty(i,110)=ty(i,109)
         end do
-
-
-c       print*,cf,dpx,dpy
 
 
 

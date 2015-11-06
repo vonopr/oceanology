@@ -844,7 +844,7 @@ c     #        us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
 
       nm=22
       open(22,file=file1(iD))
-c      rewind 12
+
       write(nm,*)ns   !,aday
 
 
