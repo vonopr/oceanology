@@ -410,14 +410,6 @@ C     ЗАПИСЬ ДАННЫХ ЧЕРЕЗ 15, 30... суток
       if(mon.eq.5)goto 9       !!!! mon=5 -> mon+1=6 -> overflow
 
 
-      
-c Большая начальная горизонтальная вязкость при запуске
-c      if(ns.LE.480) al1=1.0E6
-c      if((ns.GT.480).AND.(ns.LT.960)) al1=2.0E5
-c      if(ns.GE.960) al1=al11 
-
-
-
       rns=1.0   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
 
@@ -480,60 +472,7 @@ c     print *,' ta, taV   ',  tac,'   ',tacV
       time1=time1+dt/60./60.
       
       
-       
-       goto 500
 
-       anu=.002       !  NORMA UMBA 0.008 , но 0.05 дает   разумные результаты  
-
-       if(ns.lt.30725) goto  500
-c      интерполяция по времени первичных полей Ра и Та
-        nsr=ns-30719   ! 30719       
-       cnm= (timestep(nsr-1)-dt)/(6.*3600.)
-        iterm=int(cnm)
-         acnm=aint(cnm)
-        nterm1=iterm+1
-       nterm2=nterm1+1
-      if((nn.eq.1).or.(cnm.eq.acnm))then
-      if(nn.eq.1)then
-       write(6,*)'pam1',nterm1,cnm
-
-      read(81,rec=nterm1)pam1
-      read(82,rec=nterm1)tam1
-       end if
-
-      if(nn.gt.1)then
-      do j=1,jn
-      do i=1,in
-      tam1(i,j)=tam2(i,j)
-      end do
-      end do
-      end if
-
-      read(81,rec=nterm2)pam2
-      read(82,rec=nterm2)tam2
-      tm0= timestep(nsr-1)-dt
-
-       print*, 'taa1',timestep(nsr-1)-dt,tm0
-     &,nterm1,nterm2
-      end if
-      do j=1,110
-       do i=1,133
-      ta(i,j)=   tam1(i,j)+((timestep(nsr-1)-dt-tm0)*(tam2(i,j)-
-     &tam1(i,j)))/21600.
-      pi(i,j)=  pam1(i,j)+((timestep(nsr-1)-dt-tm0)*(pam2(i,j)-
-     &pam1(i,j)))/21600.
-       end do
-        end do
-
-c      ******************************************************************************
-c     tx,ty and интерполяция по пространству  tx,ty
-      call txty(pi,tax,tay,rad,omega,anu)
-
-500   continue
-
-c     nr=6    !test Akkerblom
-c     nrr=7
-c     n6=120
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
