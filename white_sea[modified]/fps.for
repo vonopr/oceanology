@@ -1,7 +1,7 @@
 c      use numerical_libraries
 c      use DFPORT
-      include 'par.inc'                        ! include file, gives parameter values
-      include 'com.inc'                        ! defines variables, common for all program blocks and subroutines
+      include 'par.inc'                                                 ! include file with parameters' values
+      include 'com.inc'                                                 ! defines variables, common for all program blocks and subroutines
       
       common ns                                  ! ns - number of steps -  defined as a common variable 
       
@@ -337,9 +337,12 @@ c     dt0=60.*60.*3.
       j2=41
 
 !!!!!!!!!!!!!!!!!!!   for  dim4 WS 2007   !!!!!!!!!!!!!!!!!!!!!!!!!
-       open(82,file='ta.dat',access='direct',recl=4*133*110)
-       open(81,file='pa.dat',access='direct',recl=4*133*110)
-       open(540,file='levelsolo.dat')
+c       open( 82, file='       ta.dat',access='DIRECT',recl=4*133*110)
+c       open( 81, file='       pa.dat',access='DIRECT',recl=4*133*110)
+       open(540, file='levelsolo.dat' )                                 ! The result in Solovki area is stored here.
+
+       open(102, file=     'GRAD.bin' ,form = 'UNFORMATTED'         )   ! Results stored here are used in plotting with GRADS
+       open(103, file=   'Output.dat'                               )
 
          id=0
           ir=0
@@ -410,6 +413,14 @@ C     ЗАПИСЬ ДАННЫХ ЧЕРЕЗ 15, 30... суток
       if(mon.eq.5)goto 9       !!!! mon=5 -> mon+1=6 -> overflow
 
 
+      
+c Большая начальная горизонтальная вязкость при запуске
+c      if(ns.LE.480) al1=1.0E6
+c      if((ns.GT.480).AND.(ns.LT.960)) al1=2.0E5
+c      if(ns.GE.960) al1=al11 
+
+
+
       rns=1.0   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
 
@@ -472,7 +483,60 @@ c     print *,' ta, taV   ',  tac,'   ',tacV
       time1=time1+dt/60./60.
       
       
+       
+       goto 500
 
+       anu=.002       !  NORMA UMBA 0.008 , но 0.05 дает   разумные результаты  
+
+       if(ns.lt.30725) goto  500
+c      интерполяция по времени первичных полей Ра и Та
+        nsr=ns-30719   ! 30719       
+       cnm= (timestep(nsr-1)-dt)/(6.*3600.)
+        iterm=int(cnm)
+         acnm=aint(cnm)
+        nterm1=iterm+1
+       nterm2=nterm1+1
+      if((nn.eq.1).or.(cnm.eq.acnm))then
+      if(nn.eq.1)then
+       write(6,*)'pam1',nterm1,cnm
+
+      read(81,rec=nterm1)pam1
+      read(82,rec=nterm1)tam1
+       end if
+
+      if(nn.gt.1)then
+      do j=1,jn
+      do i=1,in
+      tam1(i,j)=tam2(i,j)
+      end do
+      end do
+      end if
+
+      read(81,rec=nterm2)pam2
+      read(82,rec=nterm2)tam2
+      tm0= timestep(nsr-1)-dt
+
+       print*, 'taa1',timestep(nsr-1)-dt,tm0
+     &,nterm1,nterm2
+      end if
+      do j=1,110
+       do i=1,133
+      ta(i,j)=   tam1(i,j)+((timestep(nsr-1)-dt-tm0)*(tam2(i,j)-
+     &tam1(i,j)))/21600.
+      pi(i,j)=  pam1(i,j)+((timestep(nsr-1)-dt-tm0)*(pam2(i,j)-
+     &pam1(i,j)))/21600.
+       end do
+        end do
+
+c      ******************************************************************************
+c     tx,ty and интерполяция по пространству  tx,ty
+      call txty(pi,tax,tay,rad,omega,anu)
+
+500   continue
+
+c     nr=6    !test Akkerblom
+c     nrr=7
+c     n6=120
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -630,6 +694,7 @@ c  переопределение давления Онеги и Двины    *****   **********
       
       call sipp(eps,ph,qt,an,as,aw,ae,ap,af,wr1,wr,im,jm,200)
 
+      call GRAD(ns,ph,is,js)
 
 
 
@@ -882,7 +947,7 @@ c_________________________________________________
 
 
 
-       !###################################################################
+       !################################################################! It is used for model verification.
         !ЗАПИСЬ DUMP  ЧЕРЕЗ ПРОИЗВОЛЬНЫЙ ИНТЕРВАЛ = ri (в шагах)        ! Writes into file 'levelsolo' the level in Solovki
        if(ns.gt.31200)  then
 
@@ -943,7 +1008,8 @@ c ******************************************************
        close (11)
        close (12)
        close (13)
-
+       ENDFILE 102                                                      ! GRAD.bin is closed
+       ENDFILE 103
 
       stop
       end
@@ -1496,3 +1562,22 @@ c        ******************************************
        return
          end
 
+      subroutine GRAD(nt,ph,imax,jmax)
+      implicit none
+
+      real ph,ph_trans
+      integer imax,jmax,i,j
+      integer nt
+      dimension ph(133,110),ph_trans(133,110)
+
+      do i=1, 133
+      do j=1, 110
+      ph_trans(i,111-j)=ph(i,j)
+      enddo
+      enddo
+
+
+      write(102  ) nt,ph_trans
+      write(103,*) nt,ph_trans
+
+      end subroutine
