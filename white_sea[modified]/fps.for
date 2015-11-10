@@ -723,10 +723,9 @@ c  переопределение давления Онеги и Двины    *****   **********
       cnn=nn/2.
 
 
-       call ww(u,v,u,v,w,fu,fv,us,tax,tay,thx,thy,                       ! It is defined in 'fps7.f'
-     #ph,ro,ahz,im,jm,km,al
-     #,al1,cph,
-     #cu,cadv,cq,ct,cstep)
+       call ww(u,v,u,v,w,fu,fv,us,tax,tay,thx,thy                      ! It is defined in 'fps7.f'
+     #,ph,ro,ahz,im,jm,km
+     #,al1,cph,cu,cadv,cq,cstep)
 
          
       call energy(energ(ns),u,v,im,jm,km,l1)

@@ -84,9 +84,9 @@ c      ut1=(u(i,j-1,k)+u(i+1,j-1,k)+ut(i,j-1,k)+ut(i+1,j-1,k))/4.*acss
         return
         end
 
-      subroutine ww(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy,                ! It is used in 'fps.for'
-     #ph,ro,ahz,im,jm,km,
-     #al1,cph,cu,cadv,cq,cstep)
+      subroutine ww(u,v,ut,vt,w,fu,fv,us,tax,tay,thx,thy                ! It is used in 'fps.for'
+     #,ph,ro,ahz,im,jm,km
+     #,al1,cph,cu,cadv,cq,cstep)
         include 'par.inc'
         include 'com.inc'
       real
