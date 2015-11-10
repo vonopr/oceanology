@@ -1,7 +1,7 @@
-        !COMPILER-GENERATED INTERFACE MODULE: Tue Nov 10 15:03:37 2015
-        MODULE AV__genmod
+        !COMPILER-GENERATED INTERFACE MODULE: Tue Nov 10 15:17:27 2015
+        MODULE AV_SUBROUTINE__genmod
           INTERFACE 
-            SUBROUTINE AV(P,PT,IM,JM,KM,K1,K2,AVP)
+            SUBROUTINE AV_SUBROUTINE(P,PT,IM,JM,KM,K1,K2,AVP)
               INTEGER(KIND=4) :: KM
               INTEGER(KIND=4) :: JM
               INTEGER(KIND=4) :: IM
@@ -10,6 +10,6 @@
               INTEGER(KIND=4) :: K1
               INTEGER(KIND=4) :: K2
               REAL(KIND=4) :: AVP(KM)
-            END SUBROUTINE AV
+            END SUBROUTINE AV_SUBROUTINE
           END INTERFACE 
-        END MODULE AV__genmod
+        END MODULE AV_SUBROUTINE__genmod

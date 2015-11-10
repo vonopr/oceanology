@@ -640,46 +640,7 @@ c     #        us(i,j,k)+(w(i,j,k)-w(i,j,k-1))/(zw(k)-zw(k-1))/dt
       return
       end
 
-      subroutine Ravtime(ro,fu,fv,umt,im,jm,km,kmm,kn1,k0,l)
-      real ro(im,jm,km),umt(im,jm,kmm),fu(im,jm,km)
-     #     ,fv(im,jm,km)
-
-        include 'par.inc'
-        include 'com.inc'
-
-      do 11 k=1,ks
-      call av(ro,fv,im,jm,km,k,k,ppp)
-        
-  11   continue
-      do i=1,im
-      do j=1,jm
-        ke=kp(i,j)
-      call intr1(fv,fu,i,j,ke,im,jm,km)
-
-      enddo
-      enddo
-      do 12 i=1,im
-      do 12 j=1,jm
-      do 12 k=1,kp(i,j)
-
-      fu(i,j,k)=(fu(i,j,kp(i,j))-fu(i,j,k))*10
-  12   continue
-
-        if(l.ne.0)then
-
-      do 1 i=1,im
-      do 1 j=1,jm
-      do 2 k=1,kmm
-      k1=k*kn1+k0
-      umt(i,j,k)=umt(i,j,k)+fu(i,j,k1)
-  2    continue
-        
-1     continue
-      endif
-
-        return
-      end
-
+      
       subroutine Ravt(fu,umt,im,jm,km,kmm,kn1,k0)
       real umt(im,jm,kmm),fu(im,jm,km)
  
