@@ -847,7 +847,7 @@ c     #         -et*ut0*cu
 
 
 c       dzi=0.                                  !!!!!!!!!
-       call intr1(us,fv,i,j,kv(i,j),im,jm,km,kv(i,j),dzi)
+       call intr1(us,fv,i,j,kv(i,j),im,jm,km)
 
        zw(1)=0.   !!!!!    LEVEL  MOD.
        z(1)=zw(1)
