@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "Console2", "Console2\Console2.vfproj", "{F9422E93-C4BC-49D0-8208-6A75BC4B4B3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Intel_SSA|Win32 = Intel_SSA|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9422E93-C4BC-49D0-8208-6A75BC4B4B3A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F9422E93-C4BC-49D0-8208-6A75BC4B4B3A}.Debug|Win32.Build.0 = Debug|Win32
+		{F9422E93-C4BC-49D0-8208-6A75BC4B4B3A}.Intel_SSA|Win32.ActiveCfg = Intel_SSA|Win32
+		{F9422E93-C4BC-49D0-8208-6A75BC4B4B3A}.Intel_SSA|Win32.Build.0 = Intel_SSA|Win32
+		{F9422E93-C4BC-49D0-8208-6A75BC4B4B3A}.Release|Win32.ActiveCfg = Release|Win32
+		{F9422E93-C4BC-49D0-8208-6A75BC4B4B3A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
