@@ -1,0 +1,9 @@
+        !COMPILER-GENERATED INTERFACE MODULE: Tue Nov 10 13:02:05 2015
+        MODULE PRARRAY__genmod
+          INTERFACE 
+            SUBROUTINE PRARRAY(P,KKK)
+              INTEGER(KIND=4) :: KKK
+              REAL(KIND=4) :: P(133,110,KKK)
+            END SUBROUTINE PRARRAY
+          END INTERFACE 
+        END MODULE PRARRAY__genmod

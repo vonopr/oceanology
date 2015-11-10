@@ -1,0 +1,33 @@
+        !COMPILER-GENERATED INTERFACE MODULE: Tue Nov 10 13:02:04 2015
+        MODULE RPIN__genmod
+          INTERFACE 
+            SUBROUTINE RPIN(U,V,UT,VT,W,FU,FV,US,TAX,TAY,THX,THY,PH,RO, &
+     &AHZ,IM,JM,KM,AL,AL1,CPH,CU,CADV,CQ,CSTEP)
+              INTEGER(KIND=4) :: KM
+              INTEGER(KIND=4) :: JM
+              INTEGER(KIND=4) :: IM
+              REAL(KIND=4) :: U(IM,JM,KM)
+              REAL(KIND=4) :: V(IM,JM,KM)
+              REAL(KIND=4) :: UT(IM,JM,KM)
+              REAL(KIND=4) :: VT(IM,JM,KM)
+              REAL(KIND=4) :: W(IM,JM,KM)
+              REAL(KIND=4) :: FU(IM,JM,KM)
+              REAL(KIND=4) :: FV(IM,JM,KM)
+              REAL(KIND=4) :: US(IM,JM,KM)
+              REAL(KIND=4) :: TAX(IM,JM)
+              REAL(KIND=4) :: TAY(IM,JM)
+              REAL(KIND=4) :: THX(IM,JM)
+              REAL(KIND=4) :: THY(IM,JM)
+              REAL(KIND=4) :: PH(IM,JM)
+              REAL(KIND=4) :: RO(IM,JM,KM)
+              REAL(KIND=4) :: AHZ(IM,JM,KM)
+              REAL(KIND=4) :: AL
+              REAL(KIND=4) :: AL1
+              REAL(KIND=4) :: CPH
+              REAL(KIND=4) :: CU
+              REAL(KIND=4) :: CADV
+              REAL(KIND=4) :: CQ
+              REAL(KIND=4) :: CSTEP
+            END SUBROUTINE RPIN
+          END INTERFACE 
+        END MODULE RPIN__genmod

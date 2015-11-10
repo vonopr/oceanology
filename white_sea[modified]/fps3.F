@@ -234,7 +234,7 @@ c      xx(i,j,k)=xx(i,j,k)-diva
     
        return
        end
-      subroutine LeithC(xx,at,u,v,w,i,j,k,im,jm,km,qt)
+      subroutine LeithC(xx,at,u,v,w,i,j,k,im,jm,km)                   ! It is called in 'fps7.f' only
          include 'par.inc'
         include 'com.inc'
 
@@ -244,7 +244,7 @@ c      xx(i,j,k)=xx(i,j,k)-diva
      *         ,u(im,jm,km),v(im,jm,km),w(im,jm,km)
      *         ,qt(im,jm)
 
-
+      qt=0         ! The variable 'qt' seems to be meaningless.
       ap=at(i,j,k)
       snn=sn(j+1)/2.+sn(j)/2.
                       

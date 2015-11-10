@@ -556,7 +556,7 @@ c        if(l0.eq.2)a(i,j,1)=a(i,j,2)
 
         do  k=2,kp(i,j)
 
-        call LeithC(a,at,u,v,w,i,j,k,im,jm,km,0.) !  at  normaly  
+        call LeithC(a,at,u,v,w,i,j,k,im,jm,km) !  at  normaly   ! It is defined in 'fps3.f'                                    
 
       a(i,j,k)=(a(i,j,k)*c +at(i,j,k)*(1-c)) 
 
