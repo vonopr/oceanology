@@ -133,8 +133,8 @@ c координаты уровн€ при втоке *********************
 
       open(41,file='tmay')
       open(42,file='smay')
-      read(41,*)t  !!!!                    95 year i.c.  -> nonhomo..
-      read(42,*)s   !!!
+      read(41,*) t  !!!!                    95 year i.c.  -> nonhomo..
+      read(42,*) s   !!!
        
 
       call cond(nstep,nprin,nk,niter,al,al1,ctah,ct,cadv,eps,
@@ -216,7 +216,6 @@ c координаты уровн€ при втоке *********************
 
       lmm=1
       if(lmm.eq.2)then
-         call Ravtime(us,fu,fv,umt,im,jm,km,kmm,1,0,1)
          do i=1,im
          do j=1,jm
            fu(i,j,1)=fu(i,j,1)-wmt(i,j,1)
@@ -342,7 +341,7 @@ c       open( 82, file='       ta.dat',access='DIRECT',recl=4*133*110)
 c       open( 81, file='       pa.dat',access='DIRECT',recl=4*133*110)
        open(540, file='levelsolo.dat' )                                 ! The result in Solovki area is stored here.
 
-       open(102, file=     'GRAD.bin' ,form = 'UNFORMATTED'         )   ! Results stored here are used in plotting with GRADS
+       open(102, file=     'GRADS.bin' ,form = 'UNFORMATTED'         )   ! Results stored here are used in plotting with GRADS
        open(103, file=   'Output.dat'                               )
 
          id=0
@@ -695,7 +694,7 @@ c  переопределение давлени€ ќнеги и ƒвины    *****   **********
       
       call sipp(eps,ph,qt,an,as,aw,ae,ap,af,wr1,wr,im,jm,200)
 
-      call GRAD(ns,ph,is,js)
+      ! call GRADS(ns,ph,is,js)
 
 
 
@@ -735,8 +734,8 @@ c  переопределение давлени€ ќнеги и ƒвины    *****   **********
       tmp=24.*3600./dt !число шагов в сутках
       tempN=float(ns)/tmp
 
-      print *,'energy = ',energ(ns),   ' ns=',ns,  ' days =',tempN
-
+c      write(*,*) 'energy = ',energ(ns),   ' ns=',ns,  ' days =',tempN
+       write(*,'(E18.10)') energ(ns)
 
 
       goto 795
@@ -1009,7 +1008,7 @@ c ******************************************************
        close (11)
        close (12)
        close (13)
-       ENDFILE 102                                                      ! GRAD.bin is closed
+       ENDFILE 102                                                      ! GRADS.bin is closed
        ENDFILE 103
 
       stop
@@ -1041,7 +1040,7 @@ c ******************************************************
       
       read(8,*)dt,vis,p0d,p0md
       read(8,*)rad,ql,al,al1,grad,omega,ddd,ddw
-      read(8,*)nstep,nprin,nk,eps,iter
+      read(8,*)nstep,nprin,nk,eps,iter      
       read(8,*)u0,v0,t0,tx,ty,ctah,ct,cadv
       read(8,*)tan,tas,qwa,cu1
       read(8,*)cstep
@@ -1563,7 +1562,7 @@ c        ******************************************
        return
          end
 
-      subroutine GRAD(nt,ph,imax,jmax)
+      subroutine GRADS(nt,ph,imax,jmax)
       implicit none
 
       real ph,ph_trans

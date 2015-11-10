@@ -1,0 +1,18 @@
+ 0.   1.e-3  1.  6.e-7  -0.  1.e5  wt,tb0,te0,drdt      alb
+ 1.92  0.2   1.88  1.3  1.44  0.01   1. 0.15  0.1  0.
+ 1  2  -2  -2  -2  -2   l0t,lbt,l0b,lbb,l0e,lbe
+
+
+type of boundary cond:
+1= neuton flux,
+2- flux,
+-1-value on surface,
+-2 -value on boundary box
+
+                                 1.e-3
+       read(5,*) wt,tb0,prt,te0,drdt
+       read(5,*)pare,alz,prb,rfcr,z0,qb
+       read(5,*) l0t,lbt,l0b,lbb,l0e,lbe
+
+
+
