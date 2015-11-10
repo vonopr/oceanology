@@ -174,7 +174,7 @@ ccc      if(l0e.lt.0)qe=(alz**0.75*tb(i,j,2)**1.5*(zw(ke)-z(2)))/0.435  !!!  OLD
 
       subroutine incbe(tb,te,frf,pr,prt,ahz,ef                          ! Proved: it is called in fps.for only
      #           ,tb0,te0,im,jm,km
-     #           ,wt,drdt,pare,alz,z0,rfcr,qb !initial
+     #           ,wt,drdt,pare,alz,z0,rfcr !initial
      #           ,l0t,lbt,l0b,lbb,l0e,lbe,qa,prb,alb)
 
         include 'par.inc'
@@ -196,7 +196,7 @@ ccc      if(l0e.lt.0)qe=(alz**0.75*tb(i,j,2)**1.5*(zw(ke)-z(2)))/0.435  !!!  OLD
 
        rewind 5
        read(5,*) wt,tb0,prt,te0,drdt,alb
-       read(5,*)pare,alz,prb,rfcr,z0,qb
+       read(5,*)pare,alz,prb,rfcr,z0
        read(5,*) l0t,lbt,l0b,lbb,l0e,lbe
        close(5)
 
@@ -412,7 +412,7 @@ c      print * ,thx,thy
      * ahz,fuu,fvv,azz,e2,d2,r2,g2,a3,b3,c3,ua,va,z0,cstep)
  
 ************************************************************************
-comments     bound.cond.   from geostr
+comments     bound.conditions.   from geostr
 ********   horisontal velocities u - v  calculation ***********
 ********   HRVL(ddx,ddy,adv,zint,delta)             ***********
 ******  1. u =  ut +(diff + diff(horis) - coriolis*(.55vt+.45v)+ dpx+dpro)*dt

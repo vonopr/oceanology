@@ -70,7 +70,7 @@
 cccc b.c. on the surface
 
       if(l0.eq.1)then
-c bound. cond - newton flux on surface
+c bound. condition - newton flux on surface
       b1(k1)=ahz(1)/z(2)
       c1(k1)=-b1(k1)-a1(k1)+b2(k1)
         f1(k1)=a1(k1)

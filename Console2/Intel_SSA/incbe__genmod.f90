@@ -1,8 +1,8 @@
-        !COMPILER-GENERATED INTERFACE MODULE: Tue Nov 10 13:34:36 2015
+        !COMPILER-GENERATED INTERFACE MODULE: Tue Nov 10 14:50:39 2015
         MODULE INCBE__genmod
           INTERFACE 
             SUBROUTINE INCBE(TB,TE,FRF,PR,PRT,AHZ,EF,TB0,TE0,IM,JM,KM,WT&
-     &,DRDT,PARE,ALZ,Z0,RFCR,QB,L0T,LBT,L0B,LBB,L0E,LBE,QA,PRB,ALB)
+     &,DRDT,PARE,ALZ,Z0,RFCR,L0T,LBT,L0B,LBB,L0E,LBE,QA,PRB,ALB)
               INTEGER(KIND=4) :: KM
               INTEGER(KIND=4) :: JM
               INTEGER(KIND=4) :: IM
@@ -21,7 +21,6 @@
               REAL(KIND=4) :: ALZ
               REAL(KIND=4) :: Z0
               REAL(KIND=4) :: RFCR
-              REAL(KIND=4) :: QB
               INTEGER(KIND=4) :: L0T
               INTEGER(KIND=4) :: LBT
               INTEGER(KIND=4) :: L0B

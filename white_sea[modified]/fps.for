@@ -3,7 +3,7 @@ c      use DFPORT
       include 'par.inc'                                                 ! include file with parameters' values
       include 'com.inc'                                                 ! defines variables, common for all program blocks and subroutines
       
-      common ns                                  ! ns - number of steps -  defined as a common variable 
+      common ns                                                         ! ns - number of steps -  defined as a common variable 
       
       real*4 timestep(120000)
         
@@ -15,7 +15,8 @@ c      use DFPORT
      *     ,ut(in,jn,kn),vt(in,jn,kn)            !ones from prev.time step
      *  ,s(in,jn,kn),t(in,jn,kn),at(in,jn,kn),st(in,jn,kn) !temperature,salinity
      *,ro(in,jn,kn),ph(in,jn),pht(in,jn),phtt(in,jn) !dencity,surface pressure
-     #     ,ta(in,jn),qt(in,jn),qb(in,jn)        !atmosph.temp,surface t-flux
+     #     ,ta(in,jn),qt(in,jn)                                         ! atmosph.temp,surface t-flux
+     #     ,qb(in,jn)                                                   ! flow of turbulnce from atmoshere, wind generated    
 
      #     ,str(in,jn,kn),str0(in,jn),strt(in,jn,kn)     
       
@@ -138,8 +139,8 @@ c координаты уровня при втоке *********************
 
       call cond(nstep,nprin,nk,niter,al,al1,ctah,ct,cadv,eps,
      #          aaa,qwa,cu1,x1,ns,taa,saa,
-     #          kh,s,t,u,v,w,tx,ty,ph,pht,im,jm,km
-     *          ,hp,p0d,p0md,cst)
+     #          kh,s,t,u,v,w,tx,ty,ph,pht,im,jm,km,hp
+     *          ,p0d,p0md,cst)
 
 
 
@@ -170,9 +171,9 @@ c координаты уровня при втоке *********************
 
 
 
-      call incbe(tb,te,frf,pr,prt,ahz,ef,
+      call incbe(tb,te,frf,pr,prt,ahz,ef,                                ! It is defined in 'fps6.f'    
      #           tb0,te0,im,jm,km,
-     #           wt,drdt,pare,alz,z0,rfcr,qb, !initial
+     #           wt,drdt,pare,alz,z0,rfcr, !initial
      #           l0t,lbt,l0b,lbb,l0e,lbe,ql,prb,alb)
 
       close(11)
@@ -722,8 +723,9 @@ c  переопределение давления Онеги и Двины    *****   **********
       cnn=nn/2.
 
 
-       call ww(u,v,u,v,w,fu,fv,us,tax,tay,thx,thy,
-     #ph,ro,ahz,im,jm,km,al,al1,cph,
+       call ww(u,v,u,v,w,fu,fv,us,tax,tay,thx,thy,                       ! It is defined in 'fps7.f'
+     #ph,ro,ahz,im,jm,km,al
+     #,al1,cph,
      #cu,cadv,cq,ct,cstep)
 
          
@@ -1016,8 +1018,8 @@ c ******************************************************
 
 *************************
 
-      subroutine cond(nstep,nprin,nk,iter,al,al1,ctah,ct,cadv,
-     #  eps,aaa,qwa,cu1,x1,ns,taa,saa,
+      subroutine cond(nstep,nprin,nk,iter,al,al1,ctah,ct,cadv,eps
+     #  ,aaa,qwa,cu1,x1,ns,taa,saa,
      #  kh,s,t,u,v,w,tx,ty,ph,pht,im,jm,km,hp
      *  ,p0d,p0md,cstep)
         include 'par.inc'
@@ -1264,7 +1266,7 @@ c----------------------------------------
       cns=float(ns)
 
       c0=360000/(3*60)*sqrt(2.)  !!! заменить на DX/DT  
-        sns=480. !!!!!! parametr determ's relaxetion speed init. cond.
+        sns=480. !!!!!! parametr determ's relaxetion speed init. conditions.
       da1=ain-ap
       if(abs(da1).lt.1.e-10)then
         outf=a0   !*(1.-sns/(cns+sns))+aout*(sns/(sns+cns))
@@ -1385,7 +1387,7 @@ c        ******************************************
       real a(im,jm,km),at(im,jm,km),hp(im,jm)
      *     ,u(im,jm,k1m),v(im,jm,k1m)
 
-*     bound.cond on liquid boundary for p,t,s
+*     bound.condintion on liquid boundary for p,t,s
 *     a0=0.for p, a0=at for T,S ,
 *     a1=p0.for p, a1=0. for T,S ,
       ares=0.

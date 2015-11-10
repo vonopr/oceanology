@@ -39,7 +39,6 @@
 		<File RelativePath="..\white_sea[modified]\PAR.INC"/></Filter>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\white_sea[modified]\dist.for"/>
 		<File RelativePath="..\white_sea[modified]\fps.for"/>
 		<File RelativePath="..\white_sea[modified]\fps1.f"/>
 		<File RelativePath="..\white_sea[modified]\fps2.F"/>
@@ -47,6 +46,5 @@
 		<File RelativePath="..\white_sea[modified]\fps4.F"/>
 		<File RelativePath="..\white_sea[modified]\fps5.F"/>
 		<File RelativePath="..\white_sea[modified]\fps6.F"/>
-		<File RelativePath="..\white_sea[modified]\fps7.F"/>
-		<File RelativePath="..\white_sea[modified]\interpol.for"/></Filter></Files>
+		<File RelativePath="..\white_sea[modified]\fps7.F"/></Filter></Files>
 	<Globals/></VisualStudioProject>
