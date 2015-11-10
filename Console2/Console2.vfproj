@@ -35,7 +35,8 @@
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Include Files" Filter="fi;fd">
-		<File RelativePath="..\white_sea[modified]\COM.INC"/></Filter>
+		<File RelativePath="..\white_sea[modified]\COM.INC"/>
+		<File RelativePath="..\white_sea[modified]\PAR.INC"/></Filter>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\white_sea[modified]\dist.for"/>

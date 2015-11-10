@@ -447,7 +447,7 @@ ccc        goto 352
       do  2 k=2,ke
 
       if(it(i,j).eq.2)a(i,j,k)= outf(a(i,j,k),a(i-1,j+1,k),at(i-1,j+1,k)
-     #,a(i-2,j+2,k),a(i+1,j-1,k),1.,i,j,k,ns)
+     #,a(i-2,j+2,k),a(i+1,j-1,k),1.,ns)
      
            
       wu=w(i,j,k-1)                      
